@@ -1,10 +1,11 @@
-package shortcutHelper.gui._interface.autosuggestion;
+package shortcutHelper.frontend._interface.autosuggestion;
 
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -16,7 +17,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 
-public class SuggestionDropDownDecorator<C extends JComponent> {
+public class SuggestionDropDownDecorator<C extends JComponent> extends Observable{
 	  private final C invoker;
 	  private final SuggestionClient<C> suggestionClient;
 	  private JPopupMenu popupMenu;
@@ -29,9 +30,10 @@ public class SuggestionDropDownDecorator<C extends JComponent> {
 	      this.suggestionClient = suggestionClient;
 	  }
 
-	  public static <C extends JComponent> void decorate(C component, SuggestionClient<C> suggestionClient) {
+	  public static <C extends JComponent> void decorate(C component, SuggestionClient<C> suggestionClient, Observer observerSuggestion) {
 	      SuggestionDropDownDecorator<C> d = new SuggestionDropDownDecorator<>(component, suggestionClient);
 	      d.init();
+	      d.addObserver(observerSuggestion);
 	  }
 
 	  public void init() {
@@ -121,10 +123,13 @@ public class SuggestionDropDownDecorator<C extends JComponent> {
 	      if (popupMenu.isVisible()) {
 	          int selectedIndex = listComp.getSelectedIndex();
 	          if (selectedIndex != -1) {
+	        	  System.out.println("selectFromList");
 	              popupMenu.setVisible(false);
 	              String selectedValue = listComp.getSelectedValue();
 	              disableTextEvent = true;
 	              suggestionClient.setSelectedText(invoker, selectedValue);
+	              setChanged();
+	              notifyObservers(selectedValue);
 	              disableTextEvent = false;
 	              e.consume();
 	          }

@@ -1,4 +1,4 @@
-package shortcutHelper.gui._interface.autosuggestion;
+package shortcutHelper.frontend._interface.autosuggestion;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -38,6 +38,12 @@ public class TextComponentSuggestionClient implements SuggestionClient<JTextComp
 	@Override
 	public List<String> getSuggestions(JTextComponent invoker) {
 		return suggestionProvider.apply(invoker.getText().trim());
+	}
+	
+	public void updateListWords(List<String> listWords)
+	{
+		this.listWords.clear();
+		this.listWords.addAll(listWords);
 	}
 
 	private List<String> getWordsMatching(String str) {		

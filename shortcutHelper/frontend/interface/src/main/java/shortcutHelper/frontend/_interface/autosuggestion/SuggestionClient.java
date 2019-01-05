@@ -1,4 +1,4 @@
-package shortcutHelper.gui._interface.autosuggestion;
+package shortcutHelper.frontend._interface.autosuggestion;
 
 import java.awt.Point;
 
