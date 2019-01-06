@@ -6,7 +6,7 @@ public class UpdateMainInterfaceInteraction extends AbstractUpdateMainInterfaceI
 
 	@Override
 	public void execute(MainInterfaceViewBean bean) {
-		getBackendInteraction().execute();
+//		getBackendInteraction().execute();
 	}
 
 }

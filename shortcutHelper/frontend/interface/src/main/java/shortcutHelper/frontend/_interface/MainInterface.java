@@ -39,12 +39,14 @@ public class MainInterface extends JFrame implements Observer{
 	
 	private TextComponentSuggestionClient componentSuggestionClient;
 	
+	private boolean viewInitialized;
+	
 	public MainInterface(Observer observerEvent)
 	{
 		textFieldCommand = new JTextField();
-		mainInterfaceViewBean = new MainInterfaceViewBean();
 		this.observerEvent = observerEvent;
-		init();
+		viewInitialized = false;
+		
 	}
 	
 	private void init()
@@ -64,6 +66,11 @@ public class MainInterface extends JFrame implements Observer{
 	public void updateView(MainInterfaceViewBean viewBean)
 	{
 		this.mainInterfaceViewBean = viewBean;
+		if(!viewInitialized)
+		{
+			init();
+			viewInitialized = true;
+		}
 		mapViewBeanToView();
 		showToastIfRequired();
 	}
