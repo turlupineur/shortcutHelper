@@ -48,11 +48,12 @@ public class ToastMessage extends JFrame {
 						@Override
 						public void run() {
 							opacity-=0.1;
-							setOpacity((float)opacity);
 							if(opacity <= 0.0)
 							{
 								faderTimer.cancel();
 								setVisible(false);
+							}else {
+								setOpacity((float)opacity);
 							}
 						}
 					};
