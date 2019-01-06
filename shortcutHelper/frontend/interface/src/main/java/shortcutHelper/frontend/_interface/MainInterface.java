@@ -11,9 +11,8 @@ import javax.swing.JTextField;
 
 import shortcutHelper.frontend._interface.autosuggestion.SuggestionDropDownDecorator;
 import shortcutHelper.frontend._interface.autosuggestion.TextComponentSuggestionClient;
+import shortcutHelper.frontend._interface.toast.ToastMessage;
 import shortcutHelper.frontend.viewbean.MainInterfaceViewBean;
-
-
 public class MainInterface extends JFrame implements Observer{
 	private MainInterfaceViewBean mainInterfaceViewBean;
 	private Observer observerEvent;
@@ -66,11 +65,24 @@ public class MainInterface extends JFrame implements Observer{
 	{
 		this.mainInterfaceViewBean = viewBean;
 		mapViewBeanToView();
+		showToastIfRequired();
 	}
 	
+	private void showToastIfRequired() {
+		if(this.mainInterfaceViewBean.getFunctionBean().getToastMessage() != null) {
+			ToastMessage toast = new ToastMessage(this,this.mainInterfaceViewBean.getFunctionBean().getToastMessage());
+			toast.display();
+			System.out.println("showToast over");
+		}
+	}
+
 	private void mapViewBeanToView()
 	{
 		this.textFieldCommand.setText(this.mainInterfaceViewBean.getDataBean().getCalledShortcut());
+		if(this.mainInterfaceViewBean.getFunctionBean().isFocusOnShortcutTextBox())
+		{
+			this.textFieldCommand.requestFocus();
+		}
 	}
 	
 	private void configureSuggestionDropdown() {
