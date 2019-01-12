@@ -1,0 +1,12 @@
+
+helper propertyHelper{
+	@ This helper loads all properties used in the system. @
+}
+
+helper shortcutHelper {
+	@ This helper loads all shortcuts. The loaded shorcuts are not
+	inspected. @
+	getShortcut returns STRING {
+		param shortcutId STRING
+	}
+}
