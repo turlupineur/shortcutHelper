@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>backendInteraction</module>
+		<module>helper</module>
 	</modules>
 	<parent>
 		<groupId>shortcutHelper</groupId>
