@@ -1,0 +1,30 @@
+backendcommand refreshCommand {
+	using : propertyHelper
+			shortcutHelper;
+	input parameter :
+	returns : void
+	implementation {
+		
+		variable EXCEPTION exceptionOccuredRefreshProperties = null
+		variable EXCEPTION exceptionOccuredRefreshShortcuts = null
+		
+		exceptionOccuredRefreshProperties = callComponentMethod shortcutHelper.shortcutHelper.refresh()
+		
+		if exceptionOccuredRefreshProperties = @ any exception @
+		{
+			showerror "Error while refreshing properties: " @ + exceptionOccuredRefreshProperties @
+		};
+		
+		exceptionOccuredRefreshShortcuts = callComponentMethod propertyHelper.propertyHelper.refresh()
+		
+		if exceptionOccuredRefreshShortcuts = @ any exception @
+		{
+			showerror "Error while refreshing shortcuts: " @ + exceptionOccuredRefreshShortcuts @
+		};
+		
+		if exceptionOccuredRefreshProperties = null and exceptionOccuredRefreshShortcuts = null
+		{
+			showinfo "Application refreshed"
+		};
+	}
+}

@@ -10,6 +10,7 @@
 		<module>helper</module>
 		<module>service</module>
 		<module>backendCommon</module>
+		<module>backendCommand</module>
 	</modules>
 	<parent>
 		<groupId>shortcutHelper</groupId>

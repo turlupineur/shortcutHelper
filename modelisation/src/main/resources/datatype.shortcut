@@ -1,2 +1,5 @@
 datatype STRING
 datatype BOOLEAN
+
+
+datatype EXCEPTION
