@@ -16,10 +16,8 @@ public class MainInterfaceController extends AbstractMainInterfaceController{
 	private void init()
 	{
 		MainInterface mainInteface = new MainInterface(this);
-		MainInterfaceViewBean mainInterfaceViewBean = new MainInterfaceViewBean();
 		this.setMainInteface(mainInteface);
-		this.getUpdateMainInterfaceInteraction().execute(mainInterfaceViewBean);
-		this.getMainInteface().updateView(mainInterfaceViewBean);
+		updateView();
 	}
 	
 	public void showInterface()
@@ -39,9 +37,17 @@ public class MainInterfaceController extends AbstractMainInterfaceController{
 
 	@Override
 	public void update(Observable o, Object arg) {
+		// Called upon execution of a shortcut.
 		MainInterfaceViewBean viewBean = (MainInterfaceViewBean) arg;
 		getSubmitShortcutToExecute().execute(viewBean);
 		updateView(viewBean);
+	}
+	
+	public void updateView()
+	{
+		MainInterfaceViewBean mainInterfaceViewBean = new MainInterfaceViewBean();
+		this.getUpdateMainInterfaceInteraction().execute(mainInterfaceViewBean);
+		updateView(mainInterfaceViewBean);
 	}
 	
 }
