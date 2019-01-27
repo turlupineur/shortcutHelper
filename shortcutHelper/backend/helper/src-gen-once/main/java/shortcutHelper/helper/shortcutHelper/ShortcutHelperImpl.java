@@ -1,0 +1,75 @@
+package shortcutHelper.helper.shortcutHelper;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import shortcutHelper.logging.ShortcutHelperLogging;
+
+public class ShortcutHelperImpl extends AbstractShortcutHelper implements IShortcutHelper{
+	public static final String FILE_CONTAINING_SHORTCUTS_TO_LOAD = "config/shortcuts/shortcuts.properties";
+	public static final String PROPERTY_SHORTCUTS_TO_LOAD = "shortcut.files";
+	public static final String LIST_SEPARATOR = ";";
+
+	@Override
+	public void refresh() {
+		// parsing main shortcut file.
+		Properties propShortcutsToLoad = new Properties();
+		ShortcutHelperLogging.logSeparationInfo();
+		ShortcutHelperLogging.logInfo("LOADING SHORTCUTS");
+		try {
+			propShortcutsToLoad.load(this.getPropertyLoaderService().getInputStreamForFile(FILE_CONTAINING_SHORTCUTS_TO_LOAD));
+		} catch (IOException e) {
+			ShortcutHelperLogging.logInfo("Done loading shortcuts. No shortcuts was loaded.");
+			throw new IllegalStateException("Shortcuts' list '" + FILE_CONTAINING_SHORTCUTS_TO_LOAD + "' could not be loaded");
+		}
+		String propShortcutsToLoadValue = propShortcutsToLoad.getProperty(PROPERTY_SHORTCUTS_TO_LOAD);
+		
+		if(StringUtil.isNullOrEmpty(propShortcutsToLoadValue))
+		{
+			throw new IllegalStateException("Shortcut list files '" + FILE_CONTAINING_SHORTCUTS_TO_LOAD + "' doesn't not contain a valid list for property '" + PROPERTY_SHORTCUTS_TO_LOAD + "'");
+		}
+		ShortcutHelperLogging.logInfo("Loading all shortcuts defined in '" + FILE_CONTAINING_SHORTCUTS_TO_LOAD + "'");
+		// parse all shortcut files.
+		String [] shortcutsToLoadList= propShortcutsToLoadValue.split(LIST_SEPARATOR);
+		for(String fileToLoad : shortcutsToLoadList)
+		{
+			try {
+				Properties loadPropertiesFromFile = loadPropertiesFromFile(fileToLoad);
+				for(Object keyLoaded: loadPropertiesFromFile.keySet())
+				{
+					if(propShortcutsToLoad.containsKey(keyLoaded.toString()))
+					{
+						ShortcutHelperLogging.logWarning("Shortcut key '" + keyLoaded + "' is defined more than once. Overwriting shortcut with the one defined in file '" + fileToLoad + "'.");
+					}
+					propShortcutsToLoad.put(keyLoaded.toString(), loadPropertiesFromFile.get(keyLoaded).toString());
+				}
+				ShortcutHelperLogging.logInfo("Loaded shortcut file : " + fileToLoad);
+				
+			} catch (IOException e) {
+				ShortcutHelperLogging.logWarning("Shortcut file '" + fileToLoad + "' could not be loaded: " + e.getMessage());
+			}
+		}
+		
+		Stream<Entry<Object, Object>> stream = propShortcutsToLoad.entrySet().stream();
+	    Map<String, String> mapOfProperties = stream.collect(Collectors.toMap(
+	            e -> String.valueOf(e.getKey()),
+	            e -> String.valueOf(e.getValue())));
+		
+		addShortcuts(mapOfProperties);
+		ShortcutHelperLogging.logInfo("DONE LOADING SHORTCUTS.");
+		ShortcutHelperLogging.logSeparationInfo();
+	}
+	
+	private Properties loadPropertiesFromFile(String file) throws FileNotFoundException, IOException
+	{
+		Properties properties = new Properties();
+		properties.load(this.getPropertyLoaderService().getInputStreamForFile(file));
+		return properties;
+	}
+
+}

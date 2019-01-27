@@ -5,8 +5,15 @@ helper propertyHelper{
 
 helper shortcutHelper {
 	@ This helper loads all shortcuts. The loaded shorcuts are not
-	inspected. @
+	inspected.
+	Initially, this helper is empty. The first call to retrieve a shortcut
+	will trigger the load of all data.
+	 @
 	getShortcut returns STRING {
 		param shortcutId STRING
+	}
+	
+	refresh returns void{
+		NoArgument
 	}
 }
