@@ -12,6 +12,16 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>service</artifactId>
+		</dependency>
+	</dependencies>
 	<build>
     <plugins>
         <plugin>
@@ -25,8 +35,8 @@
                     </goals>
                     <configuration>
                         <sources>
-                            <source>src-gen</source>
-                            <source>src-gen-once</source>
+                            <source>src-gen/main/java</source>
+                            <source>src-gen-once/main/java</source>
                         </sources>
                     </configuration>
                 </execution>
