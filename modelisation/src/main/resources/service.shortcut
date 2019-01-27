@@ -1,0 +1,18 @@
+service propertyLoaderService {
+	@ This service will contain the strategy used to load specific config.
+	Because some configs are defined as strategy during development/test
+	and defined as file on the system after deployment, this service
+	ensures a seamless reading of the config and properties.
+	Upon request, the service will look for a folder "config" in the 
+	current working folder. If the folder is there, all config will be
+	loaded locally, otherwise all configs will be loaded as resource.
+	@
+	
+	setReadPropertyAsLocal returns void {
+		NoArgument
+	}
+	
+	setReadPropertyAsResource returns void{
+		NoArgument
+	}
+}
