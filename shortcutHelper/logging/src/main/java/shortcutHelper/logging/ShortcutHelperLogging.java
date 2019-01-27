@@ -57,4 +57,9 @@ public class ShortcutHelperLogging {
 	{
 		t.printStackTrace();
 	}
+	
+	public static void logSeparationInfo()
+	{
+		logInfo("--------------------------------------------------------------");
+	}
 }

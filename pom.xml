@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>modelisation</module>
+		<module>user_config</module>
 		<module>/shortcutHelper/logging</module>
 		<module>/shortcutHelper/frontend</module>
 		<module>/shortcutHelper/middleend</module>
@@ -43,6 +44,31 @@
 			<dependency>
 				<groupId>shortcutHelper.middleend</groupId>
 				<artifactId>interaction</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>shortcutHelper</groupId>
+				<artifactId>application_config</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>shortcutHelper.backend</groupId>
+				<artifactId>helper</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>shortcutHelper</groupId>
+				<artifactId>user_config</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>shortcutHelper.backend</groupId>
+				<artifactId>service</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>shortcutHelper.backend</groupId>
+				<artifactId>backendCommon</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
