@@ -20,5 +20,17 @@
 			<groupId>shortcutHelper.middleend</groupId>
 			<artifactId>controller</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>helper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>application_config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>user_config</artifactId>
+		</dependency>
 	</dependencies>
 </project>
