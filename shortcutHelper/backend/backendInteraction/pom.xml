@@ -6,6 +6,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>backend.backendInteraction</name>
+	<dependencies>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>backendCommand</artifactId>
+		</dependency>
+	</dependencies>
 	<parent>
 		<groupId>shortcutHelper</groupId>
 		<artifactId>backend</artifactId>

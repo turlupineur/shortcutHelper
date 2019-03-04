@@ -22,6 +22,11 @@
 		</dependency>
 		<dependency>
 			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>backendCommand</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
 			<artifactId>helper</artifactId>
 		</dependency>
 		<dependency>
@@ -31,6 +36,16 @@
 		<dependency>
 			<groupId>shortcutHelper</groupId>
 			<artifactId>user_config</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
 		</dependency>
 	</dependencies>
 </project>

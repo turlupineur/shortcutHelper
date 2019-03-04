@@ -15,7 +15,7 @@ import shortcutHelper.frontend._interface.toast.ToastMessage;
 import shortcutHelper.frontend.viewbean.MainInterfaceViewBean;
 public class MainInterface extends JFrame implements Observer{
 	private MainInterfaceViewBean mainInterfaceViewBean;
-	private Observer observerEvent;
+	private Observer controller;
 	
 	//*****************************************************************
 	/**
@@ -41,14 +41,21 @@ public class MainInterface extends JFrame implements Observer{
 	
 	private boolean viewInitialized;
 	
-	public MainInterface(Observer observerEvent)
+	public MainInterface()
 	{
 		textFieldCommand = new JTextField();
-		this.observerEvent = observerEvent;
 		viewInitialized = false;
 		
 	}
 	
+	public Observer getController() {
+		return controller;
+	}
+
+	public void setController(Observer controller) {
+		this.controller = controller;
+	}
+
 	private void init()
 	{
 		setSize(WIDTH, HEIGHT);
@@ -111,7 +118,7 @@ public class MainInterface extends JFrame implements Observer{
 	@Override
 	public void update(Observable arg0, Object calledShortcut) {
 		this.mainInterfaceViewBean.getDataBean().setCalledShortcut(calledShortcut.toString());
-		this.observerEvent.update(arg0, this.mainInterfaceViewBean);
+		this.getController().update(arg0, this.mainInterfaceViewBean);
 		System.out.println("update");
 	}
 }

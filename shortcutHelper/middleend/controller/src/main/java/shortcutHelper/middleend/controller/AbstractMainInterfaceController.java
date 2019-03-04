@@ -3,37 +3,42 @@ package shortcutHelper.middleend.controller;
 import java.util.Observer;
 
 import shortcutHelper.frontend._interface.MainInterface;
+import shortcutHelper.middleend.interaction.submitShortcutToExecute.ISubmitShortcutToExecuteInteraction;
 import shortcutHelper.middleend.interaction.submitShortcutToExecute.SubmitShortcutToExecuteInteraction;
+import shortcutHelper.middleend.interaction.updateMainInterfaceInteraction.IUpdateMainInterfaceInteraction;
 import shortcutHelper.middleend.interaction.updateMainInterfaceInteraction.UpdateMainInterfaceInteraction;
 
 public abstract class AbstractMainInterfaceController implements Observer, IMainInterfaceController{
-	private MainInterface mainInteface;
+	private MainInterface mainInterface;
 	
-	private SubmitShortcutToExecuteInteraction submitShortcutToExecute;
+	private ISubmitShortcutToExecuteInteraction submitShortcutToExecuteInteraction;
 	
-	private UpdateMainInterfaceInteraction updateMainInterfaceInteraction;
+	private IUpdateMainInterfaceInteraction updateMainInterfaceInteractionInteraction;
 	
 	public AbstractMainInterfaceController()
 	{
-		setSubmitShortcutToExecute(new SubmitShortcutToExecuteInteraction());
-		setUpdateMainInterfaceInteraction(new UpdateMainInterfaceInteraction());
+		setSubmitShortcutToExecuteInteraction(new SubmitShortcutToExecuteInteraction());
+		setUpdateMainInterfaceInteractionInteraction(new UpdateMainInterfaceInteraction());
 	}
-	public MainInterface getMainInteface() {
-		return mainInteface;
+	public MainInterface getMainInterface() {
+		return mainInterface;
 	}
-	public void setMainInteface(MainInterface mainInteface) {
-		this.mainInteface = mainInteface;
+	public void setMainInterface(MainInterface mainInterface) {
+		this.mainInterface = mainInterface;
 	}
-	public SubmitShortcutToExecuteInteraction getSubmitShortcutToExecute() {
-		return submitShortcutToExecute;
+	public ISubmitShortcutToExecuteInteraction getSubmitShortcutToExecuteInteraction() {
+		return submitShortcutToExecuteInteraction;
 	}
-	public void setSubmitShortcutToExecute(SubmitShortcutToExecuteInteraction submitShortcutToExecute) {
-		this.submitShortcutToExecute = submitShortcutToExecute;
+	public void setSubmitShortcutToExecuteInteraction(
+			ISubmitShortcutToExecuteInteraction submitShortcutToExecuteInteraction) {
+		this.submitShortcutToExecuteInteraction = submitShortcutToExecuteInteraction;
 	}
-	public UpdateMainInterfaceInteraction getUpdateMainInterfaceInteraction() {
-		return updateMainInterfaceInteraction;
+	public IUpdateMainInterfaceInteraction getUpdateMainInterfaceInteractionInteraction() {
+		return updateMainInterfaceInteractionInteraction;
 	}
-	public void setUpdateMainInterfaceInteraction(UpdateMainInterfaceInteraction updateMainInterfaceInteraction) {
-		this.updateMainInterfaceInteraction = updateMainInterfaceInteraction;
+	public void setUpdateMainInterfaceInteractionInteraction(
+			IUpdateMainInterfaceInteraction updateMainInterfaceInteractionInteraction) {
+		this.updateMainInterfaceInteractionInteraction = updateMainInterfaceInteractionInteraction;
 	}
+	
 }

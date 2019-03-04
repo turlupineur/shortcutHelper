@@ -27,6 +27,7 @@ public class ToastMessage extends JFrame {
 		setLocation(c.getLocation().x, c.getLocation().y + 70);
 		setSize(250, 40);
 		add(new JLabel(message));
+		setAutoRequestFocus(false);
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -42,6 +43,7 @@ public class ToastMessage extends JFrame {
 			public void run() {
 				try {
 					final Timer faderTimer = new Timer(true);
+					System.out.println("In task: " + Thread.currentThread().getId());
 					TimerTask fader = new TimerTask() {
 						private double opacity = 1.0;
 						
@@ -51,6 +53,7 @@ public class ToastMessage extends JFrame {
 							if(opacity <= 0.0)
 							{
 								faderTimer.cancel();
+								System.out.println("TOAST GONE");
 								setVisible(false);
 							}else {
 								setOpacity((float)opacity);
@@ -58,7 +61,6 @@ public class ToastMessage extends JFrame {
 						}
 					};
 					faderTimer.schedule(fader, 100, 100);
-					
 					// hide the toast message in slow motion
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
@@ -71,8 +73,6 @@ public class ToastMessage extends JFrame {
 		
 		Timer timer = new Timer(true);
 		timer.schedule(toastTask, 1500);
-		
-		
-		
+		System.out.println("Outside task: " + Thread.currentThread().getId());
 	}
 }
