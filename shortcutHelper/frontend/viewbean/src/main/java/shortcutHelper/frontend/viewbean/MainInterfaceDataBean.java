@@ -1,25 +1,26 @@
 package shortcutHelper.frontend.viewbean;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 public class MainInterfaceDataBean {
-	private List<String> listShortcuts ;
+	private List<String> shortcuts ;
 	private String calledShortcut;
 	
 	public MainInterfaceDataBean()
 	{
-		listShortcuts = new ArrayList<String>();
-		listShortcuts.add("house");
-		listShortcuts.add("house.kitchen.table");
-		listShortcuts.add("house.kitchen.chairs");
-		listShortcuts.add("house.bedroom.bed");
-		
+		shortcuts = new ArrayList<String>();
 	}	
 	
-	public List<String> getListShortcuts() {
-		return Collections.unmodifiableList(listShortcuts);
+	public List<String> getShortcuts() {
+		return Collections.unmodifiableList(shortcuts);
+	}
+	public void setShortcuts(List<String> shortcuts)
+	{
+		this.shortcuts.clear();
+		this.shortcuts.addAll(shortcuts);
 	}
 	public String getCalledShortcut() {
 		return calledShortcut;

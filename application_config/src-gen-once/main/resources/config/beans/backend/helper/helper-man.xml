@@ -8,5 +8,7 @@
 	   <import resource="classpath:config/beans/backend/helper/helper.xml" />
 	
 	<!-- Override beans here. Beans must have same name and extend the bean's parent.  -->
-
+	<bean name="ShortcutHelper" class="shortcutHelper.helper.shortcutHelper.ShortcutHelperImpl" parent="ShortcutHelperDef">
+		<property name="propertyLoaderService" ref="PropertyLoaderService"></property>
+	</bean>
 </beans>

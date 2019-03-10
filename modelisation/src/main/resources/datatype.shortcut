@@ -3,3 +3,7 @@ datatype BOOLEAN
 
 
 datatype EXCEPTION
+
+
+// Complex types
+datatype MAP_STRING_STRING "java.util.Map<String,String>"

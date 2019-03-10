@@ -19,4 +19,8 @@ helper shortcutHelper {
 	refresh returns void{
 		NoArgument
 	}
+	
+	getListShortcuts returns MAP_STRING_STRING{
+		NoArgument
+	}
 }

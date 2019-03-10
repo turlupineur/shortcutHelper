@@ -10,5 +10,7 @@
 	</bean>
 	<bean id="UpdateMainInterfaceInteraction"
 		class="shortcutHelper.middleend.interaction.updateMainInterfaceInteraction.UpdateMainInterfaceInteraction">
+		<property name="updateMainInterfaceBackendInteraction" ref="UpdateMainInterfaceBackendInteraction"></property>
+		<property name="shortcutHelper" ref="ShortcutHelper"></property>
 	</bean>
 </beans>

@@ -3,5 +3,5 @@ package shortcutHelper.backend.backendInteraction.updateMainInterfaceBackendInte
 import shortcutHelper.backend.backendInteraction.IBackendInteraction;
 
 public interface IUpdateMainInterfaceBackendInteraction extends IBackendInteraction{
-
+	public static final String BEAN_ID = "UpdateMainInterfaceBackendInteraction";
 }

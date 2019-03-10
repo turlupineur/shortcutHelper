@@ -10,11 +10,14 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper {
 	// The list is defined here to have a better control over the update. All updates methods are defined here and will be linked through aop to update gui.
 	private Map<String, String> listShortcuts;
 	
+	private boolean isInitialized;
+	
 	private IPropertyLoaderService propertyLoaderService;
 	
 	public AbstractShortcutHelper()
 	{
-		listShortcuts = null;
+		this.listShortcuts = new HashMap<String,String>();
+		this.isInitialized = false;
 	}
 	/**
 	 * Returns a unmodifiable copy of the list of shortcuts. To modify the list of shortcuts, please use the appropriate addShortcut methods. 
@@ -32,7 +35,7 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper {
 	
 	public boolean isListShortcutsInitialized()
 	{
-		return listShortcuts != null;
+		return this.isInitialized;
 	}
 	/**
 	 * Official method to add shortcuts.
@@ -59,7 +62,7 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper {
 	{
 		if(!isListShortcutsInitialized())
 		{
-			this.listShortcuts = new HashMap<String,String>();
+			this.isInitialized = true;
 			refresh();
 		}
 	}

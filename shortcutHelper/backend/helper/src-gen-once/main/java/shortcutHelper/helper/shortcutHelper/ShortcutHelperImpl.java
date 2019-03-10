@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import shortcutHelper.logging.ShortcutHelperLogging;
 
-public class ShortcutHelperImpl extends AbstractShortcutHelper implements IShortcutHelper{
+public class ShortcutHelperImpl extends AbstractShortcutHelper {
 	public static final String FILE_CONTAINING_SHORTCUTS_TO_LOAD = "config/shortcuts/shortcuts.properties";
 	public static final String PROPERTY_SHORTCUTS_TO_LOAD = "shortcut.files";
 	public static final String LIST_SEPARATOR = ";";
@@ -36,17 +36,18 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper implements IShort
 		ShortcutHelperLogging.logInfo("Loading all shortcuts defined in '" + FILE_CONTAINING_SHORTCUTS_TO_LOAD + "'");
 		// parse all shortcut files.
 		String [] shortcutsToLoadList= propShortcutsToLoadValue.split(LIST_SEPARATOR);
+		Properties loadedProperties = new Properties();
 		for(String fileToLoad : shortcutsToLoadList)
 		{
 			try {
 				Properties loadPropertiesFromFile = loadPropertiesFromFile(fileToLoad);
 				for(Object keyLoaded: loadPropertiesFromFile.keySet())
 				{
-					if(propShortcutsToLoad.containsKey(keyLoaded.toString()))
+					if(loadedProperties.containsKey(keyLoaded.toString()))
 					{
 						ShortcutHelperLogging.logWarning("Shortcut key '" + keyLoaded + "' is defined more than once. Overwriting shortcut with the one defined in file '" + fileToLoad + "'.");
 					}
-					propShortcutsToLoad.put(keyLoaded.toString(), loadPropertiesFromFile.get(keyLoaded).toString());
+					loadedProperties.put(keyLoaded.toString(), loadPropertiesFromFile.get(keyLoaded).toString());
 				}
 				ShortcutHelperLogging.logInfo("Loaded shortcut file : " + fileToLoad);
 				
@@ -55,7 +56,7 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper implements IShort
 			}
 		}
 		
-		Stream<Entry<Object, Object>> stream = propShortcutsToLoad.entrySet().stream();
+		Stream<Entry<Object, Object>> stream = loadedProperties.entrySet().stream();
 	    Map<String, String> mapOfProperties = stream.collect(Collectors.toMap(
 	            e -> String.valueOf(e.getKey()),
 	            e -> String.valueOf(e.getValue())));
