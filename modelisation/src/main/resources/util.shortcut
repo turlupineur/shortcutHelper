@@ -1,0 +1,18 @@
+util stringUtil{
+	@ Contains useful String methods @
+	
+	getPositionLastUpperCase returns INT
+	{
+		param str STRING
+	}
+	
+	toFirstUpper returns STRING{
+		@ First letter of string is turned into a upper case.@
+		param str STRING
+	}
+	
+	toFirstLower returns STRING{
+		@ First letter of string is turned into a lower case.@
+		param str STRING
+	}
+}
