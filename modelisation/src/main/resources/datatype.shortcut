@@ -7,3 +7,12 @@ datatype EXCEPTION
 
 // Complex types
 datatype MAP_STRING_STRING "java.util.Map<String,String>"
+
+datatype SHORTCUT "shortcutHelper.helper.shortcutFactoryHelper.IShortcut"
+
+
+// basic type
+datatype CLASS "Class"
+datatype ARRAY_STRING "String []"
+datatype OBJECT "Object"
+datatype INT "int" 
