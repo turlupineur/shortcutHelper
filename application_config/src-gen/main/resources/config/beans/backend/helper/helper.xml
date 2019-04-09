@@ -13,5 +13,9 @@
 </bean>
 <bean id = "ShortcutHelperDef" abstract="true">
 </bean>
+<bean id = "BeanHelper" class = "shortcutHelper.helper.beanHelper.BeanHelperImpl" parent="BeanHelperDef">
+</bean>
+<bean id = "BeanHelperDef" abstract="true">
+</bean>
    
 </beans>

@@ -24,3 +24,12 @@ helper shortcutHelper {
 		NoArgument
 	}
 }
+
+helper beanHelper {
+	@ This helper allows access to beans. @
+	
+	getBean returns OBJECT{
+		param beanName STRING
+	}
+}
+}
