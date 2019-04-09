@@ -8,4 +8,8 @@
 	   <import resource="classpath:config/beans/backend/util/util.xml" />
 	
 	<!-- Override beans here. Beans must have same name and extend the bean's parent.  -->
+	
+	<bean id = "BeanUtil" class = "shortcutHelper.util.beanUtil.BeanUtilImpl" parent="BeanUtilDef">
+		<property name="stringUtil" ref="StringUtil"></property>
+	</bean>
 </beans>

@@ -16,3 +16,21 @@ util stringUtil{
 		param str STRING
 	}
 }
+
+util beanUtil{
+	@ Contains useful function to retrieve beanName and class for any beans. @
+	
+	getBeanNameFromClass returns STRING {
+		param clazz CLASS
+	}
+	
+	getInterfaceFromBeanName returns CLASS{
+		@ Returns the interface associated to the beanName. @
+		param beanName STRING
+	}
+	
+	getInterfaceFromClass returns CLASS{
+		@ Returns the interface associated to the class. @
+		param clazz CLASS
+	}
+}
