@@ -17,5 +17,9 @@
 </bean>
 <bean id = "BeanHelperDef" abstract="true">
 </bean>
+<bean id = "ShortcutFactoryHelper" class = "shortcutHelper.helper.shortcutFactoryHelper.ShortcutFactoryHelperImpl" parent="ShortcutFactoryHelperDef">
+</bean>
+<bean id = "ShortcutFactoryHelperDef" abstract="true">
+</bean>
    
 </beans>

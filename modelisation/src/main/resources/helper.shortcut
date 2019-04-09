@@ -32,4 +32,22 @@ helper beanHelper {
 		param beanName STRING
 	}
 }
+
+helper shortcutFactoryHelper {
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param commandClass CLASS
+		param params ARRAY_STRING
+	
+	}
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param beanCommand STRING
+		param params ARRAY_STRING
+	}
+	
+	parseShortcut returns SHORTCUT{
+		@ Parses the given line to extract shortcut. Throws an exception if line is invalid. @
+		param lineToParse STRING
+	}
 }
