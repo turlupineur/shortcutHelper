@@ -14,7 +14,7 @@
 	</parent>
 	<dependencies>
 		<dependency>
-				<groupId>shortcutHelper.backend</groupId>
+				<groupId>shortcutHelper</groupId>
 				<artifactId>util</artifactId>
 		</dependency>
 		<dependency>
@@ -22,7 +22,7 @@
 				<artifactId>backendCommon</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>shortcutHelper.backend</groupId>
+				<groupId>shortcutHelper</groupId>
 				<artifactId>helper</artifactId>
 		</dependency>
 		<dependency>

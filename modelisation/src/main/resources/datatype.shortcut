@@ -8,9 +8,9 @@ datatype EXCEPTION
 // Complex types
 datatype MAP_STRING_STRING "java.util.Map<String,String>"
 
-datatype SHORTCUT "shortcutHelper.backend.helper.shortcutFactoryHelper.IShortcut"
+datatype SHORTCUT "shortcutHelper.helper.shortcutFactoryHelper.IShortcut"
 
-datatype PROPERTY "shortcutHelper.backend.helper.propertyHelper.Property"
+datatype PROPERTY "shortcutHelper.helper.propertyHelper.Property"
 
 
 // basic type

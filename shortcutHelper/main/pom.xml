@@ -22,11 +22,11 @@
 		</dependency>
 		<dependency>
 			<groupId>shortcutHelper.backend</groupId>
-			<artifactId>backendCommand</artifactId>
+			<artifactId>functionality</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>shortcutHelper.backend</groupId>
+			<groupId>shortcutHelper</groupId>
 			<artifactId>helper</artifactId>
 		</dependency>
 		<dependency>

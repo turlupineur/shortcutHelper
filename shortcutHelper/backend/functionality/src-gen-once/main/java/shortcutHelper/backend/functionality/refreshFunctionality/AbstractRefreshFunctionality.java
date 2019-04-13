@@ -1,7 +1,7 @@
 package shortcutHelper.backend.functionality.refreshFunctionality;
 
-import shortcutHelper.backend.helper.propertyHelper.IPropertyHelper;
-import shortcutHelper.backend.helper.shortcutHelper.IShortcutHelper;
+import shortcutHelper.helper.propertyHelper.IPropertyHelper;
+import shortcutHelper.helper.shortcutHelper.IShortcutHelper;
 
 public abstract class AbstractRefreshFunctionality extends AbstractDefaultRefreshFunctionality
 		implements IDefaultRefreshFunctionality {

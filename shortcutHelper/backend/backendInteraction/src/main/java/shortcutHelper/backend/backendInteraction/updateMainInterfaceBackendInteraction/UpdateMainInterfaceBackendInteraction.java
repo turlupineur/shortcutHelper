@@ -1,16 +1,16 @@
 package shortcutHelper.backend.backendInteraction.updateMainInterfaceBackendInteraction;
 
 import shortcutHelper.backend.backendInteraction.BackendInteractionDataContainer;
-import shortcutHelper.backendCommand.refreshCommand.RefreshCommandDataContainer;
+import shortcutHelper.backend.functionality.refreshFunctionality.RefreshFunctionalityDataContainer;
 import shortcutHelper.backendCommon.ShortcutHelperContext;
 
-public class UpdateMainInterfaceBackendInteraction extends AbstractUpdateMainInterfaceBackendInteraction{
+public class UpdateMainInterfaceBackendInteraction extends AbstractUpdateMainInterfaceBackendInteraction {
 
 	@Override
 	public void execute(BackendInteractionDataContainer c) {
-		RefreshCommandDataContainer container = new RefreshCommandDataContainer();
+		RefreshFunctionalityDataContainer container = new RefreshFunctionalityDataContainer();
 		ShortcutHelperContext context = new ShortcutHelperContext();
 		container.setShortcutHelperContext(context);
-		this.getRefreshCommand().run(container);
+		this.getRefreshFunctionality().run(container);
 	}
 }

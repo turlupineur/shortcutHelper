@@ -9,7 +9,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>shortcutHelper.backend</groupId>
-			<artifactId>backendCommand</artifactId>
+			<artifactId>functionality</artifactId>
 		</dependency>
 	</dependencies>
 	<parent>

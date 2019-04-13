@@ -14,6 +14,9 @@
 		<module>/shortcutHelper/middleend</module>
 		<module>/shortcutHelper/backend</module>
 		<module>/shortcutHelper/main</module>
+		<module>/shortcutHelper/helper</module>
+		<module>/shortcutHelper/util</module>
+		<module>/shortcutHelper/service</module>
 	</modules>
 	<properties>
 		<spring.version>5.1.2.RELEASE</spring.version>
@@ -23,6 +26,16 @@
 			<dependency>
 				<groupId>shortcutHelper.frontend</groupId>
 				<artifactId>interface</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>shortcutHelper.backend</groupId>
+				<artifactId>functionality</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>shortcutHelper.backend</groupId>
+				<artifactId>backendCommon</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -56,7 +69,7 @@
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>shortcutHelper.backend</groupId>
+				<groupId>shortcutHelper</groupId>
 				<artifactId>helper</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
@@ -66,18 +79,18 @@
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>shortcutHelper.backend</groupId>
+				<groupId>shortcutHelper</groupId>
 				<artifactId>service</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>shortcutHelper.backend</groupId>
+				<groupId>shortcutHelper</groupId>
 				<artifactId>util</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>shortcutHelper.backend</groupId>
-				<artifactId>backendCommon</artifactId>
+				<artifactId>fuctionality</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -96,13 +109,6 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>${spring.version}</version>
-			</dependency>
-			<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-			<dependency>
-			    <groupId>org.springframework</groupId>
-			    <artifactId>spring-context</artifactId>
-			    <version>${spring.version}</version>
-			    <scope>test</scope>
 			</dependency>
 			<dependency>
 	            <groupId>org.springframework</groupId>

@@ -7,9 +7,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>backendInteraction</module>
-		<module>helper</module>
-		<module>util</module>
-		<module>service</module>
 		<module>backendCommon</module>
 		<module>functionality</module>
 	</modules>
