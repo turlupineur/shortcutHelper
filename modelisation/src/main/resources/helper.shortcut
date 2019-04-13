@@ -1,4 +1,3 @@
-
 helper propertyHelper{
 	@ This helper loads all properties used in the system. @
 	refresh returns void{
