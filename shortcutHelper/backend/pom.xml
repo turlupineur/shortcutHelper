@@ -11,6 +11,7 @@
 		<module>util</module>
 		<module>service</module>
 		<module>backendCommon</module>
+		<module>functionality</module>
 	</modules>
 	<parent>
 		<groupId>shortcutHelper</groupId>

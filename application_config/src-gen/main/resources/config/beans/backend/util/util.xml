@@ -5,13 +5,13 @@
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-<bean id = "BeanUtil" class = "shortcutHelper.util.beanUtil.BeanUtilImpl" parent="BeanUtilDef">
-</bean>
-<bean id = "BeanUtilDef" abstract="true">
-</bean>
 <bean id = "StringUtil" class = "shortcutHelper.util.stringUtil.StringUtilImpl" parent="StringUtilDef">
 </bean>
 <bean id = "StringUtilDef" abstract="true">
+</bean>
+<bean id = "BeanUtil" class = "shortcutHelper.util.beanUtil.BeanUtilImpl" parent="BeanUtilDef">
+</bean>
+<bean id = "BeanUtilDef" abstract="true">
 </bean>
    
 </beans>
