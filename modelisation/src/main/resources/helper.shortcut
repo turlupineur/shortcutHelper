@@ -4,6 +4,11 @@ helper propertyHelper{
 	refresh returns void{
 		NoArgument
 	}
+	
+	getProperty returns STRING{
+		@ Returns the value of the property. @
+		param prop PROPERTY
+	}
 }
 
 helper shortcutHelper {

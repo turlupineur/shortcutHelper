@@ -9,6 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import shortcutHelper.backend.util.beanUtil.AbstractBeanUtil;
+import shortcutHelper.backend.util.beanUtil.BeanUtilImpl;
+import shortcutHelper.backend.util.beanUtil.IBeanUtil;
 import shortcutHelper.util.UtilIntegrationTesting;
 
 public class BeanUtilIntegrationTest extends UtilIntegrationTesting {

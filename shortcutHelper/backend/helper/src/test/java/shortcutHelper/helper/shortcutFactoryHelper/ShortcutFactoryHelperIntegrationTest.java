@@ -11,8 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import shortcutHelper.backend.helper.shortcutFactoryHelper.IShortcut;
+import shortcutHelper.backend.helper.shortcutFactoryHelper.IShortcutFactoryHelper;
+import shortcutHelper.backend.helper.shortcutFactoryHelper.ShortcutFactoryHelperImpl;
+import shortcutHelper.backend.util.beanUtil.IBeanUtil;
 import shortcutHelper.helper.HelperIntegrationTesting;
-import shortcutHelper.util.beanUtil.IBeanUtil;
 
 public class ShortcutFactoryHelperIntegrationTest extends HelperIntegrationTesting {
 	@Autowired
