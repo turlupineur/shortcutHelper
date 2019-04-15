@@ -7,5 +7,7 @@
 
 	<bean id = "RefreshFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.refreshFunctionality.RefreshFunctionalityDataContainerDataExtractor">
 	</bean>
+	<bean id = "ExecuterFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityDataContainerDataExtractor">
+	</bean>
    
 </beans>
