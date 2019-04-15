@@ -6,4 +6,7 @@ public interface IDefaultBeanHelper extends Helper{
 
     public Object getBean(String beanName);
 
+
+    public <T> T getBean(String beanName,T clazz);
+
 }

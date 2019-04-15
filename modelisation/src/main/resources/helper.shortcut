@@ -35,6 +35,11 @@ helper beanHelper {
 	getBean returns OBJECT{
 		param beanName STRING
 	}
+	
+	getBean returns T{
+		param beanName STRING
+		param clazz T_AS_CLASS
+	}
 }
 
 helper shortcutFactoryHelper {

@@ -12,6 +12,8 @@ datatype SHORTCUT "shortcutHelper.helper.shortcutFactoryHelper.IShortcut"
 
 datatype PROPERTY "shortcutHelper.helper.propertyHelper.Property"
 
+datatype T "<T> T"
+datatype T_AS_CLASS "T"
 
 // basic type
 datatype CLASS "Class"
