@@ -27,25 +27,59 @@ public class BeanUtilImpl extends AbstractBeanUtil {
 		String typeOfObject = beanName.substring(positionLastUpperCase);
 		String classs = "shortcutHelper." + typeOfObject.toLowerCase() + "." + getStringUtil().toFirstLower(beanName)
 				+ ".I" + beanName;
-		try {
-			return Class.forName(classs);
-		} catch (ClassNotFoundException e) {
-			ShortcutHelperLogging.logError(e);
-		}
-		return null;
+		return toClass(classs);
 	}
 
 	public Class getInterfaceFromClass(Class clazz) {
 		if (clazz.isInterface()) {
 			return clazz;
 		}
+		return toClass(clazz.getPackage().getName() + "." + "I"
+				+ clazz.getSimpleName().replace("Impl", "").replace("Abstract", ""));
+	}
+
+	@Override
+	public String getContainerCreatorNameFromClass(Class clazz) {
+		if (clazz == null) {
+			return null;
+		}
+		Class interfaceFromClass = getInterfaceFromClass(clazz);
+		if (interfaceFromClass == null) {
+			return null;
+		}
+		String interfaceName = interfaceFromClass.getSimpleName();
+		String interfaceNameContainerCreator = interfaceName.replace("Default", "") + "DataContainerCreator";
+		Class interfaceContainerCreator = toClass(interfaceNameContainerCreator);
+		if (interfaceContainerCreator != null) {
+			return getBeanNameFromClass(interfaceContainerCreator);
+		}
+		return null;
+	}
+
+	@Override
+	public String getContainerExtractorNameFromClass(Class clazz) {
+		if (clazz == null) {
+			return null;
+		}
+		Class interfaceFromClass = getInterfaceFromClass(clazz);
+		if (interfaceFromClass == null) {
+			return null;
+		}
+		String interfaceName = interfaceFromClass.getSimpleName();
+		String interfaceNameContainerCreator = interfaceName.replace("Default", "") + "DataContainerExtractor";
+		Class interfaceContainerCreator = toClass(interfaceNameContainerCreator);
+		if (interfaceContainerCreator != null) {
+			return getBeanNameFromClass(interfaceContainerCreator);
+		}
+		return null;
+	}
+
+	private Class toClass(String clazz) {
 		try {
-			return Class.forName(clazz.getPackage().getName() + "." + "I"
-					+ clazz.getSimpleName().replace("Impl", "").replace("Abstract", ""));
+			return Class.forName(clazz);
 		} catch (ClassNotFoundException e) {
 			ShortcutHelperLogging.logError(e);
 		}
 		return null;
 	}
-
 }

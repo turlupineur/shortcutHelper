@@ -12,4 +12,10 @@ public interface IDefaultBeanUtil extends Util{
 
     public Class getInterfaceFromClass(Class clazz);
 
+
+    public String getContainerCreatorNameFromClass(Class clazz);
+
+
+    public String getContainerExtractorNameFromClass(Class clazz);
+
 }

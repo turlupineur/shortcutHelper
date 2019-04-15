@@ -33,4 +33,16 @@ util beanUtil{
 		@ Returns the interface associated to the class. @
 		param clazz CLASS
 	}
+	
+	getContainerCreatorNameFromClass returns STRING{
+		@ Returns the container creator associated to the class. 
+		This method should be only called for functionality or Logic. @
+		param clazz CLASS
+	}
+	
+	getContainerExtractorNameFromClass returns STRING{
+		@ Returns the container extractor associated to the class. 
+		This method should be only called for functionality. @
+		param clazz CLASS
+	}
 }
