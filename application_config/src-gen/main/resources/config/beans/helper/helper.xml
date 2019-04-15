@@ -21,5 +21,9 @@
 </bean>
 <bean id = "ShortcutFactoryHelperDef" abstract="true">
 </bean>
+<bean id = "FunctionalityContainerHelper" class = "shortcutHelper.helper.functionalityContainerHelper.FunctionalityContainerHelperImpl" parent="FunctionalityContainerHelperDef">
+</bean>
+<bean id = "FunctionalityContainerHelperDef" abstract="true">
+</bean>
    
 </beans>

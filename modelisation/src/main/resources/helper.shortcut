@@ -60,3 +60,38 @@ helper shortcutFactoryHelper {
 		param lineToParse STRING
 	}
 }
+
+
+helper functionalityContainerHelper{
+	createDefaultContainerForFunctionality returns OBJECT{
+		@ Creates a new container containing only default values.@
+		param clazz CLASS
+	}
+	createDefaultContainerForFunctionality returns OBJECT{
+		@ Creates a new container containing only default values.@
+		param _functionality OBJECT
+	}
+	getContainerExtractorFunctionality returns OBJECT{
+		@ Returns the extractor associated to this functionality.@
+		param _functionality OBJECT
+	}
+	getContainerExtractorFunctionality returns OBJECT{
+		@ Returns the extractor associated to this functionality.@
+		param clazz CLASS
+	}
+	fillContainerWithParams returns void {
+		@ Fills the container by calling the associate extractor.@
+		param container OBJECT
+		param params ARRAY_STRING
+	}	
+	createAndFillContainer returns OBJECT{
+		@ Creates and Fills the container by setting default values and calling the associate extractor.@
+		param clazz CLASS
+		param params ARRAY_STRING
+	}
+	createAndFillContainer returns OBJECT{
+		@ Creates and Fills the container by setting default values and calling the associate extractor.@
+		param _functionality OBJECT
+		param params ARRAY_STRING
+	}
+}

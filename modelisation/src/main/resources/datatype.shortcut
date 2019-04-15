@@ -14,6 +14,9 @@ datatype PROPERTY "shortcutHelper.helper.propertyHelper.Property"
 
 datatype T "<T> T"
 datatype T_AS_CLASS "T"
+datatype CONTAINER_FUNCTIONALITY "shortcutHelper.backend.functionality.DataContainer"
+datatype FUNCTIONALITY "shortcutHelper.backend.functionality.Functionality"
+
 
 // basic type
 datatype CLASS "Class"
