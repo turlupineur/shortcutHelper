@@ -9,5 +9,9 @@
 </bean>
 <bean id = "PropertyLoaderServiceDef" abstract="true">
 </bean>
+<bean id = "ClipboardService" class = "shortcutHelper.service.clipboardService.ClipboardServiceImpl" parent="ClipboardServiceDef">
+</bean>
+<bean id = "ClipboardServiceDef" abstract="true">
+</bean>
    
 </beans>

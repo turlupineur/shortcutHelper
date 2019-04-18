@@ -8,5 +8,10 @@
 	   <import resource="classpath:config/beans/service/service.xml" />
 	
 	<!-- Override beans here. Beans must have same name and extend the bean's parent.  -->
-
+	<bean id = "ClipboardService" class = "shortcutHelper.service.clipboardService.ClipboardServiceImpl" parent="ClipboardServiceDef">
+		<property name="clipboardObject" ref="RealClipboard"></property>
+	</bean>
+	
+	<bean id="InternClipboard" class="shortcutHelper.service.clipboardService.clipboard.internClipboard.InternClipboard"></bean>
+	<bean id="RealClipboard" class= "shortcutHelper.service.clipboardService.clipboard.realClipboard.RealClipboard"></bean>
 </beans>
