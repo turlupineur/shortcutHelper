@@ -16,3 +16,19 @@ service propertyLoaderService {
 		NoArgument
 	}
 }
+
+service clipboardService{
+	@  Represents the clipboard. This service is the basic for every clipboard operation.
+	It has an intern clipboard object defining where the value will be saved (in the real clipboard or
+	intern).@
+	setClipboard returns void {
+		@ Sets the clipboard to the current value. Null are accepted.@
+		param value STRING
+	}
+	
+	getClipboard returns STRING {
+		@ Returns the value of the clipboard. This method is guaranteed to always returns a result.
+		If an exception is thrown while retrieving the @
+		NoArgument
+	}
+}
