@@ -8,6 +8,7 @@
 	<modules>
 		<module>backendInteraction</module>
 		<module>backendCommon</module>
+		<module>logic</module>
 		<module>functionality</module>
 	</modules>
 	<parent>
