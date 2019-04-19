@@ -9,17 +9,18 @@ logic getClipboardLogic {
 	implementation
 	{
 		variable STRING clipboard = null
-		variable BOOLEAN dTrimm = null
 		
 		clipboard = callComponentMethod clipboardService.clipboardService.getClipboard (
 			
 		)
 		
-		if dTrimm = "true"
+		if dTrimm = true
 		{
 			clipboard = @TRIMM(clipboard)@
 		};
 		
+		
+		@ returns clipboard @
 	}
 }
 
