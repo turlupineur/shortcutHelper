@@ -1,0 +1,7 @@
+package shortcutHelper.backend.functionality.copyToClipboardFunctionality;
+
+import shortcutHelper.backend.functionality.AbstractFunctionalityDataContainerCreator;
+
+public abstract class AbstractCopyToClipboardFunctionalityDataContainerCreator extends AbstractFunctionalityDataContainerCreator implements ICopyToClipboardFunctionalityDataContainerCreator{
+	
+};

@@ -9,5 +9,7 @@
 	</bean>
 	<bean id = "ExecuterFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityDataContainerCreator">
 	</bean>
+	<bean id = "CopyToClipboardFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.copyToClipboardFunctionality.CopyToClipboardFunctionalityDataContainerCreator">
+	</bean>
    
 </beans>

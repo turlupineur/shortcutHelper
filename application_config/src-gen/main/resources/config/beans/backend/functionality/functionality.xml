@@ -18,5 +18,12 @@
 <property name="BeanUtil" ref="BeanUtil" />
 <property name="BeanHelper" ref="BeanHelper" />
 </bean>
+<bean id = "CopyToClipboardFunctionality" class = "shortcutHelper.backend.functionality.copyToClipboardFunctionality.CopyToClipboardFunctionalityImpl" parent="CopyToClipboardFunctionalityDef">
+</bean>
+<bean id = "CopyToClipboardFunctionalityDef" abstract="true">
+<property name="SetClipboardLogic" ref="SetClipboardLogic" />
+<property name="BeanUtil" ref="BeanUtil" />
+<property name="BeanHelper" ref="BeanHelper" />
+</bean>
    
 </beans>

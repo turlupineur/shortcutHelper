@@ -61,3 +61,19 @@ functionality executerFunctionality{
 		@functionalityToExcecute.run(container, context)@
 	}
 }
+
+functionality copyToClipboardFunctionality {
+	using : setClipboardLogic
+			beanUtil
+			beanHelper;
+	input parameter : 
+		parameter clipboard STRING required
+	returns : void
+	
+	implementation
+	{
+		callLogic setClipboardLogic (
+			set clipboardValue = clipboard
+		)
+	}
+}
