@@ -12,10 +12,10 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality {
 
 		IShortcut shortcutToExecute = container.getShortcutToExecute();
 
-		DataContainer containerForFunctionality = (DataContainer) getFunctionalityContainerHelper()
-				.createAndFillContainer(shortcutToExecute.getClassRepresentingCommand(), shortcutToExecute.getParams());
-
 		Functionality functionalityToExecute = (Functionality) getBeanHelper().getBean(shortcutToExecute.getBeanName());
+
+		DataContainer containerForFunctionality = (DataContainer) getFunctionalityContainerHelper()
+				.createAndFillContainer(functionalityToExecute.getClass(), shortcutToExecute.getParams());
 
 		containerForFunctionality.setShortcutHelperContext(container.getShortcutHelperContext());
 
