@@ -16,7 +16,7 @@ public interface IDefaultFunctionalityContainerHelper extends Helper{
     public Object getContainerExtractorFunctionality(Class clazz);
 
 
-    public void fillContainerWithParams(Object container,String [] params);
+    public void fillContainerWithParams(Class clazzFunctionality,Object container,String [] params);
 
 
     public Object createAndFillContainer(Class clazz,String [] params);

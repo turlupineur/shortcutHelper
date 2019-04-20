@@ -41,12 +41,13 @@ public class FunctionalityContainerHelperImpl extends AbstractFunctionalityConta
 	}
 
 	@Override
-	public void fillContainerWithParams(Object container, String[] params) {
-		Object bean = getContainerExtractorFunctionality(container);
+	public void fillContainerWithParams(Class clazzFunctionality, Object container, String[] params) {
+		Object bean = getContainerExtractorFunctionality(clazzFunctionality);
 		try {
 			Class[] parametersMethod = { String[].class,
 					Class.forName("shortcutHelper.backend.functionality.DataContainer") };
-			bean.getClass().getMethod("extractData", parametersMethod).invoke(bean, null);
+			bean.getClass().getMethod("extractData", parametersMethod).invoke(bean, params, container);
+			return;
 		} catch (NoSuchMethodException e) {
 			ShortcutHelperLogging.logError(e);
 		} catch (SecurityException e) {
@@ -66,7 +67,7 @@ public class FunctionalityContainerHelperImpl extends AbstractFunctionalityConta
 	@Override
 	public Object createAndFillContainer(Class clazz, String[] params) {
 		Object container = createDefaultContainerForFunctionality(clazz);
-		fillContainerWithParams(container, params);
+		fillContainerWithParams(clazz, container, params);
 		return container;
 	}
 

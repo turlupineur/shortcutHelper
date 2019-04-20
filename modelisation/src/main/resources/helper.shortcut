@@ -81,6 +81,7 @@ helper functionalityContainerHelper{
 	}
 	fillContainerWithParams returns void {
 		@ Fills the container by calling the associate extractor.@
+		param clazzFunctionality CLASS
 		param container OBJECT
 		param params ARRAY_STRING
 	}	
