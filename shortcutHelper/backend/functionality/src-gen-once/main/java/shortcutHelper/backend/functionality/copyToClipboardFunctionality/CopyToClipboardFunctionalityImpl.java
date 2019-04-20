@@ -1,11 +1,11 @@
 package shortcutHelper.backend.functionality.copyToClipboardFunctionality;
 
 import shortcutHelper.backend.functionality.ConcreteFunctionalityResult;
-import shortcutHelper.backend.functionality.DataContainer;
+import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 import shortcutHelper.backend.functionality.FunctionalityResult;
 
 public class CopyToClipboardFunctionalityImpl extends AbstractCopyToClipboardFunctionality {
-	public FunctionalityResult runImpl(DataContainer c) {
+	public FunctionalityResult runImpl(FunctionalityDataContainer c) {
 		CopyToClipboardFunctionalityDataContainer container = (CopyToClipboardFunctionalityDataContainer) c;
 
 		setClipboard(container.getClipboard());

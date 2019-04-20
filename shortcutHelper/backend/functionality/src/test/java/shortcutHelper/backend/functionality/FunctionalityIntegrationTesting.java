@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityDataContainer;
 import shortcutHelper.backend.functionality.executerFunctionality.IDefaultExecuterFunctionality;
 import shortcutHelper.backend.logic.ILogicDataContainerCreator;
+import shortcutHelper.backend.logic.LogicDataContainer;
 import shortcutHelper.backend.logic.LogicResult;
 import shortcutHelper.backend.logic.getClipboardLogic.GetClipboardLogicDataContainer;
 import shortcutHelper.backend.logic.getClipboardLogic.IDefaultGetClipboardLogic;
@@ -100,7 +101,7 @@ public class FunctionalityIntegrationTesting {
 		ILogicDataContainerCreator dataContainerCreator = (ILogicDataContainerCreator) beanHelper
 				.getBean(containerCreatorName);
 
-		shortcutHelper.backend.logic.DataContainer container = dataContainerCreator.getDataContainer();
+		LogicDataContainer container = dataContainerCreator.getDataContainer();
 		container.setShortcutHelperContext(new ShortcutHelperContext());
 		return container;
 	}

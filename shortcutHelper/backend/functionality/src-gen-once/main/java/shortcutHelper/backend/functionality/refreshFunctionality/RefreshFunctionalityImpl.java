@@ -1,12 +1,12 @@
 package shortcutHelper.backend.functionality.refreshFunctionality;
 
 import shortcutHelper.backend.functionality.ConcreteFunctionalityResult;
-import shortcutHelper.backend.functionality.DataContainer;
+import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 import shortcutHelper.backend.functionality.FunctionalityResult;
 import shortcutHelper.logging.ShortcutHelperLogging;
 
 public class RefreshFunctionalityImpl extends AbstractRefreshFunctionality {
-	public FunctionalityResult runImpl(DataContainer c) {
+	public FunctionalityResult runImpl(FunctionalityDataContainer c) {
 		RefreshFunctionalityDataContainer container = (RefreshFunctionalityDataContainer) c;
 		boolean exceptionOccured = false;
 		try {

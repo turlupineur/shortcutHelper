@@ -6,12 +6,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import shortcutHelper.backend.functionality.ConcreteFunctionalityResult;
-import shortcutHelper.backend.functionality.DataContainer;
+import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 import shortcutHelper.backend.functionality.FunctionalityResult;
 import shortcutHelper.logging.ShortcutHelperLogging;
 
 public class OpenUrlFunctionalityImpl extends AbstractOpenUrlFunctionality {
-	public FunctionalityResult runImpl(DataContainer c) {
+	public FunctionalityResult runImpl(FunctionalityDataContainer c) {
 		OpenUrlFunctionalityDataContainer container = (OpenUrlFunctionalityDataContainer) c;
 
 		if (Desktop.isDesktopSupported()) {

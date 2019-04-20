@@ -1,11 +1,10 @@
 package shortcutHelper.backend.functionality.openUrlFunctionality;
 
-import shortcutHelper.backend.functionality.DataContainer;
+import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 
-public class OpenUrlFunctionalityDataContainerCreator extends AbstractOpenUrlFunctionalityDataContainerCreator{
-	
-	public DataContainer getDataContainer()
-	{
+public class OpenUrlFunctionalityDataContainerCreator extends AbstractOpenUrlFunctionalityDataContainerCreator {
+
+	public FunctionalityDataContainer getDataContainer() {
 		return new OpenUrlFunctionalityDataContainer();
 	}
 };
