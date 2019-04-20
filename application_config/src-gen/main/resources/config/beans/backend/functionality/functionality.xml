@@ -25,5 +25,9 @@
 <property name="BeanUtil" ref="BeanUtil" />
 <property name="BeanHelper" ref="BeanHelper" />
 </bean>
+<bean id = "OpenUrlFunctionality" class = "shortcutHelper.backend.functionality.openUrlFunctionality.OpenUrlFunctionalityImpl" parent="OpenUrlFunctionalityDef">
+</bean>
+<bean id = "OpenUrlFunctionalityDef" abstract="true">
+</bean>
    
 </beans>

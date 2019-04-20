@@ -80,3 +80,18 @@ functionality copyToClipboardFunctionality {
 		showinfo "Value copied to clipboard !"
 	}
 }
+
+functionality openUrlFunctionality{
+	@ Open the url using default internet browser.@
+	
+	using: ;
+	
+	input parameter :
+		parameter url STRING required
+	returns : void
+	
+	implementation
+	{
+		@ opens  url in browser @
+	}
+}

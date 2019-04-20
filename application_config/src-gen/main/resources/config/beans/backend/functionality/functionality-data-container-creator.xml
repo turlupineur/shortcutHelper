@@ -11,5 +11,7 @@
 	</bean>
 	<bean id = "CopyToClipboardFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.copyToClipboardFunctionality.CopyToClipboardFunctionalityDataContainerCreator">
 	</bean>
+	<bean id = "OpenUrlFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.openUrlFunctionality.OpenUrlFunctionalityDataContainerCreator">
+	</bean>
    
 </beans>
