@@ -28,7 +28,7 @@ service clipboardService{
 	
 	getClipboard returns STRING {
 		@ Returns the value of the clipboard. This method is guaranteed to always returns a result.
-		If an exception is thrown while retrieving the @
+		If an exception is thrown while retrieving the value, null is returned.@
 		NoArgument
 	}
 }
