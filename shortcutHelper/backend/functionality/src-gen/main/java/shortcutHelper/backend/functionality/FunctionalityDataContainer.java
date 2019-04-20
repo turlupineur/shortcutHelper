@@ -2,7 +2,7 @@ package shortcutHelper.backend.functionality;
 
 import shortcutHelper.backendCommon.ShortcutHelperContext;
 
-public class DataContainer{
+public class FunctionalityDataContainer{
 	
 	private ShortcutHelperContext shortcutHelperContext;
 	
