@@ -133,7 +133,7 @@ public class FunctionalityIntegrationTesting {
 	 * @param functionalityToRun
 	 * @return Execution's result
 	 */
-	public FunctionalityExecutionResult runFunctionality(Class<Functionality> functionalityToRun) {
+	public FunctionalityExecutionResult runFunctionality(Class functionalityToRun) {
 		return runFunctionality(functionalityToRun, null);
 	}
 
@@ -144,7 +144,7 @@ public class FunctionalityIntegrationTesting {
 	 * @param params
 	 * @return Execution's result
 	 */
-	public FunctionalityExecutionResult runFunctionality(Class<Functionality> functionalityToRun, String... params) {
+	public FunctionalityExecutionResult runFunctionality(Class functionalityToRun, String... params) {
 		FunctionalityExecutionResult functionalityExecutionResult = new FunctionalityExecutionResult();
 		ShortcutHelperContext context = new ShortcutHelperContext();
 
