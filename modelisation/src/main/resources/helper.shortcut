@@ -45,13 +45,19 @@ helper beanHelper {
 helper shortcutFactoryHelper {
 	createShortcut returns SHORTCUT{
 		@ Creates a SHORTCUT object from the given class and arguments. @
-		param commandClass CLASS
+		param functionalityClass CLASS
 		param params ARRAY_STRING
 	
 	}
 	createShortcut returns SHORTCUT{
 		@ Creates a SHORTCUT object from the given class and arguments. @
-		param beanCommand STRING
+		param beanFunctionality STRING
+		param params ARRAY_STRING
+	}
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param functionalityClass CLASS
+		param beanFunctionality STRING
 		param params ARRAY_STRING
 	}
 	

@@ -38,6 +38,20 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 		return shortcut;
 	}
 
+	@Override
+	public IShortcut createShortcut(Class functionalityClass, String beanFunctionality, String[] params) {
+		if (functionalityClass == null) {
+			return createShortcut(beanFunctionality, params);
+		}
+		if (beanFunctionality == null) {
+			return createShortcut(functionalityClass, params);
+		}
+
+		Shortcut shortcut = new Shortcut(functionalityClass, beanFunctionality, params);
+
+		return shortcut;
+	}
+
 	private class Shortcut implements IShortcut {
 		private String beanName;
 		private Class classRepresentingCommand;
@@ -55,6 +69,12 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 
 		private Shortcut(Class clazz, String[] params) {
 			this.classRepresentingCommand = clazz;
+			this.params = copyParams(params);
+		}
+
+		private Shortcut(Class clazz, String beanName, String[] params) {
+			this.classRepresentingCommand = clazz;
+			this.beanName = beanName;
 			this.params = copyParams(params);
 		}
 
