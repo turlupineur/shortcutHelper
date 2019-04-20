@@ -62,12 +62,12 @@ public class BeanUtilIntegrationTest extends UtilIntegrationTesting {
 
 	@Test
 	public void getInterfaceFromClass_abstractClass() {
-		assertEquals(IBeanUtil.class, beanUtil.getInterfaceFromClass(AbstractBeanUtil.class));
+		assertEquals(IDefaultBeanUtil.class, beanUtil.getInterfaceFromClass(AbstractBeanUtil.class));
 	}
 
 	@Test
 	public void getInterfaceFromClass_implClass() {
-		assertEquals(IBeanUtil.class, beanUtil.getInterfaceFromClass(BeanUtilImpl.class));
+		assertEquals(IDefaultBeanUtil.class, beanUtil.getInterfaceFromClass(BeanUtilImpl.class));
 	}
 
 }
