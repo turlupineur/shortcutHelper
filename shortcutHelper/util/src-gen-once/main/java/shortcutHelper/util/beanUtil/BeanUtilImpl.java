@@ -34,7 +34,7 @@ public class BeanUtilImpl extends AbstractBeanUtil {
 		if (clazz.isInterface()) {
 			return clazz;
 		}
-		return toClass(clazz.getPackage().getName() + "." + "I"
+		return toClass(clazz.getPackage().getName() + "." + "IDefault"
 				+ clazz.getSimpleName().replace("Impl", "").replace("Abstract", ""));
 	}
 
@@ -49,7 +49,8 @@ public class BeanUtilImpl extends AbstractBeanUtil {
 		}
 		String interfaceName = interfaceFromClass.getSimpleName();
 		String interfaceNameContainerCreator = interfaceName.replace("Default", "") + "DataContainerCreator";
-		Class interfaceContainerCreator = toClass(interfaceNameContainerCreator);
+		Class interfaceContainerCreator = toClass(
+				interfaceFromClass.getPackage().getName() + "." + interfaceNameContainerCreator);
 		if (interfaceContainerCreator != null) {
 			return getBeanNameFromClass(interfaceContainerCreator);
 		}
@@ -66,7 +67,8 @@ public class BeanUtilImpl extends AbstractBeanUtil {
 			return null;
 		}
 		String interfaceName = interfaceFromClass.getSimpleName();
-		String interfaceNameContainerCreator = interfaceName.replace("Default", "") + "DataContainerExtractor";
+		String interfaceNameContainerCreator = clazz.getPackage().getName() + "." + interfaceName.replace("Default", "")
+				+ "DataContainerDataExtractor";
 		Class interfaceContainerCreator = toClass(interfaceNameContainerCreator);
 		if (interfaceContainerCreator != null) {
 			return getBeanNameFromClass(interfaceContainerCreator);
