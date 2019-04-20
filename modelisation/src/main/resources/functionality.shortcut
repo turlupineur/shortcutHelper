@@ -63,6 +63,8 @@ functionality executerFunctionality{
 }
 
 functionality copyToClipboardFunctionality {
+	@ Copies a value defined in the shortcut in the clipboard.@
+	
 	using : setClipboardLogic
 			beanUtil
 			beanHelper;
