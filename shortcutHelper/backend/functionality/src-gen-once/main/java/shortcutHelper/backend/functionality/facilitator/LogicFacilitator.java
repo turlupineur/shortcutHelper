@@ -1,9 +1,9 @@
 package shortcutHelper.backend.functionality.facilitator;
 
+import shortcutHelper.backend.logic.DataContainer;
+import shortcutHelper.backend.logic.ILogicDataContainerCreator;
+import shortcutHelper.backend.logic.Logic;
 import shortcutHelper.helper.beanHelper.IBeanHelper;
-import shortcutHelper.logic.DataContainer;
-import shortcutHelper.logic.ILogicDataContainerCreator;
-import shortcutHelper.logic.Logic;
 import shortcutHelper.util.beanUtil.IBeanUtil;
 
 public interface LogicFacilitator {

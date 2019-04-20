@@ -1,7 +1,7 @@
 package shortcutHelper.backend.functionality.copyToClipboardFunctionality;
 
 import shortcutHelper.backend.functionality.AbstractFunctionality;
-import shortcutHelper.logic.setClipboardLogic.IDefaultSetClipboardLogic;
+import shortcutHelper.backend.logic.setClipboardLogic.IDefaultSetClipboardLogic;
 import shortcutHelper.util.beanUtil.IBeanUtil;
 import shortcutHelper.helper.beanHelper.IBeanHelper;
 

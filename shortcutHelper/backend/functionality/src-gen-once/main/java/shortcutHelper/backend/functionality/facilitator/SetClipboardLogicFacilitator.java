@@ -1,7 +1,7 @@
 package shortcutHelper.backend.functionality.facilitator;
 
-import shortcutHelper.logic.setClipboardLogic.IDefaultSetClipboardLogic;
-import shortcutHelper.logic.setClipboardLogic.SetClipboardLogicDataContainer;
+import shortcutHelper.backend.logic.setClipboardLogic.IDefaultSetClipboardLogic;
+import shortcutHelper.backend.logic.setClipboardLogic.SetClipboardLogicDataContainer;
 
 public interface SetClipboardLogicFacilitator extends LogicFacilitator {
 	public default void setClipboard(String clipboard) {
