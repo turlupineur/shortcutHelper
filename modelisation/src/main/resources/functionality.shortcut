@@ -75,5 +75,6 @@ functionality copyToClipboardFunctionality {
 		callLogic setClipboardLogic (
 			set clipboardValue = clipboard
 		)
+		showinfo "Value copied to clipboard !"
 	}
 }
