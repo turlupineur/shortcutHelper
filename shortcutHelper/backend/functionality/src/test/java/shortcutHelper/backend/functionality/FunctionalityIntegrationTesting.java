@@ -10,18 +10,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityDataContainer;
 import shortcutHelper.backend.functionality.executerFunctionality.IDefaultExecuterFunctionality;
+import shortcutHelper.backend.logic.ILogicDataContainerCreator;
+import shortcutHelper.backend.logic.LogicResult;
+import shortcutHelper.backend.logic.getClipboardLogic.GetClipboardLogicDataContainer;
+import shortcutHelper.backend.logic.getClipboardLogic.IDefaultGetClipboardLogic;
+import shortcutHelper.backend.logic.setClipboardLogic.IDefaultSetClipboardLogic;
+import shortcutHelper.backend.logic.setClipboardLogic.SetClipboardLogicDataContainer;
 import shortcutHelper.backendCommon.ShortcutHelperContext;
 import shortcutHelper.helper.beanHelper.IBeanHelper;
 import shortcutHelper.helper.functionalityContainerHelper.IDefaultFunctionalityContainerHelper;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcutFactoryHelper;
-import shortcutHelper.logic.DataContainer;
-import shortcutHelper.logic.ILogicDataContainerCreator;
-import shortcutHelper.logic.LogicResult;
-import shortcutHelper.logic.getClipboardLogic.GetClipboardLogicDataContainer;
-import shortcutHelper.logic.getClipboardLogic.IDefaultGetClipboardLogic;
-import shortcutHelper.logic.setClipboardLogic.IDefaultSetClipboardLogic;
-import shortcutHelper.logic.setClipboardLogic.SetClipboardLogicDataContainer;
 import shortcutHelper.service.clipboardService.AbstractClipboardService;
 import shortcutHelper.service.clipboardService.IClipboardService;
 import shortcutHelper.service.clipboardService.clipboard.ClipboardObject;
@@ -31,9 +30,9 @@ import shortcutHelper.util.beanUtil.IBeanUtil;
 @ContextConfiguration(locations = { "/config/beans/backend/functionality/functionality-data-container-creator-man.xml",
 		"/config/beans/backend/functionality/functionality-data-container-data-extractor-man.xml",
 		"/config/beans/backend/functionality/functionality-man.xml", "/config/beans/helper/helper-man.xml",
-		"/config/beans/util/util-man.xml", "/config/beans/service/service-man.xml", "/config/beans/logic/logic-man.xml",
-		"/config/beans/backend/functionality/functionality_command.xml",
-		"/config/beans/logic/logic-data-container-creator-man.xml",
+		"/config/beans/util/util-man.xml", "/config/beans/service/service-man.xml",
+		"/config/beans/backend/logic/logic-man.xml", "/config/beans/backend/functionality/functionality_command.xml",
+		"/config/beans/backend/logic/logic-data-container-creator-man.xml",
 		"/config/beans/backend/functionality/functionality-man.xml" })
 public class FunctionalityIntegrationTesting {
 	@Autowired
@@ -101,7 +100,7 @@ public class FunctionalityIntegrationTesting {
 		ILogicDataContainerCreator dataContainerCreator = (ILogicDataContainerCreator) beanHelper
 				.getBean(containerCreatorName);
 
-		DataContainer container = dataContainerCreator.getDataContainer();
+		shortcutHelper.backend.logic.DataContainer container = dataContainerCreator.getDataContainer();
 		container.setShortcutHelperContext(new ShortcutHelperContext());
 		return container;
 	}
