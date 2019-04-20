@@ -19,6 +19,10 @@
 		</dependency>
 		<dependency>
 				<groupId>shortcutHelper.backend</groupId>
+				<artifactId>logic</artifactId>
+		</dependency>
+		<dependency>
+				<groupId>shortcutHelper.backend</groupId>
 				<artifactId>backendCommon</artifactId>
 		</dependency>
 		<dependency>

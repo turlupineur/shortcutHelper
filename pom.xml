@@ -64,6 +64,11 @@
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
+				<groupId>shortcutHelper.backend</groupId>
+				<artifactId>logic</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
 				<groupId>shortcutHelper</groupId>
 				<artifactId>application_config</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
