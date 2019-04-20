@@ -4,5 +4,5 @@ public interface  ILogicDataContainerCreator{
 	/**
 	* Creates the datacontainer.
 	*/			
-	public DataContainer getDataContainer();
+	public LogicDataContainer getDataContainer();
 };

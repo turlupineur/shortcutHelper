@@ -1,8 +1,8 @@
 package shortcutHelper.backend.logic.setClipboardLogic;
 
-import shortcutHelper.backend.logic.DataContainer;
+import shortcutHelper.backend.logic.LogicDataContainer;
 
-public class SetClipboardLogicDataContainer extends DataContainer{
+public class SetClipboardLogicDataContainer extends LogicDataContainer{
 	private String clipboardValue;
 	
 	public String getClipboardValue()

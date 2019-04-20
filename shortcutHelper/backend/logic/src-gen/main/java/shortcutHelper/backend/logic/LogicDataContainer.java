@@ -2,7 +2,7 @@ package shortcutHelper.backend.logic;
 
 import shortcutHelper.backendCommon.ShortcutHelperContext;
 
-public class DataContainer{
+public class LogicDataContainer{
 	
 	private ShortcutHelperContext shortcutHelperContext;
 	

@@ -1,8 +1,8 @@
 package shortcutHelper.backend.logic.getClipboardLogic;
 
-import shortcutHelper.backend.logic.DataContainer;
+import shortcutHelper.backend.logic.LogicDataContainer;
 
-public class GetClipboardLogicDataContainer extends DataContainer{
+public class GetClipboardLogicDataContainer extends LogicDataContainer{
 	private boolean dTrimm;
 	
 	public boolean getDTrimm()
