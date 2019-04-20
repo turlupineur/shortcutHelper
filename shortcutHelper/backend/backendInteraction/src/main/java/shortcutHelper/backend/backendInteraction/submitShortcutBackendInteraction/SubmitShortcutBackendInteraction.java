@@ -2,7 +2,6 @@ package shortcutHelper.backend.backendInteraction.submitShortcutBackendInteracti
 
 import shortcutHelper.backend.backendInteraction.BackendInteractionDataContainer;
 import shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityDataContainer;
-import shortcutHelper.backendCommon.ShortcutHelperContext;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 
 public class SubmitShortcutBackendInteraction extends AbstractSubmitShortcutBackendInteraction {
@@ -17,7 +16,7 @@ public class SubmitShortcutBackendInteraction extends AbstractSubmitShortcutBack
 		IShortcut shortcut = this.getShortcutFactoryHelper().parseShortcut(shortcutRaw);
 
 		ExecuterFunctionalityDataContainer containerCmd = new ExecuterFunctionalityDataContainer();
-		containerCmd.setShortcutHelperContext(new ShortcutHelperContext());
+		containerCmd.setShortcutHelperContext(container.getContext());
 		containerCmd.setShortcutToExecute(shortcut);
 		this.getExecuterFunctionality().run(containerCmd);
 	}

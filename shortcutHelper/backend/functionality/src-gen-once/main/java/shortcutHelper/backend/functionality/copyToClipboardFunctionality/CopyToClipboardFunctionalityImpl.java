@@ -10,6 +10,8 @@ public class CopyToClipboardFunctionalityImpl extends AbstractCopyToClipboardFun
 
 		setClipboard(container.getClipboard());
 
+		container.getShortcutHelperContext().setInfo("Value copied to clipboard !");
+
 		return ConcreteFunctionalityResult.RESULT_NULL;
 	}
 }
