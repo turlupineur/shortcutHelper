@@ -17,5 +17,9 @@
 			<groupId>shortcutHelper.frontend</groupId>
 			<artifactId>viewbean</artifactId>
 		</dependency>
+		<dependency>
+				<groupId>shortcutHelper</groupId>
+				<artifactId>logging</artifactId>
+		</dependency>
 	</dependencies>
 </project>

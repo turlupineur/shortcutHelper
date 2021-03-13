@@ -12,6 +12,8 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import shortcutHelper.logging.ShortcutHelperLogging;
+
 public class ToastMessage extends JFrame {
 	// *****************************************************************
 	/**
@@ -38,23 +40,22 @@ public class ToastMessage extends JFrame {
 
 	public void display() {
 		TimerTask toastTask = new TimerTask() {
-			
+
 			@Override
 			public void run() {
 				try {
 					final Timer faderTimer = new Timer(true);
 					TimerTask fader = new TimerTask() {
 						private double opacity = 1.0;
-						
+
 						@Override
 						public void run() {
-							opacity-=0.1;
-							if(opacity <= 0.0)
-							{
+							opacity -= 0.1;
+							if (opacity <= 0.0) {
 								faderTimer.cancel();
 								setVisible(false);
-							}else {
-								setOpacity((float)opacity);
+							} else {
+								setOpacity((float) opacity);
 							}
 						}
 					};
@@ -65,10 +66,10 @@ public class ToastMessage extends JFrame {
 				}
 			}
 		};
-		
+
 		setOpacity(1);
 		setVisible(true);
-		
+
 		Timer timer = new Timer(true);
 		timer.schedule(toastTask, 1500);
 	}
