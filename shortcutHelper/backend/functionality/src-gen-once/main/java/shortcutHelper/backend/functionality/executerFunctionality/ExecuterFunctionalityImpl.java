@@ -3,7 +3,6 @@ package shortcutHelper.backend.functionality.executerFunctionality;
 import shortcutHelper.backend.functionality.ConcreteFunctionalityResult;
 import shortcutHelper.backend.functionality.DataContainer;
 import shortcutHelper.backend.functionality.Functionality;
-import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 import shortcutHelper.backend.functionality.FunctionalityResult;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 
@@ -15,7 +14,7 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality {
 
 		Functionality functionalityToExecute = (Functionality) getBeanHelper().getBean(shortcutToExecute.getBeanName());
 
-		FunctionalityDataContainer containerForFunctionality = (FunctionalityDataContainer) getFunctionalityContainerHelper()
+		DataContainer containerForFunctionality = (DataContainer) getFunctionalityContainerHelper()
 				.createAndFillContainer(functionalityToExecute.getClass(), shortcutToExecute.getParams());
 
 		containerForFunctionality.setShortcutHelperContext(container.getShortcutHelperContext());
