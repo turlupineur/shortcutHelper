@@ -43,7 +43,6 @@ public class ToastMessage extends JFrame {
 			public void run() {
 				try {
 					final Timer faderTimer = new Timer(true);
-					System.out.println("In task: " + Thread.currentThread().getId());
 					TimerTask fader = new TimerTask() {
 						private double opacity = 1.0;
 						
@@ -53,7 +52,6 @@ public class ToastMessage extends JFrame {
 							if(opacity <= 0.0)
 							{
 								faderTimer.cancel();
-								System.out.println("TOAST GONE");
 								setVisible(false);
 							}else {
 								setOpacity((float)opacity);
@@ -63,7 +61,7 @@ public class ToastMessage extends JFrame {
 					faderTimer.schedule(fader, 100, 100);
 					// hide the toast message in slow motion
 				} catch (Exception e) {
-					System.out.println(e.getMessage());
+					ShortcutHelperLogging.logError(e);
 				}
 			}
 		};
@@ -73,6 +71,5 @@ public class ToastMessage extends JFrame {
 		
 		Timer timer = new Timer(true);
 		timer.schedule(toastTask, 1500);
-		System.out.println("Outside task: " + Thread.currentThread().getId());
 	}
 }

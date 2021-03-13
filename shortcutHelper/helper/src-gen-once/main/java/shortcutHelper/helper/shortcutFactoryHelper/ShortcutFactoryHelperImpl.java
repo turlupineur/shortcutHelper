@@ -17,7 +17,6 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 			return null;
 		}
 		Shortcut shortcut = new Shortcut(beanCommand, params);
-		shortcut.classRepresentingCommand = getBeanUtil().getInterfaceFromBeanName(beanCommand);
 		return shortcut;
 	}
 

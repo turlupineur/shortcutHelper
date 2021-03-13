@@ -86,7 +86,6 @@ public class MainInterface extends JFrame implements Observer{
 		if(this.mainInterfaceViewBean.getFunctionBean().getToastMessage() != null) {
 			ToastMessage toast = new ToastMessage(this,this.mainInterfaceViewBean.getFunctionBean().getToastMessage());
 			toast.display();
-			System.out.println("showToast over");
 		}
 	}
 
@@ -119,6 +118,5 @@ public class MainInterface extends JFrame implements Observer{
 	public void update(Observable arg0, Object calledShortcut) {
 		this.mainInterfaceViewBean.getDataBean().setCalledShortcut(calledShortcut.toString());
 		this.getController().update(arg0, this.mainInterfaceViewBean);
-		System.out.println("update");
 	}
 }

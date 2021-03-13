@@ -123,7 +123,6 @@ public class SuggestionDropDownDecorator<C extends JComponent> extends Observabl
 	      if (popupMenu.isVisible()) {
 	          int selectedIndex = listComp.getSelectedIndex();
 	          if (selectedIndex != -1) {
-	        	  System.out.println("selectFromList");
 	              popupMenu.setVisible(false);
 	              String selectedValue = listComp.getSelectedValue();
 	              disableTextEvent = true;
