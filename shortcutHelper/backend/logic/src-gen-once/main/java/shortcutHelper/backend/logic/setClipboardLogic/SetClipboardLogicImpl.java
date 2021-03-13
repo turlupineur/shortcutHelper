@@ -10,6 +10,6 @@ public class SetClipboardLogicImpl extends AbstractSetClipboardLogic {
 
 		this.getClipboardService().setClipboard(container.getClipboardValue());
 
-		return ConcreteLogicResult.RESULT_NULL;
+		return ConcreteLogicResult.RESULT_OK;
 	}
 }
