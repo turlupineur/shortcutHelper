@@ -3,13 +3,11 @@ package shortcutHelper.middleend.interaction.submitShortcutToExecute;
 import shortcutHelper.backend.backendInteraction.submitShortcutBackendInteraction.SubmitShortcutBackendInteractionDataContainer;
 import shortcutHelper.backendCommon.ShortcutHelperContext;
 import shortcutHelper.frontend.viewbean.MainInterfaceViewBean;
-import shortcutHelper.logging.ShortcutHelperLogging;
 
 public class SubmitShortcutToExecuteInteraction extends AbstractSubmitShortcutToExecuteInteraction {
 
 	@Override
 	public void execute(MainInterfaceViewBean bean) {
-		ShortcutHelperLogging.logInfo("Shortcut to execute: " + bean.getDataBean().getCalledShortcut());
 		SubmitShortcutBackendInteractionDataContainer container = new SubmitShortcutBackendInteractionDataContainer();
 		container.setShortcutToExecute(bean.getDataBean().getCalledShortcut());
 		ShortcutHelperContext context = new ShortcutHelperContext();
