@@ -40,6 +40,10 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper {
 		return this.isInitialized;
 	}
 
+	public void setInitialized(boolean isInitialized) {
+		this.isInitialized = isInitialized;
+	}
+
 	/**
 	 * Official method to add shortcuts.
 	 * 
@@ -64,7 +68,6 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper {
 	 */
 	protected void refreshIfNeeded() {
 		if (!isListShortcutsInitialized()) {
-			this.isInitialized = true;
 			refresh();
 		}
 	}

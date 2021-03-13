@@ -65,6 +65,7 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper {
 		addShortcuts(mapOfProperties);
 		ShortcutHelperLogging.logInfo("DONE LOADING SHORTCUTS.");
 		ShortcutHelperLogging.logSeparationInfo();
+		setInitialized(true);
 	}
 
 	private Properties loadPropertiesFromFile(String file) throws FileNotFoundException, IOException {
