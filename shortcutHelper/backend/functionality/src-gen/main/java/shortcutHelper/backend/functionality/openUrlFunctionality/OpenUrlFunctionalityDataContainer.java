@@ -1,8 +1,8 @@
 package shortcutHelper.backend.functionality.openUrlFunctionality;
 
-import shortcutHelper.backend.functionality.FunctionalityDataContainer;
+import shortcutHelper.backend.functionality.DataContainer;
 
-public class OpenUrlFunctionalityDataContainer extends FunctionalityDataContainer{
+public class OpenUrlFunctionalityDataContainer extends DataContainer{
 	private String url;
 	
 	public String getUrl()

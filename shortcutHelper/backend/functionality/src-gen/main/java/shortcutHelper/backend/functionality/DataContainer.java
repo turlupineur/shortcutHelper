@@ -2,16 +2,19 @@ package shortcutHelper.backend.functionality;
 
 import shortcutHelper.backendCommon.ShortcutHelperContext;
 
-public class FunctionalityDataContainer extends DataContainer {
-
+public class DataContainer{
+	
 	private ShortcutHelperContext shortcutHelperContext;
-
-	public ShortcutHelperContext getShortcutHelperContext() {
+	
+	public ShortcutHelperContext getShortcutHelperContext()
+	{
 		return shortcutHelperContext;
 	}
-
-	public void setShortcutHelperContext(ShortcutHelperContext shortcutHelperContext) {
+	
+	public void setShortcutHelperContext(ShortcutHelperContext shortcutHelperContext)
+	{
 		this.shortcutHelperContext = shortcutHelperContext;
 	}
-
+	
+	
 }

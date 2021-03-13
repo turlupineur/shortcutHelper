@@ -16,6 +16,6 @@ public interface IDefaultBeanUtil extends Util{
     public String getContainerCreatorNameFromClass(Class clazz);
 
 
-    public String getContainerExtractorNameFromClass(Class clazz);
+    public String getContainerExtractorNameFromClass(Class clazzz);
 
 }

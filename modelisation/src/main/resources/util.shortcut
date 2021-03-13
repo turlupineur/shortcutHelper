@@ -17,7 +17,7 @@ util stringUtil{
 	}
 }
 
-util beanUtil{
+util beanUtil {
 	@ Contains useful function to retrieve beanName and class for any beans. @
 	
 	getBeanNameFromClass returns STRING {
@@ -43,6 +43,6 @@ util beanUtil{
 	getContainerExtractorNameFromClass returns STRING{
 		@ Returns the container extractor associated to the class. 
 		This method should be only called for functionality. @
-		param clazz CLASS
+		param clazzz CLASS
 	}
 }

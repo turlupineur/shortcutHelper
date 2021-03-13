@@ -1,6 +1,6 @@
 package shortcutHelper.backend.functionality.refreshFunctionality;
 
-import shortcutHelper.backend.functionality.FunctionalityDataContainer;
+import shortcutHelper.backend.functionality.DataContainer;
 
-public class RefreshFunctionalityDataContainer extends FunctionalityDataContainer{
+public class RefreshFunctionalityDataContainer extends DataContainer{
 }

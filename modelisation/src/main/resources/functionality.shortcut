@@ -2,7 +2,7 @@ functionality refreshFunctionality {
 	using : propertyHelper
 			shortcutHelper;
 	input parameter :
-	returns : void
+	returns : void 
 	implementation {
 		
 		variable EXCEPTION exceptionOccuredRefreshProperties = null
