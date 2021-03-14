@@ -22,12 +22,14 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper {
 		ShortcutHelperLogging.logSeparationInfo();
 		ShortcutHelperLogging.logInfo("LOADING SHORTCUTS");
 		try {
+			ShortcutHelperLogging.logInfo("Loading shortcuts from: " + FILE_CONTAINING_SHORTCUTS_TO_LOAD);
 			propShortcutsToLoad
 					.load(this.getPropertyLoaderService().getInputStreamForFile(FILE_CONTAINING_SHORTCUTS_TO_LOAD));
-		} catch (IOException e) {
-			ShortcutHelperLogging.logInfo("Done loading shortcuts. No shortcuts was loaded.");
+		} catch (Throwable t) {
+			ShortcutHelperLogging
+					.logInfo("Error while loading shortcuts. No shortcuts was loaded. Error :" + t.getMessage());
 			throw new IllegalStateException(
-					"Shortcuts' list '" + FILE_CONTAINING_SHORTCUTS_TO_LOAD + "' could not be loaded");
+					"Shortcuts' list '" + FILE_CONTAINING_SHORTCUTS_TO_LOAD + "' could not be loaded", t);
 		}
 		String propShortcutsToLoadValue = propShortcutsToLoad.getProperty(PROPERTY_SHORTCUTS_TO_LOAD);
 

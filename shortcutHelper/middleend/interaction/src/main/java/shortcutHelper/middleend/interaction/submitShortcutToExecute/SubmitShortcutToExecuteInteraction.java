@@ -14,12 +14,12 @@ public class SubmitShortcutToExecuteInteraction extends AbstractSubmitShortcutTo
 		container.setContext(context);
 		getSubmitShortcutBackenInteraction().execute(container);
 		bean.getDataBean().setCalledShortcut("");
-		if (context.getInfo() != null) {
-			bean.getFunctionBean().setToastMessage(context.getInfo());
-		} else if (context.getWarning() != null) {
-			bean.getFunctionBean().setToastMessage(context.getInfo());
-		} else if (context.getError() != null) {
+		if (context.getError() != null) {
 			bean.getFunctionBean().setToastMessage(context.getError());
+		} else if (context.getWarning() != null) {
+			bean.getFunctionBean().setToastMessage(context.getWarning());
+		} else if (context.getInfo() != null) {
+			bean.getFunctionBean().setToastMessage(context.getInfo());
 		} else {
 			bean.getFunctionBean().setToastMessage("Shortcut executed !");
 		}

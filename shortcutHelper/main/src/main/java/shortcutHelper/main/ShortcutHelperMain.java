@@ -8,6 +8,7 @@ import shortcutHelper.middleend.controller.IMainInterfaceController;
 public class ShortcutHelperMain {
 
 	public static void main(String[] args) {
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 		ApplicationContext context = loadBeans();
 		IMainInterfaceController controller = (IMainInterfaceController) context
 				.getBean(IMainInterfaceController.BEAN_ID);
