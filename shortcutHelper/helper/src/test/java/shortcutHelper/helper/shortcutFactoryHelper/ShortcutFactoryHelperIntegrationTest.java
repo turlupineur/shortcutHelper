@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import shortcutHelper.helper.HelperIntegrationTesting;
 import shortcutHelper.util.beanUtil.IBeanUtil;
+import shortcutHelper.util.beanUtil.IDefaultBeanUtil;
 
 public class ShortcutFactoryHelperIntegrationTest extends HelperIntegrationTesting {
 	@Autowired
@@ -75,7 +76,7 @@ public class ShortcutFactoryHelperIntegrationTest extends HelperIntegrationTesti
 		assertThat(shortcut.getParams().length, is(params.length));
 		assertEquals(shortcut.getParams()[0], params[0]);
 		assertEquals(shortcut.getParams()[1], params[1]);
-		assertEquals(IShortcutFactoryHelper.class, shortcut.getClassRepresentingCommand());
+		assertEquals(IDefaultShortcutFactoryHelper.class, shortcut.getClassRepresentingCommand());
 	}
 
 	@Test
@@ -101,7 +102,7 @@ public class ShortcutFactoryHelperIntegrationTest extends HelperIntegrationTesti
 
 		IShortcut parsedShortcut = shortcutFactoryHelper.parseShortcut(line);
 
-		assertEquals(IBeanUtil.class, parsedShortcut.getClassRepresentingCommand());
+		assertEquals(IDefaultBeanUtil.class, parsedShortcut.getClassRepresentingCommand());
 		assertTrue(parsedShortcut.getParams().length == 2);
 		assertTrue(parsedShortcut.getParams()[0].equals("1"));
 		assertTrue(parsedShortcut.getParams()[1].equals("2"));
@@ -114,7 +115,7 @@ public class ShortcutFactoryHelperIntegrationTest extends HelperIntegrationTesti
 
 		IShortcut parsedShortcut = shortcutFactoryHelper.parseShortcut(line);
 
-		assertEquals(IBeanUtil.class, parsedShortcut.getClassRepresentingCommand());
+		assertEquals(IDefaultBeanUtil.class, parsedShortcut.getClassRepresentingCommand());
 		assertTrue(parsedShortcut.getParams().length == 0);
 		assertTrue(IBeanUtil.BEAN_ID.equals(parsedShortcut.getBeanName()));
 	}
