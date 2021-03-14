@@ -13,41 +13,40 @@ import shortcutHelper.frontend._interface.autosuggestion.SuggestionDropDownDecor
 import shortcutHelper.frontend._interface.autosuggestion.TextComponentSuggestionClient;
 import shortcutHelper.frontend._interface.toast.ToastMessage;
 import shortcutHelper.frontend.viewbean.MainInterfaceViewBean;
-public class MainInterface extends JFrame implements Observer{
+
+public class MainInterface extends JFrame implements Observer {
 	private MainInterfaceViewBean mainInterfaceViewBean;
 	private Observer controller;
-	
-	//*****************************************************************
+
+	// *****************************************************************
 	/**
 	 * Config (property)
 	 */
 	private static final int HEIGHT = 65;
-	
+
 	private static final int WIDTH = 250;
-	
+
 	private static final String TITLE = "ShortcutHelper";
-	
+
 	private static final int MAX_DISPLAYED_RESULTS_SUGGESTION = 20;
-	
-	
+
 	/**
 	 * ViewBean
 	 */
-	//*****************************************************************
-	
+	// *****************************************************************
+
 	private JTextField textFieldCommand;
-	
+
 	private TextComponentSuggestionClient componentSuggestionClient;
-	
+
 	private boolean viewInitialized;
-	
-	public MainInterface()
-	{
+
+	public MainInterface() {
 		textFieldCommand = new JTextField();
 		viewInitialized = false;
-		
+
 	}
-	
+
 	public Observer getController() {
 		return controller;
 	}
@@ -56,61 +55,53 @@ public class MainInterface extends JFrame implements Observer{
 		this.controller = controller;
 	}
 
-	private void init()
-	{
+	private void init() {
 		setSize(WIDTH, HEIGHT);
 		setMinimumSize(new Dimension(WIDTH, HEIGHT));
-		
+
 		setTitle(TITLE);
 		add(textFieldCommand);
 		addClosingEvent();
-		
+
 		configureSuggestionDropdown();
 	}
-	
-	
-	
-	public void updateView(MainInterfaceViewBean viewBean)
-	{
+
+	public void updateView(MainInterfaceViewBean viewBean) {
 		this.mainInterfaceViewBean = viewBean;
-		if(!viewInitialized)
-		{
+		if (!viewInitialized) {
 			init();
 			viewInitialized = true;
 		}
 		mapViewBeanToView();
 		showToastIfRequired();
 	}
-	
+
 	private void showToastIfRequired() {
-		if(this.mainInterfaceViewBean.getFunctionBean().getToastMessage() != null) {
-			ToastMessage toast = new ToastMessage(this,this.mainInterfaceViewBean.getFunctionBean().getToastMessage());
+		if (this.mainInterfaceViewBean.getFunctionBean().getToastMessage() != null) {
+			ToastMessage toast = new ToastMessage(this, this.mainInterfaceViewBean.getFunctionBean().getToastMessage());
 			toast.display();
 		}
 	}
 
-	private void mapViewBeanToView()
-	{
+	private void mapViewBeanToView() {
 		this.textFieldCommand.setText(this.mainInterfaceViewBean.getDataBean().getCalledShortcut());
-		if(this.mainInterfaceViewBean.getFunctionBean().isFocusOnShortcutTextBox())
-		{
+		if (this.mainInterfaceViewBean.getFunctionBean().isFocusOnShortcutTextBox()) {
 			this.textFieldCommand.requestFocus();
 		}
 	}
-	
+
 	private void configureSuggestionDropdown() {
-		this.componentSuggestionClient =  new TextComponentSuggestionClient(mainInterfaceViewBean.getDataBean().getShortcuts(),MAX_DISPLAYED_RESULTS_SUGGESTION);
-		SuggestionDropDownDecorator.decorate(textFieldCommand,
-	              componentSuggestionClient,this);
+		this.componentSuggestionClient = new TextComponentSuggestionClient(
+				mainInterfaceViewBean.getDataBean().getShortcuts(), MAX_DISPLAYED_RESULTS_SUGGESTION);
+		SuggestionDropDownDecorator.decorate(textFieldCommand, componentSuggestionClient, this);
 	}
 
-	private void addClosingEvent()
-	{
+	private void addClosingEvent() {
 		this.addWindowListener(new WindowAdapter() {
-			  public void windowClosing(WindowEvent we) {
-			    System.exit(0);
-			  }
-			});
+			public void windowClosing(WindowEvent we) {
+				System.exit(0);
+			}
+		});
 	}
 
 	// event submit shortcut.

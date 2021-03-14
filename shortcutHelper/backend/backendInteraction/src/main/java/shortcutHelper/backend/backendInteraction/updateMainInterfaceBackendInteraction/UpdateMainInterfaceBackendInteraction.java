@@ -11,6 +11,7 @@ public class UpdateMainInterfaceBackendInteraction extends AbstractUpdateMainInt
 		RefreshFunctionalityDataContainer container = new RefreshFunctionalityDataContainer();
 		ShortcutHelperContext context = new ShortcutHelperContext();
 		container.setShortcutHelperContext(context);
+		c.setContext(context);
 		this.getRefreshFunctionality().run(container);
 	}
 }
