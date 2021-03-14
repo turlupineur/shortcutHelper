@@ -71,6 +71,6 @@ public class ToastMessage extends JFrame {
 		setVisible(true);
 
 		Timer timer = new Timer(true);
-		timer.schedule(toastTask, 1500);
+		timer.schedule(toastTask, 3000);
 	}
 }
