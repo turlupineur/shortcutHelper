@@ -1,10 +1,10 @@
 package shortcutHelper.backend.functionality.refreshFunctionality;
 
-import shortcutHelper.backend.functionality.DataContainer;
+import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 
-public class RefreshFunctionalityDataContainerDataExtractor extends AbstractRefreshFunctionalityDataContainerDataExtractor{
-	public void extractData(String [] rawData, DataContainer c)
-	{
+public class RefreshFunctionalityDataContainerDataExtractor
+		extends AbstractRefreshFunctionalityDataContainerDataExtractor {
+	public void extractData(String[] rawData, FunctionalityDataContainer c) {
 		// implement here
 	}
 }

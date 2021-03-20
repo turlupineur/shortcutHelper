@@ -1,8 +1,8 @@
 package shortcutHelper.backend.functionality.copyToClipboardFunctionality;
 
-import shortcutHelper.backend.functionality.DataContainer;
+import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 
-public class CopyToClipboardFunctionalityDataContainer extends DataContainer{
+public class CopyToClipboardFunctionalityDataContainer extends FunctionalityDataContainer{
 	private String clipboard;
 	
 	public String getClipboard()

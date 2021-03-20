@@ -1,10 +1,10 @@
 package shortcutHelper.backend.functionality.executerFunctionality;
 
-import shortcutHelper.backend.functionality.DataContainer;
+import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 
 public class ExecuterFunctionalityDataContainerCreator extends AbstractExecuterFunctionalityDataContainerCreator {
 
-	public DataContainer getDataContainer() {
+	public FunctionalityDataContainer getDataContainer() {
 		return new ExecuterFunctionalityDataContainer();
 	}
 };

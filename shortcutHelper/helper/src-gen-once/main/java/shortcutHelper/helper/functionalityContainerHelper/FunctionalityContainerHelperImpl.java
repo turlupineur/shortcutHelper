@@ -45,7 +45,7 @@ public class FunctionalityContainerHelperImpl extends AbstractFunctionalityConta
 		Object bean = getContainerExtractorFunctionality(clazzFunctionality);
 		try {
 			Class[] parametersMethod = { String[].class,
-					Class.forName("shortcutHelper.backend.functionality.DataContainer") };
+					Class.forName("shortcutHelper.backend.functionality.FunctionalityDataContainer") };
 			bean.getClass().getMethod("extractData", parametersMethod).invoke(bean, params, container);
 			return;
 		} catch (NoSuchMethodException e) {

@@ -1,8 +1,8 @@
 package shortcutHelper.backend.functionality.executerFunctionality;
 
-import shortcutHelper.backend.functionality.DataContainer;
+import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 
-public class ExecuterFunctionalityDataContainer extends DataContainer{
+public class ExecuterFunctionalityDataContainer extends FunctionalityDataContainer{
 	private shortcutHelper.helper.shortcutFactoryHelper.IShortcut shortcutToExecute;
 	
 	public shortcutHelper.helper.shortcutFactoryHelper.IShortcut getShortcutToExecute()
