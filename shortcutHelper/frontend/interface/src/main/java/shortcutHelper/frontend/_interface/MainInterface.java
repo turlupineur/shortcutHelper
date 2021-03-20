@@ -26,7 +26,7 @@ public class MainInterface extends JFrame implements Observer {
 
 	private static final int WIDTH = 250;
 
-	private static final String TITLE = "ShortcutHelper";
+	private static final String TITLE = "SH 1.0";
 
 	private static final int MAX_DISPLAYED_RESULTS_SUGGESTION = 20;
 
