@@ -16,11 +16,11 @@ public class MainInterfaceController extends AbstractMainInterfaceController {
 	}
 
 	public void showInterface() {
-		getMainInterface().setVisible(true);
 		if (!controllerInitialized) {
 			init();
 			controllerInitialized = true;
 		}
+		getMainInterface().setVisible(true);
 	}
 
 	public void updateView(MainInterfaceViewBean viewBean) {
