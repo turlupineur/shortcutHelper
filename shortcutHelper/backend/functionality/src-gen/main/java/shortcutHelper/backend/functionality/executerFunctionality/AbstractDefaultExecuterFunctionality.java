@@ -1,33 +1,26 @@
 package shortcutHelper.backend.functionality.executerFunctionality;
 
 import shortcutHelper.backend.functionality.AbstractFunctionality;
-import shortcutHelper.helper.functionalityContainerHelper.IFunctionalityContainerHelper;
-import shortcutHelper.util.beanUtil.IBeanUtil;
+import shortcutHelper.backend.logic.getClipboardLogic.IDefaultGetClipboardLogic;
 import shortcutHelper.helper.beanHelper.IBeanHelper;
+import shortcutHelper.helper.functionalityContainerHelper.IFunctionalityContainerHelper;
+import shortcutHelper.helper.shortcutFactoryHelper.IShortcutFactoryHelper;
 
 public abstract class AbstractDefaultExecuterFunctionality extends AbstractFunctionality implements IDefaultExecuterFunctionality
 {
-	private IFunctionalityContainerHelper functionalityContainerHelper;
-	private IBeanUtil beanUtil;
+	private IDefaultGetClipboardLogic getClipboardLogic;
 	private IBeanHelper beanHelper;
+	private IFunctionalityContainerHelper functionalityContainerHelper;
+	private IShortcutFactoryHelper shortcutFactoryHelper;
 	
-	public void setFunctionalityContainerHelper(IFunctionalityContainerHelper functionalityContainerHelper)
+	public void setGetClipboardLogic(IDefaultGetClipboardLogic getClipboardLogic)
 	{
-		this.functionalityContainerHelper = functionalityContainerHelper;
+		this.getClipboardLogic = getClipboardLogic;
 	}
 	
-	public IFunctionalityContainerHelper getFunctionalityContainerHelper()
+	public IDefaultGetClipboardLogic getGetClipboardLogic()
 	{
-		return this.functionalityContainerHelper;
-	}
-	public void setBeanUtil(IBeanUtil beanUtil)
-	{
-		this.beanUtil = beanUtil;
-	}
-	
-	public IBeanUtil getBeanUtil()
-	{
-		return this.beanUtil;
+		return this.getClipboardLogic;
 	}
 	public void setBeanHelper(IBeanHelper beanHelper)
 	{
@@ -37,5 +30,23 @@ public abstract class AbstractDefaultExecuterFunctionality extends AbstractFunct
 	public IBeanHelper getBeanHelper()
 	{
 		return this.beanHelper;
+	}
+	public void setFunctionalityContainerHelper(IFunctionalityContainerHelper functionalityContainerHelper)
+	{
+		this.functionalityContainerHelper = functionalityContainerHelper;
+	}
+	
+	public IFunctionalityContainerHelper getFunctionalityContainerHelper()
+	{
+		return this.functionalityContainerHelper;
+	}
+	public void setShortcutFactoryHelper(IShortcutFactoryHelper shortcutFactoryHelper)
+	{
+		this.shortcutFactoryHelper = shortcutFactoryHelper;
+	}
+	
+	public IShortcutFactoryHelper getShortcutFactoryHelper()
+	{
+		return this.shortcutFactoryHelper;
 	}
 }

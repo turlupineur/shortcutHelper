@@ -14,9 +14,10 @@
 <bean id = "ExecuterFunctionality" class = "shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityImpl" parent="ExecuterFunctionalityDef">
 </bean>
 <bean id = "ExecuterFunctionalityDef" abstract="true">
-<property name="FunctionalityContainerHelper" ref="FunctionalityContainerHelper" />
-<property name="BeanUtil" ref="BeanUtil" />
+<property name="GetClipboardLogic" ref="GetClipboardLogic" />
 <property name="BeanHelper" ref="BeanHelper" />
+<property name="FunctionalityContainerHelper" ref="FunctionalityContainerHelper" />
+<property name="ShortcutFactoryHelper" ref="ShortcutFactoryHelper" />
 </bean>
 <bean id = "CopyToClipboardFunctionality" class = "shortcutHelper.backend.functionality.copyToClipboardFunctionality.CopyToClipboardFunctionalityImpl" parent="CopyToClipboardFunctionalityDef">
 </bean>

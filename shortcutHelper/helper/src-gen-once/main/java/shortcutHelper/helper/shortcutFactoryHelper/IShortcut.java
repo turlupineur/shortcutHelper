@@ -1,7 +1,7 @@
 package shortcutHelper.helper.shortcutFactoryHelper;
 
 /**
- * Represents a immutable Shortcut. An instance of this interface guarantees
+ * Represents an immutable Shortcut. An instance of this interface guarantees
  * that the shortcut is executable. It does not guarantees that the number of
  * params given is correct.
  * 

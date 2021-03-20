@@ -30,35 +30,22 @@ functionality refreshFunctionality {
 }
 
 functionality executerFunctionality{
-	@ Functionality in charge of running a shortcut. 
-	It will finds the appropriate Functionality to run, pass it all parameters defined for the shortcut and execute
-	the functionality. Cannot execute itself@
-	
-	using : functionalityContainerHelper
-			beanUtil
-			beanHelper;
-	
-	input parameter :
-		parameter shortcutToExecute SHORTCUT required
-		
-	
+	using : getClipboardLogic 
+			beanHelper
+			functionalityContainerHelper
+			shortcutFactoryHelper;
+	input parameter:
+	parameter shortcutToExecute SHORTCUT required
 	returns : void
-	
 	implementation{
-		variable CONTAINER_FUNCTIONALITY container ;
-		variable FUNCTIONALITY functionalityToExcecute;
-		variable STRING beanHelper;
-		
-		container = callComponentMethod functionalityContainerHelper.functionalityContainerHelper.createAndFillContainer(set clazz = @shortcutToExecute.classRepresentingCommand@
-			set params = @shortcutToExecute.params@
-		)
-		
-		functionalityToExcecute = callComponentMethod beanHelper.beanHelper.getBean(
-			set beanName = @shortcutToExecute.beanName@
-		)
-		
-		// run functionality with container
-		@functionalityToExcecute.run(container, context)@
+		@ Executes the appropriate command based on the given shortcut.
+		  Steps:
+		  	
+		  	- Retrive the shortcut to execute.
+		  	- Replace all ${CLIPBOARD_CONTENT} with the value of the current clipboard in the params.
+		  	- Retrieve the bean for the command.
+		  	- Creates the appropriate container for the command.
+		@
 	}
 }
 
