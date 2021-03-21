@@ -47,7 +47,8 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 		Class classCommand = extractClassFromBeanName(beanCommandName);
 
 		if (commandAndParams.length > 1) {
-			String[] params = commandAndParams[1].split(PARAMS_SEPARATOR);
+			String[] params = lineToParse.substring(lineToParse.indexOf(COMMAND_PARAMS_SEPARATOR) + 1)
+					.split(PARAMS_SEPARATOR);
 			shortcut = createShortcut(classCommand, beanCommandName, params);
 		} else {
 			shortcut = createShortcut(classCommand, beanCommandName, null);

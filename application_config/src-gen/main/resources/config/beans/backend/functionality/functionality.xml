@@ -30,5 +30,11 @@
 </bean>
 <bean id = "OpenUrlFunctionalityDef" abstract="true">
 </bean>
+<bean id = "FormatStringFunctionality" class = "shortcutHelper.backend.functionality.formatStringFunctionality.FormatStringFunctionalityImpl" parent="FormatStringFunctionalityDef">
+</bean>
+<bean id = "FormatStringFunctionalityDef" abstract="true">
+<property name="GetClipboardLogic" ref="GetClipboardLogic" />
+<property name="SetClipboardLogic" ref="SetClipboardLogic" />
+</bean>
    
 </beans>

@@ -79,6 +79,58 @@ functionality openUrlFunctionality{
 	
 	implementation
 	{
-		@ opens  url in browser @
+		@ opens url in browser @
 	}
+}
+
+functionality formatStringFunctionality{
+	@ Format the string in the clipboard from a format to another. If the String is already in the target format, 
+	the command will reverse the format back to the origal or do nothing depending on the 
+	config provided. The result is copied back to the clipboard.@
+	
+	using : getClipboardLogic
+			setClipboardLogic;
+	
+	input parameter:
+		parameter originalFormat STRING required // Contains a regular expression.
+		parameter transformationToTargetFormat STRING required // Contains a regular expression for specifying how to convert from original format to target format.
+		parameter oTargetFormat STRING optional // Contains a regular expression.
+		parameter oTransformationToOriginalFormat STRING optional // Contains a regular expression for specifying how to convert from target format back to original format.
+		parameter dReverseFormat BOOLEAN default // (default true) If true and the string in clipboard already has the target format, 
+		// then the string is reverted back to its origin format. If false then  nothing is performed if the clipboard 
+		// already has the target format
+	returns : void
+	
+	implementation {
+		
+		
+		variable STRING clipboard;
+		
+		clipboard = callLogic getClipboardLogic()
+		if oTargetFormat = @not null@ {
+			if clipboard = oTargetFormat // clipboard has target format
+			{
+			if dReverseFormat = true{
+				clipboard = oTransformationToOriginalFormat // reformat back to originalFormat
+				callLogic setClipboardLogic (set clipboardValue = clipboard)
+				showinfo "Value reversed back to original format."
+			}else{
+				showinfo "Value already formatted. Nothing was done."
+			};
+		
+			};
+		}else{
+			if clipboard = originalFormat // clipboard has origin format
+			{
+				clipboard = transformationToTargetFormat // format to target format.
+				showinfo "Value formatted."
+				callLogic setClipboardLogic (set clipboardValue = clipboard)
+			}else{
+				showerror  "Clipboard format unknown."
+			};
+		};
+		
+		
+	}
+	
 }

@@ -13,5 +13,7 @@
 	</bean>
 	<bean id = "OpenUrlFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.openUrlFunctionality.OpenUrlFunctionalityDataContainerCreator">
 	</bean>
+	<bean id = "FormatStringFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.formatStringFunctionality.FormatStringFunctionalityDataContainerCreator">
+	</bean>
    
 </beans>

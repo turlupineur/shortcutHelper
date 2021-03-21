@@ -1,0 +1,7 @@
+package shortcutHelper.backend.functionality.formatStringFunctionality;
+
+import shortcutHelper.backend.functionality.AbstractFunctionalityDataContainerCreator;
+
+public abstract class AbstractFormatStringFunctionalityDataContainerCreator extends AbstractFunctionalityDataContainerCreator implements IFormatStringFunctionalityDataContainerCreator{
+	
+};

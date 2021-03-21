@@ -6,4 +6,5 @@
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<alias name="CopyToClipboardFunctionality" alias="CLIPBOARD"/>
 	<alias name="OpenUrlFunctionality" alias="OPEN_URL"/>
+	<alias name="FormatStringFunctionality" alias="FORMAT"/>
 </beans>

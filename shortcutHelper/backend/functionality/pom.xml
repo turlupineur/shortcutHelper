@@ -18,6 +18,11 @@
 				<artifactId>util</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 				<groupId>shortcutHelper.backend</groupId>
 				<artifactId>logic</artifactId>
 		</dependency>
