@@ -5,6 +5,7 @@ import shortcutHelper.backend.logic.getClipboardLogic.IDefaultGetClipboardLogic;
 import shortcutHelper.helper.beanHelper.IBeanHelper;
 import shortcutHelper.helper.functionalityContainerHelper.IFunctionalityContainerHelper;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcutFactoryHelper;
+import shortcutHelper.helper.variableHelper.IVariableHelper;
 
 public abstract class AbstractDefaultExecuterFunctionality extends AbstractFunctionality implements IDefaultExecuterFunctionality
 {
@@ -12,6 +13,7 @@ public abstract class AbstractDefaultExecuterFunctionality extends AbstractFunct
 	private IBeanHelper beanHelper;
 	private IFunctionalityContainerHelper functionalityContainerHelper;
 	private IShortcutFactoryHelper shortcutFactoryHelper;
+	private IVariableHelper variableHelper;
 	
 	public void setGetClipboardLogic(IDefaultGetClipboardLogic getClipboardLogic)
 	{
@@ -48,5 +50,14 @@ public abstract class AbstractDefaultExecuterFunctionality extends AbstractFunct
 	public IShortcutFactoryHelper getShortcutFactoryHelper()
 	{
 		return this.shortcutFactoryHelper;
+	}
+	public void setVariableHelper(IVariableHelper variableHelper)
+	{
+		this.variableHelper = variableHelper;
+	}
+	
+	public IVariableHelper getVariableHelper()
+	{
+		return this.variableHelper;
 	}
 }

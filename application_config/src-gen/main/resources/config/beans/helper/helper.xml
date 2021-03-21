@@ -25,5 +25,9 @@
 </bean>
 <bean id = "FunctionalityContainerHelperDef" abstract="true">
 </bean>
+<bean id = "VariableHelper" class = "shortcutHelper.helper.variableHelper.VariableHelperImpl" parent="VariableHelperDef">
+</bean>
+<bean id = "VariableHelperDef" abstract="true">
+</bean>
    
 </beans>

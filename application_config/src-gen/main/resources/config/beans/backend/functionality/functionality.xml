@@ -10,6 +10,7 @@
 <bean id = "RefreshFunctionalityDef" abstract="true">
 <property name="PropertyHelper" ref="PropertyHelper" />
 <property name="ShortcutHelper" ref="ShortcutHelper" />
+<property name="VariableHelper" ref="VariableHelper" />
 </bean>
 <bean id = "ExecuterFunctionality" class = "shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityImpl" parent="ExecuterFunctionalityDef">
 </bean>
@@ -18,6 +19,7 @@
 <property name="BeanHelper" ref="BeanHelper" />
 <property name="FunctionalityContainerHelper" ref="FunctionalityContainerHelper" />
 <property name="ShortcutFactoryHelper" ref="ShortcutFactoryHelper" />
+<property name="VariableHelper" ref="VariableHelper" />
 </bean>
 <bean id = "CopyToClipboardFunctionality" class = "shortcutHelper.backend.functionality.copyToClipboardFunctionality.CopyToClipboardFunctionalityImpl" parent="CopyToClipboardFunctionalityDef">
 </bean>

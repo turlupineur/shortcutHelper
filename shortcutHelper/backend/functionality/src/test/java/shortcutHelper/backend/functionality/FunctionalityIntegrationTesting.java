@@ -22,6 +22,7 @@ import shortcutHelper.helper.beanHelper.IBeanHelper;
 import shortcutHelper.helper.functionalityContainerHelper.IDefaultFunctionalityContainerHelper;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcutFactoryHelper;
+import shortcutHelper.helper.variableHelper.IDefaultVariableHelper;
 import shortcutHelper.service.clipboardService.AbstractClipboardService;
 import shortcutHelper.service.clipboardService.IClipboardService;
 import shortcutHelper.service.clipboardService.clipboard.ClipboardObject;
@@ -63,10 +64,16 @@ public class FunctionalityIntegrationTesting {
 	@Resource(name = IClipboardService.BEAN_ID_INTERN_CLIPBOARD)
 	private ClipboardObject internClipboard;
 
+	@Autowired
+	private IDefaultVariableHelper variableHelper;
+
 	@Before
 	public void setUp() {
 		// setting intern clipboard to avoid possible errors with real clipboard.
 		clipboardService.setClipboardObject(internClipboard);
+
+		// all defined variables should not be used in the tests.
+		variableHelper.clearAllVariables();
 	}
 
 	/**
@@ -104,6 +111,14 @@ public class FunctionalityIntegrationTesting {
 		LogicDataContainer container = dataContainerCreator.getDataContainer();
 		container.setShortcutHelperContext(new ShortcutHelperContext());
 		return container;
+	}
+
+	public String getVariable(String name) {
+		return variableHelper.getVariableValue(name);
+	}
+
+	public void setVariable(String name, String value) {
+		variableHelper.setVariable(name, value);
 	}
 
 	/**
@@ -183,5 +198,9 @@ public class FunctionalityIntegrationTesting {
 			e.printStackTrace();
 		}
 		throw new IllegalStateException("Functionality could not be found. Test class name is not conformed.");
+	}
+
+	public IShortcut createShortcut(Class clazz, String... params) {
+		return shortcutFactoryHelper.createShortcut(clazz, params);
 	}
 }

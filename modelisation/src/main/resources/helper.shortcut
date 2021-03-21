@@ -102,3 +102,30 @@ helper functionalityContainerHelper{
 		param params ARRAY_STRING
 	}
 }
+
+helper variableHelper{
+	refresh returns void {
+		@ Loads all variables from config/variables/variables.properties @
+	}
+	
+	variableExists returns BOOLEAN {
+		@ Checks if a property exists. @
+		param name STRING
+	}
+	
+	getVariableValue returns STRING {
+		@ Gets the value of the variable.@
+		param name STRING
+	}
+	
+	clearAllVariables returns void{
+		
+	}
+	
+	setVariable returns void {
+		@ Adds or sets a specific variable to the helper. This variable will be lost if refresh method is called.@
+		param name STRING
+		param value STRING
+	}
+	
+}
