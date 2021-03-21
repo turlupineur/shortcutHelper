@@ -1,6 +1,10 @@
 package shortcutHelper.backend.functionality.executerFunctionality;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import shortcutHelper.backend.functionality.ConcreteFunctionalityResult;
 import shortcutHelper.backend.functionality.Functionality;
@@ -19,6 +23,8 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 		IShortcut shortcutToExecute = container.getShortcutToExecute();
 
 		shortcutToExecute = resolveClipboardReference(shortcutToExecute);
+
+		shortcutToExecute = resolveVariables(shortcutToExecute);
 
 		Functionality functionalityToExecute = (Functionality) getBeanHelper().getBean(shortcutToExecute.getBeanName());
 
@@ -50,7 +56,44 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 		}
 
 		return getShortcutFactoryHelper().createShortcut(shortcut.getBeanName(), params);
-
 	}
 
+	private IShortcut resolveVariables(IShortcut shortcut) {
+		String[] params = shortcut.getParams();
+		String clipboardValue = getClipboard();
+
+		for (int i = 0; i < params.length; i++) {
+			String paramValue = params[i];
+			List<String> variableReferences = getVariableReferences(paramValue);
+			for (String variableRef : variableReferences) {
+				if (getVariableHelper().variableExists(variableRef)) {
+					paramValue = paramValue.replace("${" + variableRef + "}",
+							getVariableHelper().getVariableValue(variableRef));
+				}
+			}
+			params[i] = paramValue;
+		}
+
+		return getShortcutFactoryHelper().createShortcut(shortcut.getBeanName(), params);
+	}
+
+	private List<String> getVariableReferences(String str) {
+		List<String> allReferences = new ArrayList<>();
+
+		Matcher m = Pattern.compile("\\$\\{(.{0,})\\}").matcher(str);
+
+		while (m.find()) {
+			allReferences.add(m.group(1));
+		}
+
+		return allReferences;
+	}
+
+	public static void main(String[] args) {
+		Matcher m = Pattern.compile("\\$\\{(.{0,})\\}").matcher("salut ${toi}");
+		System.out.println("SAlut");
+		while (m.find()) {
+			System.out.println("Salut: " + m.group(1));
+		}
+	}
 }

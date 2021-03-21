@@ -1,6 +1,7 @@
 functionality refreshFunctionality {
 	using : propertyHelper
-			shortcutHelper;
+			shortcutHelper
+			variableHelper;
 	input parameter :
 	returns : void 
 	implementation {
@@ -33,7 +34,8 @@ functionality executerFunctionality{
 	using : getClipboardLogic 
 			beanHelper
 			functionalityContainerHelper
-			shortcutFactoryHelper;
+			shortcutFactoryHelper
+			variableHelper;
 	input parameter:
 	parameter shortcutToExecute SHORTCUT required
 	returns : void

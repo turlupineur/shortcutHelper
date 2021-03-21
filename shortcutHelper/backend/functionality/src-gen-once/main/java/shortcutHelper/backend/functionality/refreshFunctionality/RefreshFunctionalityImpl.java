@@ -15,6 +15,15 @@ public class RefreshFunctionalityImpl extends AbstractRefreshFunctionality {
 			container.getShortcutHelperContext().setError("Error while refreshing properties: " + t.getMessage());
 			exceptionOccured = true;
 		}
+
+		try {
+			getVariableHelper().refresh();
+		} catch (Throwable t) {
+			ShortcutHelperLogging.logError(t);
+			container.getShortcutHelperContext().setError("Error while refreshing variables: " + t.getMessage());
+			exceptionOccured = true;
+		}
+
 		try {
 			getShortcutHelper().refresh();
 		} catch (Throwable t) {

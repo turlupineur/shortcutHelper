@@ -3,11 +3,13 @@ package shortcutHelper.backend.functionality.refreshFunctionality;
 import shortcutHelper.backend.functionality.AbstractFunctionality;
 import shortcutHelper.helper.propertyHelper.IPropertyHelper;
 import shortcutHelper.helper.shortcutHelper.IShortcutHelper;
+import shortcutHelper.helper.variableHelper.IVariableHelper;
 
 public abstract class AbstractDefaultRefreshFunctionality extends AbstractFunctionality implements IDefaultRefreshFunctionality
 {
 	private IPropertyHelper propertyHelper;
 	private IShortcutHelper shortcutHelper;
+	private IVariableHelper variableHelper;
 	
 	public void setPropertyHelper(IPropertyHelper propertyHelper)
 	{
@@ -26,5 +28,14 @@ public abstract class AbstractDefaultRefreshFunctionality extends AbstractFuncti
 	public IShortcutHelper getShortcutHelper()
 	{
 		return this.shortcutHelper;
+	}
+	public void setVariableHelper(IVariableHelper variableHelper)
+	{
+		this.variableHelper = variableHelper;
+	}
+	
+	public IVariableHelper getVariableHelper()
+	{
+		return this.variableHelper;
 	}
 }
