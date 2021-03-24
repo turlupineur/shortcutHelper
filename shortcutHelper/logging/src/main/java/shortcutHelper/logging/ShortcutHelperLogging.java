@@ -1,65 +1,60 @@
 package shortcutHelper.logging;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class ShortcutHelperLogging {
-	public static void logDebug(Object o)
-	{
-		System.out.println(o);
+	private static Logger logger = LogManager.getLogger(ShortcutHelperLogging.class);
+
+	public static void logDebug(Object o) {
+		logger.debug(o);
 	}
-	
-	public static void logDebug(String str)
-	{
-		System.out.println(str);
+
+	public static void logDebug(String str) {
+		logger.debug(str);
 	}
-	
-	public static void logDebug(Throwable t)
-	{
-		t.printStackTrace();
+
+	public static void logDebug(Throwable t) {
+		logger.debug(t);
 	}
-	public static void logInfo(Object o)
-	{
-		System.out.println(o);
+
+	public static void logInfo(Object o) {
+		logger.info(o);
 	}
-	
-	public static void logInfo(String str)
-	{
-		System.out.println(str);
+
+	public static void logInfo(String str) {
+		logger.info(str);
 	}
-	
-	public static void logInfo(Throwable t)
-	{
-		t.printStackTrace();
+
+	public static void logInfo(Throwable t) {
+		logger.info(t);
 	}
-	public static void logWarning(Object o)
-	{
-		System.out.println(o);
+
+	public static void logWarning(Object o) {
+		logger.warn(o);
 	}
-	
-	public static void logWarning(String str)
-	{
-		System.out.println(str);
+
+	public static void logWarning(String str) {
+		logger.warn(str);
 	}
-	
-	public static void logWarning(Throwable t)
-	{
-		t.printStackTrace();
+
+	public static void logWarning(Throwable t) {
+		logger.warn(t);
 	}
-	public static void logError(Object o)
-	{
-		System.out.println(o);
+
+	public static void logError(Object o) {
+		logger.error(o);
 	}
-	
-	public static void logError(String str)
-	{
-		System.out.println(str);
+
+	public static void logError(String str) {
+		logger.error(str);
 	}
-	
-	public static void logError(Throwable t)
-	{
-		t.printStackTrace();
+
+	public static void logError(Throwable t) {
+		logger.error(t);
 	}
-	
-	public static void logSeparationInfo()
-	{
+
+	public static void logSeparationInfo() {
 		logInfo("--------------------------------------------------------------");
 	}
 }
