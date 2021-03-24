@@ -56,6 +56,8 @@
 	<plugin>
   <artifactId>maven-assembly-plugin</artifactId>
   <configuration>
+	<finalName>ShortcutHelper</finalName>
+	<appendAssemblyId>false</appendAssemblyId>
     <archive>
       <manifest>
         <mainClass>shortcutHelper.main.ShortcutHelperMain</mainClass>
