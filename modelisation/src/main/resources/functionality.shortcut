@@ -1,4 +1,8 @@
 functionality refreshFunctionality {
+	name : {
+		REFRESH
+	}
+	configuration : NONE
 	using : propertyHelper
 			shortcutHelper
 			variableHelper;
@@ -31,6 +35,10 @@ functionality refreshFunctionality {
 }
 
 functionality executerFunctionality{
+	name : {
+		
+	}
+	configuration : NONE
 	using : getClipboardLogic 
 			beanHelper
 			functionalityContainerHelper
@@ -54,6 +62,11 @@ functionality executerFunctionality{
 functionality copyToClipboardFunctionality {
 	@ Copies a value defined in the shortcut in the clipboard.@
 	
+	name : {
+		CLIPBOARD
+	}
+	configuration : NONE
+	
 	using : setClipboardLogic
 			beanUtil
 			beanHelper;
@@ -73,6 +86,11 @@ functionality copyToClipboardFunctionality {
 functionality openUrlFunctionality{
 	@ Open the url using default internet browser.@
 	
+	name : {
+		OPEN_URL
+	}
+	configuration : NONE
+	
 	using: ;
 	
 	input parameter :
@@ -89,6 +107,11 @@ functionality formatStringFunctionality{
 	@ Format the string in the clipboard from a format to another. If the String is already in the target format, 
 	the command will reverse the format back to the origal or do nothing depending on the 
 	config provided. The result is copied back to the clipboard.@
+	
+	name : {
+		FORMAT
+	}
+	configuration : NONE
 	
 	using : getClipboardLogic
 			setClipboardLogic;

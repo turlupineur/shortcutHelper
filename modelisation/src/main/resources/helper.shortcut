@@ -110,12 +110,12 @@ helper variableHelper{
 	
 	variableExists returns BOOLEAN {
 		@ Checks if a property exists. @
-		param name STRING
+		param nameOfVariable STRING
 	}
 	
 	getVariableValue returns STRING {
 		@ Gets the value of the variable.@
-		param name STRING
+		param nameOfVariable STRING
 	}
 	
 	clearAllVariables returns void{
@@ -124,7 +124,7 @@ helper variableHelper{
 	
 	setVariable returns void {
 		@ Adds or sets a specific variable to the helper. This variable will be lost if refresh method is called.@
-		param name STRING
+		param nameOfVariable STRING
 		param value STRING
 	}
 	

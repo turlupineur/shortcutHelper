@@ -7,12 +7,12 @@ public interface IDefaultVariableHelper extends Helper {
 
 	public void refresh();
 
-	public boolean variableExists(String name);
+	public boolean variableExists(String nameOfVariable);
 
-	public String getVariableValue(String name);
+	public String getVariableValue(String nameOfVariable);
 
 	public void clearAllVariables();
 
-	public void setVariable(String name, String value);
+	public void setVariable(String nameOfVariable, String value);
 
 }
