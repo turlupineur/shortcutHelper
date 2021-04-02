@@ -33,5 +33,9 @@
 </bean>
 <bean id = "DatabaseInformationHelperDef" abstract="true">
 </bean>
+<bean id = "ShortcutRegistrationHelper" class = "shortcutHelper.helper.shortcutRegistrationHelper.ShortcutRegistrationHelperImpl" parent="ShortcutRegistrationHelperDef">
+</bean>
+<bean id = "ShortcutRegistrationHelperDef" abstract="true">
+</bean>
    
 </beans>

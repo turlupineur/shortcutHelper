@@ -51,6 +51,19 @@ helper shortcutFactoryHelper {
 	}
 	createShortcut returns SHORTCUT{
 		@ Creates a SHORTCUT object from the given class and arguments. @
+		param shortcutName STRING
+		param functionalityClass CLASS
+		param params ARRAY_STRING
+	
+	}
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param beanFunctionality STRING
+		param params ARRAY_STRING
+	}
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param shortcutName STRING
 		param beanFunctionality STRING
 		param params ARRAY_STRING
 	}
@@ -61,9 +74,21 @@ helper shortcutFactoryHelper {
 		param params ARRAY_STRING
 	}
 	
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param shortcutName STRING
+		param functionalityClass CLASS
+		param beanFunctionality STRING
+		param params ARRAY_STRING
+	}
+	
 	parseShortcut returns SHORTCUT{
 		@ Parses the given line to extract shortcut. Throws an exception if line is invalid. @
 		param lineToParse STRING
+	}
+	
+	convertShortcutToString returns STRING {
+		param shortcutToConvert SHORTCUT
 	}
 }
 
@@ -149,4 +174,37 @@ helper databaseInformationHelper{
 		param databaseName STRING
 	}
 	
+}
+
+helper shortcutRegistrationHelper {
+	@Abstraction to the registration of Shortcuts. Addition or suppresion of Shortcuts 
+	will affect the list of shortcuts provided to the user on GUI. This helper always has
+	the most recent shortcut list (although the entire list could not be available yet on GUI)
+	Shortcuts added by BackgroundCommands will never overwrite the ones added in functionality@
+	
+	addShortcut returns void{
+		@ Adds the following shortcut to the official shortcut list. The added shortcut must have a name.
+		If another shortcut with the same name already exist, does nothing@
+		param shortcutToAdd SHORTCUT
+	}
+	
+	replaceShortcut returns void{
+		@ Adds the following shortcut to the official shortcut list. The added shortcut must have a name.
+		If another shortcut with the same name already exist, it is replaced with the new one.@
+		param shortcutToAdd SHORTCUT
+	}
+	
+	removeShortcut returns BOOLEAN{
+		@ Remove the shortcut if it exists. The given shortcut must have a name.@
+		param shortcutToRemove SHORTCUT
+	}
+	
+	hasShortcut returns BOOLEAN{
+		@ Checks if the shortcut exists. The given shortcut must have a name.@
+		param shortcutToCheck SHORTCUT
+	}
+	
+	getAllShortcuts returns MAP_STRING_STRING{
+		@ Returns an umodifiable map of all raw shortcuts @
+	}
 }

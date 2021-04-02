@@ -2,9 +2,11 @@ package shortcutHelper.helper.shortcutHelper;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,9 +16,11 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper {
 	public static final String FILE_CONTAINING_SHORTCUTS_TO_LOAD = "config/shortcuts/shortcuts.properties";
 	public static final String PROPERTY_SHORTCUTS_TO_LOAD = "shortcut.files";
 	public static final String LIST_SEPARATOR = ";";
+	private Set<String> nonNaviteShortcuts = new HashSet<>();
 
 	@Override
 	public void refresh() {
+		nonNaviteShortcuts.clear();
 		// parsing main shortcut file.
 		Properties propShortcutsToLoad = new Properties();
 		ShortcutHelperLogging.logSeparationInfo();
@@ -74,6 +78,31 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper {
 		Properties properties = new Properties();
 		properties.load(this.getPropertyLoaderService().getInputStreamForFile(file));
 		return properties;
+	}
+
+	@Override
+	public boolean addNonNativeShortcut(String name, String rawShortcut) {
+		if (!getListShortcuts().containsKey(name)) {
+			replaceNonNativeShortcut(name, rawShortcut);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void replaceNonNativeShortcut(String name, String rawShortcut) {
+		getListShortcuts().put(name, rawShortcut);
+		nonNaviteShortcuts.add(name);
+	}
+
+	@Override
+	public boolean removeShortcut(String name) {
+		if (!getListShortcuts().containsKey(name)) {
+			getListShortcuts().remove(name);
+			nonNaviteShortcuts.remove(name);
+			return true;
+		}
+		return false;
 	}
 
 }

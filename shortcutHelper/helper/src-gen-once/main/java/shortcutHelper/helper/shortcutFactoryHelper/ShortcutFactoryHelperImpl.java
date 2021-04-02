@@ -5,25 +5,12 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 
 	public IShortcut createShortcut(Class commandClass, String[] params) {
-		if (commandClass == null) {
-			return null;
-		}
-		commandClass = getBeanUtil().getInterfaceFromClass(commandClass);
-		Shortcut shortcut = new Shortcut(commandClass, params);
-		shortcut.beanName = getBeanUtil().getBeanNameFromClass(commandClass);
-		return shortcut;
+		return createShortcut(null, commandClass, params);
 	}
 
 	public IShortcut createShortcut(String beanCommand, String[] params) {
-		if (beanCommand == null) {
-			return null;
-		}
-
-		Class classCommand = extractClassFromBeanName(beanCommand);
-
-		Shortcut shortcut = new Shortcut(classCommand, beanCommand, params);
-		shortcut.beanName = getBeanUtil().getBeanNameFromClass(classCommand);
-		return shortcut;
+		String name = null;
+		return createShortcut(name, beanCommand, params);
 	}
 
 	private Class extractClassFromBeanName(String beanCommand) {
@@ -35,6 +22,20 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 			throw new IllegalArgumentException(
 					"The command '" + beanCommand + "' could not be associated to any command defined.");
 		}
+	}
+
+	@Override
+	public IShortcut createShortcut(String shortcutName, String beanCommand, String[] params) {
+		if (beanCommand == null) {
+			return null;
+		}
+
+		Class classCommand = extractClassFromBeanName(beanCommand);
+
+		Shortcut shortcut = new Shortcut(classCommand, beanCommand, params);
+		shortcut.beanName = getBeanUtil().getBeanNameFromClass(classCommand);
+		shortcut.setName(shortcutName);
+		return shortcut;
 	}
 
 	public IShortcut parseShortcut(String lineToParse) {
@@ -58,6 +59,24 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 
 	@Override
 	public IShortcut createShortcut(Class functionalityClass, String beanFunctionality, String[] params) {
+		return createShortcut(null, functionalityClass, beanFunctionality, params);
+	}
+
+	@Override
+	public IShortcut createShortcut(String shortcutName, Class commandClass, String[] params) {
+		if (commandClass == null) {
+			return null;
+		}
+		commandClass = getBeanUtil().getInterfaceFromClass(commandClass);
+		Shortcut shortcut = new Shortcut(commandClass, params);
+		shortcut.beanName = getBeanUtil().getBeanNameFromClass(commandClass);
+		shortcut.setName(shortcutName);
+		return shortcut;
+	}
+
+	@Override
+	public IShortcut createShortcut(String shortcutName, Class functionalityClass, String beanFunctionality,
+			String[] params) {
 		if (functionalityClass == null) {
 			return createShortcut(beanFunctionality, params);
 		}
@@ -71,6 +90,7 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 	}
 
 	private class Shortcut implements IShortcut {
+		private String name;
 		private String beanName;
 		private Class classRepresentingCommand;
 		private String[] params;
@@ -119,6 +139,31 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 				return new String[0];
 			}
 		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
 	}
 
+	@Override
+	public String convertShortcutToString(IShortcut shortcutToConvert) {
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append(shortcutToConvert.getBeanName());
+		if (shortcutToConvert.getParams() != null && shortcutToConvert.getParams().length > 0) {
+			stringBuffer.append(COMMAND_PARAMS_SEPARATOR);
+			for (int i = 0; i < shortcutToConvert.getParams().length; i++) {
+				stringBuffer.append(shortcutToConvert.getParams()[i]);
+				if (i + 1 < shortcutToConvert.getParams().length) {
+					stringBuffer.append(PARAMS_SEPARATOR);
+				}
+			}
+		}
+
+		return stringBuffer.toString();
+	}
 }

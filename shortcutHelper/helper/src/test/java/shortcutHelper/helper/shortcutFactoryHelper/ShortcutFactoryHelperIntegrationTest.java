@@ -119,4 +119,18 @@ public class ShortcutFactoryHelperIntegrationTest extends HelperIntegrationTesti
 		assertTrue(parsedShortcut.getParams().length == 0);
 		assertTrue(IBeanUtil.BEAN_ID.equals(parsedShortcut.getBeanName()));
 	}
+
+	@Test
+	public void convertShortcutWithoutParam() {
+		IShortcut shortcut = shortcutFactoryHelper.createShortcut(ShortcutFactoryHelperImpl.class, null);
+
+		String rawShortcut = shortcutFactoryHelper.convertShortcutToString(shortcut);
+
+		assertThat(rawShortcut, is(IShortcutFactoryHelper.BEAN_ID));
+	}
+
+	@Test
+	public void convertShortcutWithParam() {
+
+	}
 }

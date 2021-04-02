@@ -30,4 +30,12 @@ public interface IShortcut {
 	 */
 	public String[] getParams();
 
+	/**
+	 * Returns the name of the shortcut. This property is optional if the Shortcut
+	 * is created through the code.
+	 * 
+	 * @return
+	 */
+	public String getName();
+
 }

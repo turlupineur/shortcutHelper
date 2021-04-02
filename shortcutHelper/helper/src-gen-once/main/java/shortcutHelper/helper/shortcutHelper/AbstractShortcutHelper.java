@@ -6,7 +6,7 @@ import java.util.Map;
 
 import shortcutHelper.service.propertyLoaderService.IPropertyLoaderService;
 
-public abstract class AbstractShortcutHelper implements IShortcutHelper {
+public abstract class AbstractShortcutHelper implements IShortcutHelper, IShortcutHelperInternalOperation {
 	// The list is defined here to have a better control over the update. All
 	// updates methods are defined here and will be linked through aop to update
 	// gui.
@@ -31,6 +31,10 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper {
 		return Collections.unmodifiableMap(listShortcuts);
 	}
 
+	public Map<String, String> getInternalShortcutList() {
+		return listShortcuts;
+	}
+
 	public String getShortcut(String shortcutId) {
 		refreshIfNeeded();
 		return this.listShortcuts.get(shortcutId);
@@ -42,16 +46,6 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper {
 
 	public void setInitialized(boolean isInitialized) {
 		this.isInitialized = isInitialized;
-	}
-
-	/**
-	 * Official method to add shortcuts.
-	 * 
-	 * @param keyShortcut
-	 * @param shortcut
-	 */
-	protected void addShortcut(String keyShortcut, String shortcut) {
-		this.listShortcuts.put(keyShortcut, shortcut);
 	}
 
 	/**
