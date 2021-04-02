@@ -129,3 +129,24 @@ helper variableHelper{
 	}
 	
 }
+
+helper databaseInformationHelper{
+	@Holds an internal memory of all database credential information. 
+	All information are defined in file user_config/config/helper/databaseInformationHelper/credential.yml@
+	
+	
+	refresh returns void {
+		@ Loads all database information from config file.@
+	}
+	
+	getDatabaseInformation returns DATABASE_INFORMATION_DTO {
+		@ Fetches the appropriate Database Information associated to the given name.
+		@
+		param databaseName STRING
+	}
+	
+	hasDatabaseInformation returns BOOLEAN {
+		param databaseName STRING
+	}
+	
+}

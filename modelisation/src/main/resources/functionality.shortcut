@@ -5,7 +5,8 @@ functionality refreshFunctionality {
 	configuration : NONE
 	using : propertyHelper
 			shortcutHelper
-			variableHelper;
+			variableHelper
+			databaseInformationHelper;
 	input parameter :
 	returns : void 
 	implementation {

@@ -24,3 +24,8 @@ datatype CLASS "Class"
 datatype ARRAY_STRING "String []"
 datatype OBJECT "Object"
 datatype INT "int" 
+
+
+
+// helpers
+datatype DATABASE_INFORMATION_DTO "shortcutHelper.helper.databaseInformationHelper.dto.DatabaseInformationConnection"

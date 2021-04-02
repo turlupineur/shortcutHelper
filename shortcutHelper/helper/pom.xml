@@ -18,6 +18,10 @@
 			<artifactId>logging</artifactId>
 		</dependency>
 		<dependency>
+		    <groupId>org.yaml</groupId>
+		    <artifactId>snakeyaml</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>shortcutHelper</groupId>
 			<artifactId>service</artifactId>
 		</dependency>

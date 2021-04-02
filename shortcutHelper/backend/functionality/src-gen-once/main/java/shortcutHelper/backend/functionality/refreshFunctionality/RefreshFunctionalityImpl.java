@@ -32,6 +32,13 @@ public class RefreshFunctionalityImpl extends AbstractRefreshFunctionality {
 			exceptionOccured = true;
 		}
 
+		try {
+			getDatabaseInformationHelper().refresh();
+		} catch (Throwable t) {
+			ShortcutHelperLogging.logError(t);
+			exceptionOccured = true;
+		}
+
 		if (!exceptionOccured) {
 			container.getShortcutHelperContext().setInfo("Application refreshed");
 		}

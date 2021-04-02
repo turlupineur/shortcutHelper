@@ -1,0 +1,12 @@
+connections: 
+ - 
+  name: pitabeauty
+  host: localhost
+  port: 3306
+  username: root
+  password: root
+ - 
+  name: another
+  port: 3306
+  username: root
+  password: root

@@ -24,4 +24,7 @@
 	<bean id = "VariableHelper" class = "shortcutHelper.helper.variableHelper.VariableHelperImpl" parent="VariableHelperDef">
 		<property name="propertyLoaderService" ref="PropertyLoaderService"></property>
 	</bean>
+	<bean id = "DatabaseInformationHelper" class = "shortcutHelper.helper.databaseInformationHelper.DatabaseInformationHelperImpl" parent="VariableHelperDef">
+		<property name="propertyLoaderService" ref="PropertyLoaderService"></property>
+	</bean>
 </beans>

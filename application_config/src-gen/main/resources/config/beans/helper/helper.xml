@@ -29,5 +29,9 @@
 </bean>
 <bean id = "VariableHelperDef" abstract="true">
 </bean>
+<bean id = "DatabaseInformationHelper" class = "shortcutHelper.helper.databaseInformationHelper.DatabaseInformationHelperImpl" parent="DatabaseInformationHelperDef">
+</bean>
+<bean id = "DatabaseInformationHelperDef" abstract="true">
+</bean>
    
 </beans>
