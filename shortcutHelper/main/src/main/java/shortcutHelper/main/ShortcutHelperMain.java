@@ -3,6 +3,7 @@ package shortcutHelper.main;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import shortcutHelper.logging.ShortcutHelperLogging;
 import shortcutHelper.middleend.controller.IMainInterfaceController;
 
 public class ShortcutHelperMain {
@@ -12,6 +13,7 @@ public class ShortcutHelperMain {
 		ApplicationContext context = loadBeans();
 		IMainInterfaceController controller = (IMainInterfaceController) context
 				.getBean(IMainInterfaceController.BEAN_ID);
+		initDatabaseDriver();
 		controller.showInterface();
 	}
 
@@ -28,5 +30,15 @@ public class ShortcutHelperMain {
 				"/config/beans/backend/logic/logic-data-container-creator-man.xml",
 				"/config/beans/backend/functionality/functionality-man.xml");
 		return context;
+	}
+
+	private static void initDatabaseDriver() {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			ShortcutHelperLogging.logError("JDBC SQL driver could not be loaded.");
+			ShortcutHelperLogging.logError(e);
+		}
 	}
 }

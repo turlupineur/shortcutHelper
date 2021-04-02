@@ -1,0 +1,7 @@
+package shortcutHelper.backend.functionality.selectQueryDatabaseFunctionality;
+
+import shortcutHelper.backend.functionality.AbstractFunctionalityDataContainerCreator;
+
+public abstract class AbstractSelectQueryDatabaseFunctionalityDataContainerCreator extends AbstractFunctionalityDataContainerCreator implements ISelectQueryDatabaseFunctionalityDataContainerCreator{
+	
+};

@@ -7,4 +7,5 @@
 	<alias name="CopyToClipboardFunctionality" alias="CLIPBOARD"/>
 	<alias name="OpenUrlFunctionality" alias="OPEN_URL"/>
 	<alias name="FormatStringFunctionality" alias="FORMAT"/>
+	<alias name="SelectQueryDatabaseFunctionality" alias="SELECT_QUERY"/>
 </beans>

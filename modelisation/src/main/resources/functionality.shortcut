@@ -46,7 +46,7 @@ functionality executerFunctionality{
 			shortcutFactoryHelper
 			variableHelper;
 	input parameter:
-	parameter shortcutToExecute SHORTCUT required
+		parameter shortcutToExecute SHORTCUT required
 	returns : void
 	implementation{
 		@ Executes the appropriate command based on the given shortcut.
@@ -159,4 +159,46 @@ functionality formatStringFunctionality{
 		
 	}
 	
+}
+
+functionality selectQueryDatabaseFunctionality {
+	@ Executes a sql query and gives the result back in the clipboard. The query can only return one 
+	result (one row and one field). Other results will be ignored.@
+	
+	name : {
+		SELECT_QUERY
+	}
+	
+	configuration : NONE
+	
+	using : setClipboardLogic
+			databaseInformationHelper;
+	input parameter : 
+		parameter databaseConnectionName STRING required
+		parameter query STRING required
+	
+	returns : void
+	
+	implementation {
+		variable BOOLEAN databaseConnectionFound;
+		databaseConnectionFound = callComponentMethod databaseInformationHelper.databaseInformationHelper.hasDatabaseInformation(set databaseName = databaseConnectionName)
+		
+		if databaseConnectionFound = true{
+			variable OBJECT result;
+			result = @execution of sql query@
+			if result = @contains error@ {
+				showerror "Error while executing query. See log."
+			}else{
+				if result = @ contains data @ {	
+					callLogic setClipboardLogic (set clipboardValue = result) 
+					showinfo "Result copied to clipboard"
+				}else{
+					showinfo "No data returned."
+				};
+			};
+			
+		}else{
+			showerror "Connection ${query} could not be found."
+		};
+	}
 }

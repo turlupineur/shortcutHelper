@@ -5,8 +5,10 @@ connections:
   port: 3306
   username: root
   password: root
+  database: PitabeautyDev
  - 
   name: another
   port: 3306
   username: root
   password: root
+  database: PitabeautyDev

@@ -6,6 +6,15 @@ public class DatabaseInformationConnection {
 	public String host;
 	public String username;
 	public String password;
+	public String database;
+
+	public String getDatabase() {
+		return database;
+	}
+
+	public void setDatabase(String database) {
+		this.database = database;
+	}
 
 	public String getName() {
 		return name;

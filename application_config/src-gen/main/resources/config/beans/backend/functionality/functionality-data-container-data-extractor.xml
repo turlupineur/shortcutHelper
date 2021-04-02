@@ -15,5 +15,7 @@
 	</bean>
 	<bean id = "FormatStringFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.formatStringFunctionality.FormatStringFunctionalityDataContainerDataExtractor">
 	</bean>
+	<bean id = "SelectQueryDatabaseFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.selectQueryDatabaseFunctionality.SelectQueryDatabaseFunctionalityDataContainerDataExtractor">
+	</bean>
    
 </beans>

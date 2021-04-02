@@ -39,5 +39,11 @@
 <property name="GetClipboardLogic" ref="GetClipboardLogic" />
 <property name="SetClipboardLogic" ref="SetClipboardLogic" />
 </bean>
+<bean id = "SelectQueryDatabaseFunctionality" class = "shortcutHelper.backend.functionality.selectQueryDatabaseFunctionality.SelectQueryDatabaseFunctionalityImpl" parent="SelectQueryDatabaseFunctionalityDef">
+</bean>
+<bean id = "SelectQueryDatabaseFunctionalityDef" abstract="true">
+<property name="SetClipboardLogic" ref="SetClipboardLogic" />
+<property name="DatabaseInformationHelper" ref="DatabaseInformationHelper" />
+</bean>
    
 </beans>
