@@ -4,10 +4,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	<bean id="MainInterface"
-		class="shortcutHelper.frontend._interface.MainInterface">
-		<property name="controller" ref="MainInterfaceController"></property>
-		<property name="componentSuggestionClient" ref="suggestionClientComponent"></property>
+	<bean id="suggestionClientComponent"
+		class="shortcutHelper.frontend._interface.autosuggestion.TextComponentSuggestionClient">
+		<property name="nbMaxResultsToDisplay" value="10"></property>
 	</bean>
 	
 </beans>

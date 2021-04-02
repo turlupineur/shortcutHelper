@@ -104,9 +104,12 @@ public class MainInterface extends JFrame implements Observer {
 	}
 
 	private void configureSuggestionDropdown() {
-		this.componentSuggestionClient = new TextComponentSuggestionClient(
-				mainInterfaceViewBean.getDataBean().getShortcuts(), MAX_DISPLAYED_RESULTS_SUGGESTION);
+		this.componentSuggestionClient.updateListWords(mainInterfaceViewBean.getDataBean().getShortcuts());
 		SuggestionDropDownDecorator.decorate(textFieldCommand, componentSuggestionClient, this);
+	}
+
+	public void setComponentSuggestionClient(TextComponentSuggestionClient componentSuggestionClient) {
+		this.componentSuggestionClient = componentSuggestionClient;
 	}
 
 	private void addClosingEvent() {

@@ -17,6 +17,7 @@
 		<module>/shortcutHelper/helper</module>
 		<module>/shortcutHelper/util</module>
 		<module>/shortcutHelper/service</module>
+		<module>/shortcutHelper/common</module>
 		<module>deployment</module>
 	</modules>
 	<properties>
@@ -27,6 +28,11 @@
 			<dependency>
 				<groupId>shortcutHelper</groupId>
 				<artifactId>main</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>shortcutHelper</groupId>
+				<artifactId>common</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>

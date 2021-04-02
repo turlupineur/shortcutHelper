@@ -1,5 +1,8 @@
 package shortcutHelper.helper.shortcutRegistrationHelper;
 
+import java.util.Map;
+
+import shortcutHelper.common.obervation.ShortcutListObserver;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 
 public class ShortcutRegistrationHelperImpl extends AbstractShortcutRegistrationHelper {
@@ -8,17 +11,23 @@ public class ShortcutRegistrationHelperImpl extends AbstractShortcutRegistration
 		checkShortcutIsValid(shortcutToAdd);
 		String rawShortcut = getShortcutFactoryHelper().convertShortcutToString(shortcutToAdd);
 		getShortcutHelper().addNonNativeShortcut(shortcutToAdd.getName(), rawShortcut);
+		notifyObserver();
 	}
 
 	public void replaceShortcut(shortcutHelper.helper.shortcutFactoryHelper.IShortcut shortcutToAdd) {
 		checkShortcutIsValid(shortcutToAdd);
 		String rawShortcut = getShortcutFactoryHelper().convertShortcutToString(shortcutToAdd);
 		getShortcutHelper().replaceNonNativeShortcut(shortcutToAdd.getName(), rawShortcut);
+		notifyObserver();
 	}
 
 	public boolean removeShortcut(shortcutHelper.helper.shortcutFactoryHelper.IShortcut shortcutToRemove) {
 		checkShortcutIsValid(shortcutToRemove);
-		return getShortcutHelper().removeShortcut(shortcutToRemove.getName());
+		boolean success = getShortcutHelper().removeShortcut(shortcutToRemove.getName());
+		if (success) {
+			notifyObserver();
+		}
+		return success;
 	}
 
 	public boolean hasShortcut(shortcutHelper.helper.shortcutFactoryHelper.IShortcut shortcutToCheck) {
@@ -36,4 +45,10 @@ public class ShortcutRegistrationHelperImpl extends AbstractShortcutRegistration
 		}
 	}
 
+	private void notifyObserver() {
+		for (ShortcutListObserver observer : getShortcutListObservers()) {
+			Map<String, String> shortcuts = getAllShortcuts();
+			observer.listUpdated(shortcuts);
+		}
+	}
 }

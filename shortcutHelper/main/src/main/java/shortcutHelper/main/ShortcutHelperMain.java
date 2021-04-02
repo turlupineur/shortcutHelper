@@ -28,7 +28,9 @@ public class ShortcutHelperMain {
 				"/config/beans/middleend/controller/controller.xml", "/config/beans/frontend/interface/interface.xml",
 				"/config/beans/backend/functionality/functionality_command.xml",
 				"/config/beans/backend/logic/logic-data-container-creator-man.xml",
-				"/config/beans/backend/functionality/functionality-man.xml");
+				"/config/beans/backend/functionality/functionality-man.xml",
+				"/config/beans/common/shortcutObserver/shortcutObservers.xml",
+				"/config/beans/frontend/interface/interfaceComponents.xml");
 		return context;
 	}
 

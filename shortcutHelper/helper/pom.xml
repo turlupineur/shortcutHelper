@@ -23,6 +23,10 @@
 		</dependency>
 		<dependency>
 			<groupId>shortcutHelper</groupId>
+			<artifactId>common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper</groupId>
 			<artifactId>service</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->

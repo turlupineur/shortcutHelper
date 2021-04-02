@@ -91,7 +91,7 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper {
 
 	@Override
 	public void replaceNonNativeShortcut(String name, String rawShortcut) {
-		getListShortcuts().put(name, rawShortcut);
+		getInternalShortcutList().put(name, rawShortcut);
 		nonNaviteShortcuts.add(name);
 	}
 
