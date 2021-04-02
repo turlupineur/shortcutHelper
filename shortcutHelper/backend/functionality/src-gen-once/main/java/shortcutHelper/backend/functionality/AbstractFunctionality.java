@@ -1,14 +1,20 @@
 package shortcutHelper.backend.functionality;
 
 import shortcutHelper.backendCommon.ExecutableComponent;
+import shortcutHelper.logging.ShortcutHelperLogging;
 
 public abstract class AbstractFunctionality extends ExecutableComponent implements Functionality {
 	public final FunctionalityResult run(FunctionalityDataContainer container) {
 		check(container);
 		preRunImpl(container);
-		FunctionalityResult result = runImpl(container);
-		postRunImpl(container, result);
-		return result;
+		try {
+			FunctionalityResult result = runImpl(container);
+			postRunImpl(container, result);
+			return result;
+		} catch (Throwable t) {
+			ShortcutHelperLogging.logError(t);
+		}
+		return null;
 	}
 
 	public abstract FunctionalityResult runImpl(FunctionalityDataContainer container);

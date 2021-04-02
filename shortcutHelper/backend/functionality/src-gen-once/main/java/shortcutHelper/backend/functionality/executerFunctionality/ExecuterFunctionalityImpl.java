@@ -35,14 +35,20 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 
 		ShortcutHelperLogging.logInfo("Running class: " + functionalityToExecute.getClass().getName());
 
-		ShortcutHelperLogging.logSeparationInfo();
-
 		FunctionalityDataContainer containerForFunctionality = (FunctionalityDataContainer) getFunctionalityContainerHelper()
 				.createAndFillContainer(functionalityToExecute.getClass(), shortcutToExecute.getParams());
 
 		containerForFunctionality.setShortcutHelperContext(container.getShortcutHelperContext());
 
-		functionalityToExecute.run(containerForFunctionality);
+		try {
+			functionalityToExecute.run(containerForFunctionality);
+		} catch (Throwable t) {
+			ShortcutHelperLogging.logInfo("Error while running class: " + functionalityToExecute.getClass().getName());
+			ShortcutHelperLogging.logError(t);
+			container.getShortcutHelperContext().setError("Unexpected error while executing command. Please see log.");
+		} finally {
+			ShortcutHelperLogging.logSeparationInfo();
+		}
 
 		return ConcreteFunctionalityResult.RESULT_NULL;
 	}
