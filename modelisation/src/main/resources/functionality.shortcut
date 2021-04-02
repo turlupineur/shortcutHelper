@@ -47,9 +47,18 @@ functionality executerFunctionality{
 			variableHelper;
 	input parameter:
 		parameter shortcutToExecute SHORTCUT required
+		parameter oRawShortcutToExecute STRING optional // only looked at if other required param is null.
 	returns : void
 	implementation{
-		@ Executes the appropriate command based on the given shortcut.
+		@ If shortcutToExecute is null, the functionality will try to parse oRawShortcutToExecute. If it fails,
+		it will than try to apply the special case for the command SetStorageOnTheFly: 
+			- The shortcut starts with with "set." and is followed by a noun (example: "set.bonjour").
+		If the raw shortcut matches the case, the Command SetStorageOnTheFly will be executed following the below steps. 
+		Otherwise nothing is done and an error message is shown to the user.
+		
+		If for any reason the shortcut to execute could not be determined or was never given, the message "No shortcut could be executed."
+		
+		Executes the appropriate command based on the given shortcut.
 		  Steps:
 		  	
 		  	- Retrive the shortcut to execute.

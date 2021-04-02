@@ -15,12 +15,18 @@ import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 import shortcutHelper.logging.ShortcutHelperLogging;
 
 public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality implements ClipboardGetBehavior {
+	private static final String PREFIX_FUNCTIONALITY_SET_STORAGE_ON_THE_FLY = "set.";
 	private static final String CLIPBOARD_REFERENCE = "${CLIPBOARD_VALUE}";
 
 	public FunctionalityResult runImpl(FunctionalityDataContainer c) {
 		ExecuterFunctionalityDataContainer container = (ExecuterFunctionalityDataContainer) c;
 
-		IShortcut shortcutToExecute = container.getShortcutToExecute();
+		IShortcut shortcutToExecute = extractShortcutToExecute(container);
+
+		if (shortcutToExecute == null) {
+			container.getShortcutHelperContext().setError("No shortcut could be executed.");
+			return ConcreteFunctionalityResult.RESULT_ERROR;
+		}
 
 		shortcutToExecute = resolveClipboardReference(shortcutToExecute);
 
@@ -51,6 +57,31 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 		}
 
 		return ConcreteFunctionalityResult.RESULT_NULL;
+	}
+
+	private IShortcut extractShortcutToExecute(ExecuterFunctionalityDataContainer container) {
+		if (container.getShortcutToExecute() != null) {
+			return container.getShortcutToExecute();
+		} else {
+
+			if (container.getORawShortcutToExecute() == null || container.getORawShortcutToExecute().length() == 0) {
+				return null;
+			}
+			// special case with SetStorageOnTheFly
+			if (container.getORawShortcutToExecute().startsWith(PREFIX_FUNCTIONALITY_SET_STORAGE_ON_THE_FLY)) {
+				String nameOfVariable = container.getORawShortcutToExecute()
+						.substring(PREFIX_FUNCTIONALITY_SET_STORAGE_ON_THE_FLY.length());
+				IShortcut shortcut = getShortcutFactoryHelper().createShortcut(this.getClass(),
+						new String[] { nameOfVariable });
+			}
+
+			try {
+				IShortcut shortcut = getShortcutFactoryHelper().parseShortcut(container.getORawShortcutToExecute());
+				return shortcut;
+			} catch (Throwable t) {
+				return null;
+			}
+		}
 	}
 
 	private IShortcut resolveClipboardReference(IShortcut shortcut) {

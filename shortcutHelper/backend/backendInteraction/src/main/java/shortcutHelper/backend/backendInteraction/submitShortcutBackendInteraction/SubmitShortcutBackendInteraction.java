@@ -9,14 +9,19 @@ public class SubmitShortcutBackendInteraction extends AbstractSubmitShortcutBack
 	@Override
 	public void execute(BackendInteractionDataContainer c) {
 		SubmitShortcutBackendInteractionDataContainer container = (SubmitShortcutBackendInteractionDataContainer) c;
-		// TODO Auto-generated method stub
 
 		String shortcutRaw = this.getShortcutHelper().getShortcut(container.getShortcutToExecute());
-		IShortcut shortcut = this.getShortcutFactoryHelper().parseShortcut(shortcutRaw);
+		IShortcut shortcut;
+		if (shortcutRaw != null) {
+			shortcut = this.getShortcutFactoryHelper().parseShortcut(shortcutRaw);
+		} else {
+			shortcut = null;
+		}
 
 		ExecuterFunctionalityDataContainer containerCmd = new ExecuterFunctionalityDataContainer();
 		containerCmd.setShortcutHelperContext(container.getContext());
 		containerCmd.setShortcutToExecute(shortcut);
+		containerCmd.setORawShortcutToExecute(shortcutRaw);
 		this.getExecuterFunctionality().run(containerCmd);
 	}
 
