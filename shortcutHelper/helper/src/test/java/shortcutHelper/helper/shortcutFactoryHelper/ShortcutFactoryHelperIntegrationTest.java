@@ -131,6 +131,12 @@ public class ShortcutFactoryHelperIntegrationTest extends HelperIntegrationTesti
 
 	@Test
 	public void convertShortcutWithParam() {
+		IShortcut shortcut = shortcutFactoryHelper.createShortcut(ShortcutFactoryHelperImpl.class,
+				new String[] { "bonjour", "toi" });
 
+		String rawShortcut = shortcutFactoryHelper.convertShortcutToString(shortcut);
+
+		assertThat(rawShortcut, is(IShortcutFactoryHelper.BEAN_ID + IShortcutFactoryHelper.COMMAND_PARAMS_SEPARATOR
+				+ "bonjour" + IShortcutFactoryHelper.PARAMS_SEPARATOR + "toi"));
 	}
 }
