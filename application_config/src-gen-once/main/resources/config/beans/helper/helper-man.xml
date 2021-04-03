@@ -27,6 +27,9 @@
 	<bean id = "DatabaseInformationHelper" class = "shortcutHelper.helper.databaseInformationHelper.DatabaseInformationHelperImpl" parent="VariableHelperDef">
 		<property name="propertyLoaderService" ref="PropertyLoaderService"></property>
 	</bean>
+	<bean id = "ApplicationPropertyHelper" class = "shortcutHelper.helper.applicationPropertyHelper.ApplicationPropertyHelperImpl" parent="ApplicationPropertyHelperDef">
+		<property name="propertyLoaderService" ref="PropertyLoaderService"></property>
+	</bean>
 	
 	<bean name="ShortcutRegistrationHelper" class="shortcutHelper.helper.shortcutRegistrationHelper.ShortcutRegistrationHelperImpl" parent="ShortcutRegistrationHelperDef">	
 		<property name="shortcutHelper" ref="ShortcutHelper"></property>

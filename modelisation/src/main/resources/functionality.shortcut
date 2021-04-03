@@ -6,19 +6,34 @@ functionality refreshFunctionality {
 	using : propertyHelper
 			shortcutHelper
 			variableHelper
-			databaseInformationHelper;
+			databaseInformationHelper
+			applicationPropertyHelper;
 	input parameter :
 	returns : void 
 	implementation {
 		
 		variable EXCEPTION exceptionOccuredRefreshProperties = null
 		variable EXCEPTION exceptionOccuredRefreshShortcuts = null
+		variable EXCEPTION exceptionOccuredRefreshVariables = null
+		variable EXCEPTION exceptionOccuredRefreshDatabaseInformation = null
+		variable EXCEPTION exceptionOccuredRefreshApplicationProperties = null
+		variable BOOLEAN exception;
+		
 		
 		exceptionOccuredRefreshProperties = callComponentMethod shortcutHelper.shortcutHelper.refresh()
 		
 		if exceptionOccuredRefreshProperties = @ any exception @
 		{
 			showerror "Error while refreshing properties: " @ + exceptionOccuredRefreshProperties @
+			exception = true
+		};
+		
+		exceptionOccuredRefreshVariables = callComponentMethod variableHelper.variableHelper.refresh()
+		
+		if exceptionOccuredRefreshVariables = @ any exception @
+		{
+			showerror "Error while refreshing variables: " @ + exceptionOccuredRefreshVariables @
+			exception = true
 		};
 		
 		exceptionOccuredRefreshShortcuts = callComponentMethod propertyHelper.propertyHelper.refresh()
@@ -26,9 +41,26 @@ functionality refreshFunctionality {
 		if exceptionOccuredRefreshShortcuts = @ any exception @
 		{
 			showerror "Error while refreshing shortcuts: " @ + exceptionOccuredRefreshShortcuts @
+			exception = true
 		};
 		
-		if exceptionOccuredRefreshProperties = null and exceptionOccuredRefreshShortcuts = null
+		exceptionOccuredRefreshDatabaseInformation = callComponentMethod databaseInformationHelper.databaseInformationHelper.refresh()
+		
+		if exceptionOccuredRefreshDatabaseInformation = @ any exception @
+		{
+			showerror "Error while refreshing database information: " @ + exceptionOccuredRefreshDatabaseInformation@
+			exception = true
+		};
+		
+		exceptionOccuredRefreshApplicationProperties = callComponentMethod applicationPropertyHelper.applicationPropertyHelper.refresh()
+		
+		if exceptionOccuredRefreshApplicationProperties = @ any exception @
+		{
+			showerror "Error while refreshing application properties : " @ + exceptionOccuredRefreshApplicationProperties@
+			exception = true
+		};
+		
+		if exception = true
 		{
 			showinfo "Application refreshed"
 		};

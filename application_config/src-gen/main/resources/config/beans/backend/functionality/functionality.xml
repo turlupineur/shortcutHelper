@@ -12,6 +12,7 @@
 <property name="ShortcutHelper" ref="ShortcutHelper" />
 <property name="VariableHelper" ref="VariableHelper" />
 <property name="DatabaseInformationHelper" ref="DatabaseInformationHelper" />
+<property name="ApplicationPropertyHelper" ref="ApplicationPropertyHelper" />
 </bean>
 <bean id = "ExecuterFunctionality" class = "shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityImpl" parent="ExecuterFunctionalityDef">
 </bean>

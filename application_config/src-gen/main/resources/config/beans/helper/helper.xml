@@ -37,5 +37,9 @@
 </bean>
 <bean id = "ShortcutRegistrationHelperDef" abstract="true">
 </bean>
+<bean id = "ApplicationPropertyHelper" class = "shortcutHelper.helper.applicationPropertyHelper.ApplicationPropertyHelperImpl" parent="ApplicationPropertyHelperDef">
+</bean>
+<bean id = "ApplicationPropertyHelperDef" abstract="true">
+</bean>
    
 </beans>

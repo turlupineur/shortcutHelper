@@ -5,6 +5,7 @@ import shortcutHelper.helper.propertyHelper.IPropertyHelper;
 import shortcutHelper.helper.shortcutHelper.IShortcutHelper;
 import shortcutHelper.helper.variableHelper.IVariableHelper;
 import shortcutHelper.helper.databaseInformationHelper.IDatabaseInformationHelper;
+import shortcutHelper.helper.applicationPropertyHelper.IApplicationPropertyHelper;
 
 public abstract class AbstractDefaultRefreshFunctionality extends AbstractFunctionality implements IDefaultRefreshFunctionality
 {
@@ -12,6 +13,7 @@ public abstract class AbstractDefaultRefreshFunctionality extends AbstractFuncti
 	private IShortcutHelper shortcutHelper;
 	private IVariableHelper variableHelper;
 	private IDatabaseInformationHelper databaseInformationHelper;
+	private IApplicationPropertyHelper applicationPropertyHelper;
 	
 	public void setPropertyHelper(IPropertyHelper propertyHelper)
 	{
@@ -48,5 +50,14 @@ public abstract class AbstractDefaultRefreshFunctionality extends AbstractFuncti
 	public IDatabaseInformationHelper getDatabaseInformationHelper()
 	{
 		return this.databaseInformationHelper;
+	}
+	public void setApplicationPropertyHelper(IApplicationPropertyHelper applicationPropertyHelper)
+	{
+		this.applicationPropertyHelper = applicationPropertyHelper;
+	}
+	
+	public IApplicationPropertyHelper getApplicationPropertyHelper()
+	{
+		return this.applicationPropertyHelper;
 	}
 }

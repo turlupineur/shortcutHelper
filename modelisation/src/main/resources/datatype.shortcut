@@ -29,3 +29,4 @@ datatype INT "int"
 
 // helpers
 datatype DATABASE_INFORMATION_DTO "shortcutHelper.helper.databaseInformationHelper.dto.DatabaseInformationConnection"
+datatype SHORTCUT_HELPER_PROPERTIES "shortcutHelper.common.properties.data.ApplicationProperties"

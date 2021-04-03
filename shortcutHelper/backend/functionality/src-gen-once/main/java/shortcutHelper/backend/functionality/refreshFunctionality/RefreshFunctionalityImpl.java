@@ -35,6 +35,17 @@ public class RefreshFunctionalityImpl extends AbstractRefreshFunctionality {
 		try {
 			getDatabaseInformationHelper().refresh();
 		} catch (Throwable t) {
+			container.getShortcutHelperContext()
+					.setError("Error while refreshing database information: " + t.getMessage());
+			ShortcutHelperLogging.logError(t);
+			exceptionOccured = true;
+		}
+
+		try {
+			getApplicationPropertyHelper().refresh();
+		} catch (Throwable t) {
+			container.getShortcutHelperContext()
+					.setError("Error while refreshing application properties: " + t.getMessage());
 			ShortcutHelperLogging.logError(t);
 			exceptionOccured = true;
 		}

@@ -208,3 +208,16 @@ helper shortcutRegistrationHelper {
 		@ Returns an umodifiable map of all raw shortcuts @
 	}
 }
+
+helper applicationPropertyHelper{
+	@In charge of managing all application properties. These properties are located in 
+	config/properties.@
+	
+	refresh returns void{
+		@Reloads all the properties.@
+	}
+	
+	getProperties returns SHORTCUT_HELPER_PROPERTIES{
+		@Returns a read only object of all properties.@
+	}
+}
