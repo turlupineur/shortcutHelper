@@ -46,5 +46,16 @@
 <property name="SetClipboardLogic" ref="SetClipboardLogic" />
 <property name="DatabaseInformationHelper" ref="DatabaseInformationHelper" />
 </bean>
+<bean id = "SetStorageOnTheFlyFunctionality" class = "shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.SetStorageOnTheFlyFunctionalityImpl" parent="SetStorageOnTheFlyFunctionalityDef">
+</bean>
+<bean id = "SetStorageOnTheFlyFunctionalityDef" abstract="true">
+<property name="StringStorageService" ref="StringStorageService" />
+<property name="ApplicationPropertyHelper" ref="ApplicationPropertyHelper" />
+<property name="ShortcutHelper" ref="ShortcutHelper" />
+<property name="ShortcutFactoryHelper" ref="ShortcutFactoryHelper" />
+<property name="ShortcutRegistrationHelper" ref="ShortcutRegistrationHelper" />
+<property name="GetClipboardLogic" ref="GetClipboardLogic" />
+<property name="SetClipboardLogic" ref="SetClipboardLogic" />
+</bean>
    
 </beans>

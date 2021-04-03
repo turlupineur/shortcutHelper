@@ -32,3 +32,57 @@ service clipboardService{
 		NoArgument
 	}
 }
+
+service StringStorageService{
+	@ Stores string on the hard drive so all values are available after closing the application.
+	All values are stored in text files. Each text file  name follows 
+	the pattern: 
+		OWNER_NAME.txt
+	The owner represents the entity for which the value has been saved. Along with the name, it forms
+	a unique id identifying the saved string.
+	
+	Note that this service doesn't do any dynamic loads of data. Closing the application at any time won't
+	result in a lost of data.
+	
+	Service properties shortcuthelper.service.stringstorageservice in config/property/application.yaml can configure
+		- targetfolder: Where all data will be saved. Target folder must exists. By default: storage/stringstorageservice
+	@
+	
+	storeString returns void{
+		@Stores the given string. If the key for the string already exists, it gets replaced.
+		if an error occurs during writing, an IllegalStateException will be thrown.@
+		param owner STRING // not null
+		param vName STRING // not null
+		param str STRING   // not null
+	}
+	
+	readString returns STRING{
+		@ Retrieves the saved string. Return null if doesnt exists. If an error occurs during reading, 
+		an IllegalStateException is thrown.@
+		param owner STRING // not null
+		param vName STRING // not null
+	}
+	
+	deleteString returns BOOLEAN{
+		@Deletes the stored string if present. Returns true if data was removed or nothing was to be removed.@
+		param owner STRING // not null
+		param vName STRING // not null
+	}
+	
+	stringIsStored returns BOOLEAN{
+		param owner STRING // not null
+		param vName STRING // not null
+	}
+	
+	deleteAllStringForOwner returns BOOLEAN{
+		@ Deletes all string for the owner. Returns true if a something was deleted.
+		Returns false if nothing was deleted and returns IllegalStateException if something
+		wrong happens during the operation.@
+		param owner STRING
+	}
+	
+	listAllStorageForOwner returns LIST_STRING{
+		@Returns a list of all the storage for this owner.@
+		param owner STRING
+	}
+}

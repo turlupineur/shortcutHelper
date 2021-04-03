@@ -21,6 +21,7 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper {
 	@Override
 	public void refresh() {
 		nonNaviteShortcuts.clear();
+		clearAllShorcuts();
 		// parsing main shortcut file.
 		Properties propShortcutsToLoad = new Properties();
 		ShortcutHelperLogging.logSeparationInfo();
@@ -91,14 +92,14 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper {
 
 	@Override
 	public void replaceNonNativeShortcut(String name, String rawShortcut) {
-		getInternalShortcutList().put(name, rawShortcut);
+		addShortcut(name, rawShortcut);
 		nonNaviteShortcuts.add(name);
 	}
 
 	@Override
 	public boolean removeShortcut(String name) {
-		if (!getListShortcuts().containsKey(name)) {
-			getListShortcuts().remove(name);
+		boolean sucess = super.removeShortcut(name);
+		if (sucess && getListShortcuts().containsKey(name)) {
 			nonNaviteShortcuts.remove(name);
 			return true;
 		}

@@ -40,21 +40,26 @@ public class ShortcutFactoryHelperImpl extends AbstractShortcutFactoryHelper {
 
 	public IShortcut parseShortcut(String lineToParse) {
 		if (lineToParse == null || lineToParse.length() == 0) {
-			throw new IllegalArgumentException("Parameter was null or empty.");
+			return null;
 		}
-		IShortcut shortcut = null;
-		String[] commandAndParams = lineToParse.split(COMMAND_PARAMS_SEPARATOR);
-		String beanCommandName = commandAndParams[0];
-		Class classCommand = extractClassFromBeanName(beanCommandName);
+		try {
+			IShortcut shortcut = null;
+			String[] commandAndParams = lineToParse.split(COMMAND_PARAMS_SEPARATOR);
+			String beanCommandName = commandAndParams[0];
+			Class classCommand = extractClassFromBeanName(beanCommandName);
 
-		if (commandAndParams.length > 1) {
-			String[] params = lineToParse.substring(lineToParse.indexOf(COMMAND_PARAMS_SEPARATOR) + 1)
-					.split(PARAMS_SEPARATOR);
-			shortcut = createShortcut(classCommand, beanCommandName, params);
-		} else {
-			shortcut = createShortcut(classCommand, beanCommandName, null);
+			if (commandAndParams.length > 1) {
+				String[] params = lineToParse.substring(lineToParse.indexOf(COMMAND_PARAMS_SEPARATOR) + 1)
+						.split(PARAMS_SEPARATOR);
+				shortcut = createShortcut(classCommand, beanCommandName, params);
+			} else {
+				shortcut = createShortcut(classCommand, beanCommandName, null);
+			}
+			return shortcut;
+		} catch (Throwable t) {
+			return null;
 		}
-		return shortcut;
+
 	}
 
 	@Override

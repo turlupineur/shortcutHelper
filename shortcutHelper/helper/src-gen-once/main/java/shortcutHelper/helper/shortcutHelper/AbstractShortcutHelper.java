@@ -57,6 +57,14 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper, IShortc
 		this.listShortcuts.putAll(shortcuts);
 	}
 
+	protected void addShortcut(String name, String shortcut) {
+		this.listShortcuts.put(name, shortcut);
+	}
+
+	protected void clearAllShorcuts() {
+		this.listShortcuts.clear();
+	}
+
 	/**
 	 * Only refreshes if shortcut list has not been loaded yet.
 	 */
@@ -72,5 +80,14 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper, IShortc
 
 	public void setPropertyLoaderService(IPropertyLoaderService propertyLoaderService) {
 		this.propertyLoaderService = propertyLoaderService;
+	}
+
+	@Override
+	public boolean removeShortcut(String name) {
+		if (getListShortcuts().containsKey(name)) {
+			this.listShortcuts.remove(name);
+			return true;
+		}
+		return false;
 	}
 }

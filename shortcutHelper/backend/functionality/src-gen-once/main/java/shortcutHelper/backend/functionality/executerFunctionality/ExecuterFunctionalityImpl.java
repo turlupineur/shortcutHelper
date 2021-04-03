@@ -10,6 +10,8 @@ import shortcutHelper.backend.functionality.ConcreteFunctionalityResult;
 import shortcutHelper.backend.functionality.Functionality;
 import shortcutHelper.backend.functionality.FunctionalityDataContainer;
 import shortcutHelper.backend.functionality.FunctionalityResult;
+import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.IDefaultSetStorageOnTheFlyFunctionality;
+import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.data.SetStorageOnTheFlyOperation;
 import shortcutHelper.backend.logic.behavior.ClipboardGetBehavior;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 import shortcutHelper.logging.ShortcutHelperLogging;
@@ -71,8 +73,9 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 			if (container.getORawShortcutToExecute().startsWith(PREFIX_FUNCTIONALITY_SET_STORAGE_ON_THE_FLY)) {
 				String nameOfVariable = container.getORawShortcutToExecute()
 						.substring(PREFIX_FUNCTIONALITY_SET_STORAGE_ON_THE_FLY.length());
-				IShortcut shortcut = getShortcutFactoryHelper().createShortcut(this.getClass(),
-						new String[] { nameOfVariable });
+				IShortcut shortcut = getShortcutFactoryHelper().createShortcut(
+						IDefaultSetStorageOnTheFlyFunctionality.class,
+						new String[] { nameOfVariable, SetStorageOnTheFlyOperation.SET.toString() });
 			}
 
 			try {
@@ -88,6 +91,9 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 		String[] params = shortcut.getParams();
 		String clipboardValue = getClipboard();
 
+		if (clipboardValue == null) {
+			clipboardValue = "";
+		}
 		for (int i = 0; i < params.length; i++) {
 			params[i] = params[i].replace(CLIPBOARD_REFERENCE, clipboardValue);
 		}

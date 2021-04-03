@@ -17,5 +17,7 @@
 	</bean>
 	<bean id = "SelectQueryDatabaseFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.selectQueryDatabaseFunctionality.SelectQueryDatabaseFunctionalityDataContainerDataExtractor">
 	</bean>
+	<bean id = "SetStorageOnTheFlyFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.SetStorageOnTheFlyFunctionalityDataContainerDataExtractor">
+	</bean>
    
 </beans>

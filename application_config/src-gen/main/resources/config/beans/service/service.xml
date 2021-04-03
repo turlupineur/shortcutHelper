@@ -13,5 +13,9 @@
 </bean>
 <bean id = "ClipboardServiceDef" abstract="true">
 </bean>
+<bean id = "StringStorageService" class = "shortcutHelper.service.stringStorageService.StringStorageServiceImpl" parent="StringStorageServiceDef">
+</bean>
+<bean id = "StringStorageServiceDef" abstract="true">
+</bean>
    
 </beans>

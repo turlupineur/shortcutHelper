@@ -1,0 +1,50 @@
+package shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import shortcutHelper.backend.functionality.FunctionalityExecutionResult;
+import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.data.SetStorageOnTheFlyOperation;
+import shortcutHelper.helper.shortcutHelper.IShortcutHelper;
+
+public class SetStorageOnTheFlyFunctionalityIntegrationTest_DeleteAllFromOwner
+		extends AbstractSetStorageOnTheFlyFunctionalityIntegrationTesting {
+
+	@Autowired
+	private IShortcutHelper shortcutHelper;
+
+	@Test
+	public void deleteAllFromOwner() {
+		setOuputFolderForStorageToTempFolder();
+		String variableName = "coucou";
+		String variableName2 = "coucou2";
+		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.SET;
+		setClibpoard("value");
+
+		runCurrentFunctionality(variableName, operation.toString());
+		runCurrentFunctionality(variableName2, operation.toString());
+
+		operation = SetStorageOnTheFlyOperation.DELETE_ALL_FROM_OWNER;
+
+		FunctionalityExecutionResult deleteResult = runCurrentFunctionality(operation.toString());
+
+		boolean setShortcutExists = shortcutHelper.getShortcut("set.coucou") != null;
+		boolean getShortcutExists = shortcutHelper.getShortcut("get.coucou") != null;
+		boolean deleteShortcutExists = shortcutHelper.getShortcut("delete.coucou") != null;
+		boolean setShortcutExists2 = shortcutHelper.getShortcut("set.coucou2") != null;
+		boolean getShortcutExists2 = shortcutHelper.getShortcut("get.coucou2") != null;
+		boolean deleteShortcutExists2 = shortcutHelper.getShortcut("delete.coucou2") != null;
+
+		assertFalse(setShortcutExists);
+		assertFalse(getShortcutExists);
+		assertFalse(deleteShortcutExists);
+		assertFalse(setShortcutExists2);
+		assertFalse(getShortcutExists2);
+		assertFalse(deleteShortcutExists2);
+		assertThat(deleteResult.getContext().getInfo(), is("All variables from this functionality have been erased."));
+	}
+}

@@ -17,5 +17,7 @@
 	</bean>
 	<bean id = "SelectQueryDatabaseFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.selectQueryDatabaseFunctionality.SelectQueryDatabaseFunctionalityDataContainerCreator">
 	</bean>
+	<bean id = "SetStorageOnTheFlyFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.SetStorageOnTheFlyFunctionalityDataContainerCreator">
+	</bean>
    
 </beans>

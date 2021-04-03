@@ -22,6 +22,7 @@ import shortcutHelper.helper.beanHelper.IBeanHelper;
 import shortcutHelper.helper.functionalityContainerHelper.IDefaultFunctionalityContainerHelper;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcutFactoryHelper;
+import shortcutHelper.helper.shortcutRegistrationHelper.IShortcutRegistrationHelper;
 import shortcutHelper.helper.variableHelper.IDefaultVariableHelper;
 import shortcutHelper.service.clipboardService.AbstractClipboardService;
 import shortcutHelper.service.clipboardService.IClipboardService;
@@ -35,7 +36,8 @@ import shortcutHelper.util.beanUtil.IBeanUtil;
 		"/config/beans/util/util-man.xml", "/config/beans/service/service-man.xml",
 		"/config/beans/backend/logic/logic-man.xml", "/config/beans/backend/functionality/functionality_command.xml",
 		"/config/beans/backend/logic/logic-data-container-creator-man.xml",
-		"/config/beans/backend/functionality/functionality-man.xml" })
+		"/config/beans/backend/functionality/functionality-man.xml",
+		"/shortcutHelper/helper/fakeShortcutObservers.xml" })
 public class FunctionalityIntegrationTesting {
 	@Autowired
 	private AbstractClipboardService clipboardService;
@@ -66,6 +68,9 @@ public class FunctionalityIntegrationTesting {
 
 	@Autowired
 	private IDefaultVariableHelper variableHelper;
+
+	@Autowired
+	private IShortcutRegistrationHelper shortcutRegistrationHelper;
 
 	@Before
 	public void setUp() {
@@ -190,7 +195,11 @@ public class FunctionalityIntegrationTesting {
 		StackTraceElement stackTraceElement = stElements[3];
 		try {
 			Class testClass = Class.forName(stackTraceElement.getClassName());
-			String nameInterfaceFunctionality = "IDefault" + testClass.getSimpleName().replace("IntegrationTest", "");
+			String targetClassName = testClass.getSimpleName();
+			if (targetClassName.contains("_")) {
+				targetClassName = targetClassName.substring(0, targetClassName.lastIndexOf("_"));
+			}
+			String nameInterfaceFunctionality = "IDefault" + targetClassName.replace("IntegrationTest", "");
 			Class classInterfaceFunctionality = Class
 					.forName(testClass.getPackage().getName() + "." + nameInterfaceFunctionality);
 			return classInterfaceFunctionality;
@@ -202,5 +211,17 @@ public class FunctionalityIntegrationTesting {
 
 	public IShortcut createShortcut(Class clazz, String... params) {
 		return shortcutFactoryHelper.createShortcut(clazz, params);
+	}
+
+	public IShortcut createShortcutWithName(String name, Class clazz, String... params) {
+		return shortcutFactoryHelper.createShortcut(name, clazz, params);
+	}
+
+	public IShortcut createShortcutWithName(String name, Class clazz) {
+		return shortcutFactoryHelper.createShortcut(name, clazz, null);
+	}
+
+	public void registerShortcut(IShortcut shortcut) {
+		shortcutRegistrationHelper.addShortcut(shortcut);
 	}
 }
