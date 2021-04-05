@@ -21,7 +21,7 @@ public class SubmitShortcutBackendInteraction extends AbstractSubmitShortcutBack
 		ExecuterFunctionalityDataContainer containerCmd = new ExecuterFunctionalityDataContainer();
 		containerCmd.setShortcutHelperContext(container.getContext());
 		containerCmd.setShortcutToExecute(shortcut);
-		containerCmd.setORawShortcutToExecute(shortcutRaw);
+		containerCmd.setORawShortcutToExecute(container.getShortcutToExecute());
 		this.getExecuterFunctionality().run(containerCmd);
 	}
 

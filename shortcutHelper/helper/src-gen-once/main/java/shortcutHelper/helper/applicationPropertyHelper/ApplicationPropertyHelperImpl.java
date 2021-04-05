@@ -22,6 +22,11 @@ public class ApplicationPropertyHelperImpl extends AbstractApplicationHelper {
 			InputStream inputStream = this.getPropertyLoaderService().getInputStreamForFile(PROPERTY_CONFIG_FILE);
 			Yaml yaml = new Yaml();
 			properties = yaml.loadAs(inputStream, ApplicationProperties.class);
+			if (properties == null) {
+				ShortcutHelperLogging.logInfo(
+						"Loading of '" + PROPERTY_CONFIG_FILE + "' config failed. Using default for each properties.");
+				properties = new ApplicationProperties();
+			}
 			StaticApplicationProperptyHolder.setProperties(properties);
 		} catch (FileNotFoundException e) {
 			ShortcutHelperLogging.logInfo("Loading of properties config failed: " + e);

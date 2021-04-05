@@ -21,6 +21,10 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 		String fileName = createFileKey(owner, name) + EXTENTION_FILE;
 		try {
 			File file = new File(getOutputFolder() + fileName);
+			File parent = new File(file.getParent());
+			if (!parent.exists()) {
+				parent.mkdirs();
+			}
 			if (!file.exists()) {
 				file.createNewFile();
 			}
@@ -28,6 +32,7 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 			writer.write(str);
 			writer.flush();
 			writer.close();
+			ShortcutHelperLogging.logInfo("Stored string in : " + file.getAbsolutePath());
 		} catch (IOException e) {
 			ShortcutHelperLogging.logError(e);
 			throw new IllegalStateException(e);

@@ -100,10 +100,9 @@ public class ShortcutHelperImpl extends AbstractShortcutHelper {
 	public boolean removeShortcut(String name) {
 		boolean sucess = super.removeShortcut(name);
 		if (sucess && getListShortcuts().containsKey(name)) {
-			nonNaviteShortcuts.remove(name);
-			return true;
+			return nonNaviteShortcuts.remove(name);
 		}
-		return false;
+		return sucess;
 	}
 
 }

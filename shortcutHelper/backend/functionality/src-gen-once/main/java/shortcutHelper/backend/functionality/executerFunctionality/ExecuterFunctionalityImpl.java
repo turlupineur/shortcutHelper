@@ -76,6 +76,7 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 				IShortcut shortcut = getShortcutFactoryHelper().createShortcut(
 						IDefaultSetStorageOnTheFlyFunctionality.class,
 						new String[] { nameOfVariable, SetStorageOnTheFlyOperation.SET.toString() });
+				return shortcut;
 			}
 
 			try {
