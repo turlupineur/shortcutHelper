@@ -20,7 +20,7 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_Delete
 	@Test
 	public void deleteStringNotStored() {
 		setOuputFolderForStorageToTempFolder();
-		String variableName = "coucou";
+		String variableName = "coucouDeleteOnly";
 		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.DELETE;
 		setClibpoard("value");
 
@@ -35,7 +35,7 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_Delete
 	@Test
 	public void deleteStoredString() {
 		setOuputFolderForStorageToTempFolder();
-		String variableName = "coucou";
+		String variableName = "coucouDeleteOnly2";
 		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.SET;
 		setClibpoard("value");
 

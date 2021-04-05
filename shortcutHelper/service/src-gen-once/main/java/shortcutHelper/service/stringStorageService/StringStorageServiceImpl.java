@@ -18,9 +18,13 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 	public static final String EXTENTION_FILE = ".txt";
 
 	public void storeString(String owner, String name, String str) {
+		storeString(getOutputFolder(), owner, name, str);
+	}
+
+	public void storeString(String outputFolder, String owner, String name, String str) {
 		String fileName = createFileKey(owner, name) + EXTENTION_FILE;
 		try {
-			File file = new File(getOutputFolder() + fileName);
+			File file = new File(outputFolder + fileName);
 			File parent = new File(file.getParent());
 			if (!parent.exists()) {
 				parent.mkdirs();
@@ -40,8 +44,12 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 	}
 
 	public String readString(String owner, String name) {
+		return readString(getOutputFolder(), owner, name);
+	}
+
+	public String readString(String outputFolder, String owner, String name) {
 		String fileName = createFileKey(owner, name) + EXTENTION_FILE;
-		File fileToRead = new File(getOutputFolder() + fileName);
+		File fileToRead = new File(outputFolder + fileName);
 		if (fileToRead.exists()) {
 			StringBuffer stringBuffer = new StringBuffer();
 			try {
@@ -65,8 +73,12 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 	}
 
 	public boolean stringIsStored(String owner, String name) {
+		return stringIsStored(getOutputFolder(), owner, name);
+	}
+
+	public boolean stringIsStored(String outputFolder, String owner, String name) {
 		String fileName = createFileKey(owner, name) + EXTENTION_FILE;
-		File fileToRead = new File(getOutputFolder() + fileName);
+		File fileToRead = new File(outputFolder + fileName);
 		if (fileToRead.exists()) {
 			return true;
 		} else {
@@ -75,10 +87,14 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 	}
 
 	public boolean deleteAllStringForOwner(String owner) {
+		return deleteAllStringForOwner(getOutputFolder(), owner);
+	}
+
+	public boolean deleteAllStringForOwner(String folder, String owner) {
 		if (owner == null) {
 			throw new IllegalArgumentException("Owner cannot be null.");
 		}
-		File rootFolder = new File(getOutputFolder());
+		File rootFolder = new File(folder);
 		boolean success = true;
 		String[] files = rootFolder.list(new FilenameFilter() {
 
@@ -88,19 +104,23 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 			}
 		});
 		for (String file : files) {
-			File f = new File(getOutputFolder() + file);
+			File f = new File(folder + file);
 			success = success && f.delete();
 		}
 		return success;
 	}
 
 	public List<String> listAllStorageForOwner(String owner) {
+		return listAllStorageForOwner(getOutputFolder(), owner);
+	}
+
+	public List<String> listAllStorageForOwner(String folder, String owner) {
 		if (owner == null) {
 			throw new IllegalArgumentException("Owner cannot be null.");
 		}
 		List<String> allStorages = new ArrayList<>();
 
-		File rootFolder = new File(getOutputFolder());
+		File rootFolder = new File(folder);
 		boolean success = true;
 		String[] files = rootFolder.list(new FilenameFilter() {
 
@@ -121,6 +141,21 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 
 	}
 
+	@Override
+	public boolean deleteString(String owner, String name) {
+		return deleteString(getOutputFolder(), owner, name);
+	}
+
+	public boolean deleteString(String folder, String owner, String name) {
+		String fileName = createFileKey(owner, name) + EXTENTION_FILE;
+		File file = new File(folder + fileName);
+		if (file.exists()) {
+			return file.delete();
+		} else {
+			return true;
+		}
+	}
+
 	private String createFileKey(String owner, String name) {
 		if (owner == null) {
 			throw new IllegalArgumentException("Owner cannot be null.");
@@ -132,17 +167,6 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 			throw new IllegalArgumentException("Owner cannot contains '" + NAME_SEPARATOR + "'");
 		}
 		return owner + NAME_SEPARATOR + name;
-	}
-
-	@Override
-	public boolean deleteString(String owner, String name) {
-		String fileName = createFileKey(owner, name) + EXTENTION_FILE;
-		File file = new File(getOutputFolder() + fileName);
-		if (file.exists()) {
-			return file.delete();
-		} else {
-			return true;
-		}
 	}
 
 	private String getOutputFolder() {

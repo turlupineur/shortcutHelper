@@ -36,64 +36,68 @@ public class SuggestionDropDownDecorator<C extends JComponent> extends Observabl
 	      d.addObserver(observerSuggestion);
 	  }
 
-	  public void init() {
-	      initPopup();
-	      initSuggestionCompListener();
-	      initInvokerKeyListeners();
-	  }
+	public void init() {
+		initPopup();
+		initSuggestionCompListener();
+		initInvokerKeyListeners();
+	}
 
-	  private void initPopup() {
-	      popupMenu = new JPopupMenu();
-	      listModel = new DefaultListModel<>();
-	      listComp = new JList<>(listModel);
-	      listComp.setBorder(BorderFactory.createEmptyBorder(0, 2, 5, 2));
-	      listComp.setFocusable(false);
-	      popupMenu.setFocusable(false);
-	      popupMenu.add(listComp);
-	  }
+	private void initPopup() {
+		popupMenu = new JPopupMenu();
+		listModel = new DefaultListModel<>();
+		listComp = new JList<>(listModel);
+		listComp.setBorder(BorderFactory.createEmptyBorder(0, 2, 5, 2));
+		listComp.setFocusable(false);
+		popupMenu.setFocusable(false);
+		popupMenu.add(listComp);
+	}
 
-	  private void initSuggestionCompListener() {
-	      if (invoker instanceof JTextComponent) {
-	          JTextComponent tc = (JTextComponent) invoker;
-	          tc.getDocument().addDocumentListener(new DocumentListener() {
-	              @Override
-	              public void insertUpdate(DocumentEvent e) {
-	                  update(e);
-	              }
+	private void initSuggestionCompListener() {
+		if (invoker instanceof JTextComponent) {
+			JTextComponent tc = (JTextComponent) invoker;
+			tc.getDocument().addDocumentListener(new DocumentListener() {
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					update(e);
+				}
 
-	              @Override
-	              public void removeUpdate(DocumentEvent e) {
-	                  update(e);
-	              }
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					update(e);
+				}
 
-	              @Override
-	              public void changedUpdate(DocumentEvent e) {
-	                  update(e);
-	              }
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					update(e);
+				}
 
-	              private void update(DocumentEvent e) {
-	                  if (disableTextEvent) {
-	                      return;
-	                  }
-	                  SwingUtilities.invokeLater(() -> {
-	                      List<String> suggestions = suggestionClient.getSuggestions(invoker);
-	                      if (suggestions != null && !suggestions.isEmpty()) {
-	                          showPopup(suggestions);
-	                      } else {
-	                          popupMenu.setVisible(false);
-	                      }
-	                  });
-	              }
-	          });
+				private void update(DocumentEvent e) {
+					if (disableTextEvent) {
+						return;
+					}
+					if (tc.getText() == null || tc.getText().length() == 0) {
+						return;
+					}
+
+					SwingUtilities.invokeLater(() -> {
+						List<String> suggestions = suggestionClient.getSuggestions(invoker);
+						if (suggestions != null && !suggestions.isEmpty()) {
+							showPopup(suggestions);
+						} else {
+							popupMenu.setVisible(false);
+						}
+					});
+				}
+			});
 	      }//todo init invoker components other than text components
-	  }
+	}
 
-	  private void showPopup(List<String> suggestions) {
-	      listModel.clear();
-	      suggestions.forEach(listModel::addElement);
-	      Point p = suggestionClient.getPopupLocation(invoker);
-	      if (p == null) {
-	          return;
+	private void showPopup(List<String> suggestions) {
+		listModel.clear();
+		suggestions.forEach(listModel::addElement);
+		Point p = suggestionClient.getPopupLocation(invoker);
+		if (p == null) {
+			return;
 	      }
 	      popupMenu.pack();
 	      

@@ -14,7 +14,7 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_Get
 	@Test
 	public void getStringNotStored() {
 		setOuputFolderForStorageToTempFolder();
-		String variableName = "coucou";
+		String variableName = "coucouGet";
 		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.GET;
 		setClibpoard("value");
 
@@ -29,7 +29,7 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_Get
 	@Test
 	public void getStoredString() {
 		setOuputFolderForStorageToTempFolder();
-		String variableName = "coucou";
+		String variableName = "coucouGet2";
 		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.SET;
 		setClibpoard("value");
 

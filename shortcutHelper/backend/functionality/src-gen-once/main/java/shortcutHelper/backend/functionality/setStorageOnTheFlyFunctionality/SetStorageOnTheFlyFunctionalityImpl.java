@@ -8,6 +8,7 @@ import shortcutHelper.backend.functionality.FunctionalityResult;
 import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.data.SetStorageOnTheFlyOperation;
 import shortcutHelper.backend.logic.behavior.ClipboardGetBehavior;
 import shortcutHelper.backend.logic.behavior.ClipboardSetBehavior;
+import shortcutHelper.common.properties.StaticApplicationProperptyHolder;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 
 public class SetStorageOnTheFlyFunctionalityImpl extends AbstractSetStorageOnTheFlyFunctionality
@@ -38,7 +39,9 @@ public class SetStorageOnTheFlyFunctionalityImpl extends AbstractSetStorageOnThe
 	}
 
 	private void handleDeleteAllFromOwner(SetStorageOnTheFlyFunctionalityDataContainer container) {
-		List<String> storageNames = this.getStringStorageService().listAllStorageForOwner(OWNER);
+		String folderForStorage = StaticApplicationProperptyHolder.getProperties().getShortcutHelper()
+				.getFunctionality().getSetStorageOnTheFly().getStorageFolder();
+		List<String> storageNames = this.getStringStorageService().listAllStorageForOwner(folderForStorage, OWNER);
 		for (String storage : storageNames) {
 			handleDeleteOperation(container, storage);
 		}
@@ -46,9 +49,11 @@ public class SetStorageOnTheFlyFunctionalityImpl extends AbstractSetStorageOnThe
 	}
 
 	private void handleDeleteOperation(SetStorageOnTheFlyFunctionalityDataContainer container, String variableName) {
-		boolean isStringStored = getStringStorageService().stringIsStored(OWNER, variableName);
+		String folderForStorage = StaticApplicationProperptyHolder.getProperties().getShortcutHelper()
+				.getFunctionality().getSetStorageOnTheFly().getStorageFolder();
+		boolean isStringStored = getStringStorageService().stringIsStored(folderForStorage, OWNER, variableName);
 		if (isStringStored) {
-			boolean success = getStringStorageService().deleteString(OWNER, variableName);
+			boolean success = getStringStorageService().deleteString(folderForStorage, OWNER, variableName);
 			IShortcut setShortcut = getShortcutFactoryHelper().createShortcut("set." + variableName,
 					IDefaultSetStorageOnTheFlyFunctionality.class,
 					new String[] { variableName, SetStorageOnTheFlyOperation.SET.toString() });
@@ -68,9 +73,12 @@ public class SetStorageOnTheFlyFunctionalityImpl extends AbstractSetStorageOnThe
 	}
 
 	private void handleGetOperation(SetStorageOnTheFlyFunctionalityDataContainer container) {
-		boolean isStringStored = getStringStorageService().stringIsStored(OWNER, container.getVName());
+		String folderForStorage = StaticApplicationProperptyHolder.getProperties().getShortcutHelper()
+				.getFunctionality().getSetStorageOnTheFly().getStorageFolder();
+		boolean isStringStored = getStringStorageService().stringIsStored(folderForStorage, OWNER,
+				container.getVName());
 		if (isStringStored) {
-			String value = getStringStorageService().readString(OWNER, container.getVName());
+			String value = getStringStorageService().readString(folderForStorage, OWNER, container.getVName());
 			setClipboard(value);
 			container.getShortcutHelperContext().setInfo("Value copied to clipboard.");
 		} else {
@@ -89,8 +97,11 @@ public class SetStorageOnTheFlyFunctionalityImpl extends AbstractSetStorageOnThe
 		IShortcut getShortcut = retrieveGetShortcut(container.getVName());
 		IShortcut deleteShortcut = retrieveDeleteShortcut(container.getVName());
 
+		String folderForStorage = StaticApplicationProperptyHolder.getProperties().getShortcutHelper()
+				.getFunctionality().getSetStorageOnTheFly().getStorageFolder();
+
 		if (setShortcut != null) {
-			getStringStorageService().storeString(OWNER, container.getVName(), clipboard);
+			getStringStorageService().storeString(folderForStorage, OWNER, container.getVName(), clipboard);
 			container.getShortcutHelperContext().setInfo("Value for '" + container.getVName() + "' replaced.");
 		} else {
 			if (getShortcut != null || deleteShortcut != null) {
@@ -98,7 +109,7 @@ public class SetStorageOnTheFlyFunctionalityImpl extends AbstractSetStorageOnThe
 						"Shortcuts get or delete for '" + container.getVName() + "' defined but no set shortcut.");
 				return;
 			} else {
-				getStringStorageService().storeString(OWNER, container.getVName(), clipboard);
+				getStringStorageService().storeString(folderForStorage, OWNER, container.getVName(), clipboard);
 
 				setShortcut = getShortcutFactoryHelper().createShortcut("set." + container.getVName(),
 						IDefaultSetStorageOnTheFlyFunctionality.class,

@@ -20,8 +20,8 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_DeleteAllFromOwner
 	@Test
 	public void deleteAllFromOwner() {
 		setOuputFolderForStorageToTempFolder();
-		String variableName = "coucou";
-		String variableName2 = "coucou2";
+		String variableName = "coucouDelete";
+		String variableName2 = "coucouDelete2";
 		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.SET;
 		setClibpoard("value");
 
@@ -32,12 +32,12 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_DeleteAllFromOwner
 
 		FunctionalityExecutionResult deleteResult = runCurrentFunctionality(operation.toString());
 
-		boolean setShortcutExists = shortcutHelper.getShortcut("set.coucou") != null;
-		boolean getShortcutExists = shortcutHelper.getShortcut("get.coucou") != null;
-		boolean deleteShortcutExists = shortcutHelper.getShortcut("delete.coucou") != null;
-		boolean setShortcutExists2 = shortcutHelper.getShortcut("set.coucou2") != null;
-		boolean getShortcutExists2 = shortcutHelper.getShortcut("get.coucou2") != null;
-		boolean deleteShortcutExists2 = shortcutHelper.getShortcut("delete.coucou2") != null;
+		boolean setShortcutExists = shortcutHelper.getShortcut("set.coucouDelete") != null;
+		boolean getShortcutExists = shortcutHelper.getShortcut("get.coucouDelete") != null;
+		boolean deleteShortcutExists = shortcutHelper.getShortcut("delete.coucouDelete") != null;
+		boolean setShortcutExists2 = shortcutHelper.getShortcut("set.coucouDelete2") != null;
+		boolean getShortcutExists2 = shortcutHelper.getShortcut("get.coucouDelete2") != null;
+		boolean deleteShortcutExists2 = shortcutHelper.getShortcut("delete.coucouDelete2") != null;
 
 		assertFalse(setShortcutExists);
 		assertFalse(getShortcutExists);

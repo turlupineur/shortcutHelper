@@ -259,8 +259,8 @@ functionality SetStorageOnTheFlyFunctionality{
 		SET_STORAGE_ON_THE_FLY
 	}
 	configuration : @ Defined in shortcuthelper.functionalty.setStorageOnTheFly:
-						- targetFolder: specify the output folder for data storage. If none is specified, the config from
-										the StringStorageService will be taken. Warning: Modifiying the value of this configuration will cause
+						- storageFolder: specify the output folder for data storage. If none is specified, the value 
+										"/storage/setStorageOnTheFly/" will be taken. Warning: Modifiying the value of this configuration will cause
 										to loose all previously saved data.@
 										
 	using : StringStorageService

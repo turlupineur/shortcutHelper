@@ -24,7 +24,7 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_Set
 
 	@Test
 	public void unrecognizedOperation() {
-		String variableName = "vName";
+		String variableName = "vName1";
 
 		FunctionalityExecutionResult result = runCurrentFunctionality(variableName, "salut");
 		assertThat(result.getContext().getError(), is("Operation not recognized."));
@@ -46,7 +46,7 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_Set
 
 	@Test
 	public void storeNewValueWithDeleteShortcutAlreadyDefined() {
-		String variableName = "coucou";
+		String variableName = "coucou2";
 		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.SET;
 		setClibpoard("value");
 
@@ -61,7 +61,7 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_Set
 
 	@Test
 	public void replaceStoredValue() {
-		String variableName = "coucou";
+		String variableName = "coucou3";
 		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.SET;
 		setClibpoard("value");
 
@@ -87,7 +87,7 @@ public class SetStorageOnTheFlyFunctionalityIntegrationTest_Set
 	@Test
 	public void storeNewValue() {
 		setOuputFolderForStorageToTempFolder();
-		String variableName = "coucou";
+		String variableName = "coucou4";
 		SetStorageOnTheFlyOperation operation = SetStorageOnTheFlyOperation.SET;
 		setClibpoard("value");
 
