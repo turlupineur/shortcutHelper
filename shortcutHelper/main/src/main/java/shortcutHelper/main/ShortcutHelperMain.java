@@ -29,7 +29,10 @@ public class ShortcutHelperMain {
 				"/config/beans/backend/functionality/functionality_command.xml",
 				"/config/beans/backend/logic/logic-data-container-creator-man.xml",
 				"/config/beans/backend/functionality/functionality-man.xml",
+				"/config/beans/backend/dynamicCommand/dynamicCommands.xml",
+				"/config/beans/backend/dynamicCommand/dynamicCommandController.xml",
 				"/config/beans/common/shortcutObserver/shortcutObservers.xml",
+				"/config/beans/common/dynamicCommandObserver/dynamicCommandObservers.xml",
 				"/config/beans/frontend/interface/interfaceComponents.xml");
 		return context;
 	}

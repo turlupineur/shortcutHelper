@@ -2,9 +2,12 @@ package shortcutHelper.middleend.controller;
 
 import java.util.Observable;
 
+import javax.swing.SwingUtilities;
+
+import shortcutHelper.common.obervation.DynamicCommandObserver;
 import shortcutHelper.frontend.viewbean.MainInterfaceViewBean;
 
-public class MainInterfaceController extends AbstractMainInterfaceController {
+public class MainInterfaceController extends AbstractMainInterfaceController implements DynamicCommandObserver {
 	private boolean controllerInitialized;
 
 	public MainInterfaceController() {
@@ -39,6 +42,17 @@ public class MainInterfaceController extends AbstractMainInterfaceController {
 		MainInterfaceViewBean mainInterfaceViewBean = new MainInterfaceViewBean();
 		this.getUpdateMainInterfaceInteractionInteraction().execute(mainInterfaceViewBean);
 		updateView(mainInterfaceViewBean);
+	}
+
+	@Override
+	public void dynamicCommandsHaveBeenExecuted() {
+		SwingUtilities.invokeLater(() -> {
+			MainInterfaceViewBean viewBean = new MainInterfaceViewBean();
+			viewBean.getFunctionBean().setToastMessage("DynamicCommands have been executed.");
+			viewBean.getDataBean().setCalledShortcut("");
+			updateView(viewBean);
+		});
+
 	}
 
 }

@@ -1,5 +1,6 @@
 package shortcutHelper.backend.functionality.refreshFunctionality;
 
+import shortcutHelper.common.dynamicCommand.IDynamicCommandController;
 import shortcutHelper.helper.propertyHelper.IPropertyHelper;
 import shortcutHelper.helper.shortcutHelper.IShortcutHelper;
 
@@ -7,6 +8,7 @@ public abstract class AbstractRefreshFunctionality extends AbstractDefaultRefres
 		implements IDefaultRefreshFunctionality {
 	private IPropertyHelper propertyHelper;
 	private IShortcutHelper shortcutHelper;
+	private IDynamicCommandController dynamicCommandController;
 
 	public IShortcutHelper getShortcutHelper() {
 		return shortcutHelper;
@@ -23,4 +25,13 @@ public abstract class AbstractRefreshFunctionality extends AbstractDefaultRefres
 	public void setPropertyHelper(IPropertyHelper propertyHelper) {
 		this.propertyHelper = propertyHelper;
 	}
+
+	public IDynamicCommandController getDynamicCommandController() {
+		return dynamicCommandController;
+	}
+
+	public void setDynamicCommandController(IDynamicCommandController dynamicCommandController) {
+		this.dynamicCommandController = dynamicCommandController;
+	}
+
 }

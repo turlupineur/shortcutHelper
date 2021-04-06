@@ -60,6 +60,8 @@ functionality refreshFunctionality {
 			exception = true
 		};
 		
+		@ start dynamic commands in the background@
+		
 		if exception = true
 		{
 			showinfo "Application refreshed"

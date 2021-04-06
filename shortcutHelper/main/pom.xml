@@ -23,7 +23,10 @@
 		<dependency>
 			<groupId>shortcutHelper.backend</groupId>
 			<artifactId>functionality</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>dynamicCommand</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>shortcutHelper</groupId>

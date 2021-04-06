@@ -7,6 +7,7 @@
 	   
 	   <import resource="classpath:config/beans/backend/functionality/functionality.xml" />
 	
-	<!-- Override beans here. Beans must have same name and extend the bean's parent.  -->
-
+	<bean name="RefreshFunctionality" class="shortcutHelper.backend.functionality.refreshFunctionality.RefreshFunctionalityImpl" parent="RefreshFunctionalityDef">	
+		<property name="dynamicCommandController" ref="dynamicCommandController"></property>
+	</bean>
 </beans>

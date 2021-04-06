@@ -50,6 +50,8 @@ public class RefreshFunctionalityImpl extends AbstractRefreshFunctionality {
 			exceptionOccured = true;
 		}
 
+		getDynamicCommandController().executeDynamicCommands();
+
 		if (!exceptionOccured) {
 			container.getShortcutHelperContext().setInfo("Application refreshed");
 		}

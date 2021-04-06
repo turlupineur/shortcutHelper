@@ -93,7 +93,14 @@ public class MainInterface extends JFrame implements Observer {
 		if (this.mainInterfaceViewBean.getFunctionBean().getToastMessage() != null) {
 			ToastMessage toast = new ToastMessage(this, this.mainInterfaceViewBean.getFunctionBean().getToastMessage());
 			toast.display();
+			System.out.println("TOAST");
 		}
+	}
+
+	public void showToastMessage(String message) {
+		ToastMessage toast = new ToastMessage(this, message);
+		System.out.println("OTHER TOAST");
+		toast.display();
 	}
 
 	private void mapViewBeanToView() {
