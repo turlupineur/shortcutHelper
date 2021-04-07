@@ -24,6 +24,10 @@ public class DynamicCommandController extends AbstractDynamicCommandController {
 				}
 				notifyObserversDynamicCommandsAreDone();
 
+				getShortcutRegistrationHelper().replaceShortcuts(dynamicCommandShortcutRepository.getShortcutsToAdd());
+				getShortcutRegistrationHelper()
+						.removeShortcuts(dynamicCommandShortcutRepository.getShortcutsToRemove());
+
 				ShortcutHelperLogging.logInfo("Done running dynamic commands. Nb shortcuts added: "
 						+ dynamicCommandShortcutRepository.getNbShortcutsAdded() + ", nb shortcuts removed: "
 						+ dynamicCommandShortcutRepository.getNbShortcutsRemoved());

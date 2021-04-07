@@ -1,5 +1,6 @@
 package shortcutHelper.helper.shortcutRegistrationHelper;
 
+import java.util.List;
 import java.util.Map;
 
 import shortcutHelper.common.obervation.ShortcutListObserver;
@@ -11,6 +12,39 @@ public class ShortcutRegistrationHelperImpl extends AbstractShortcutRegistration
 		checkShortcutIsValid(shortcutToAdd);
 		String rawShortcut = getShortcutFactoryHelper().convertShortcutToString(shortcutToAdd);
 		getShortcutHelper().addNonNativeShortcut(shortcutToAdd.getName(), rawShortcut);
+		notifyObserver();
+	}
+
+	public void replaceShortcuts(Map<String, IShortcut> shortcuts) {
+		for (String name : shortcuts.keySet()) {
+			IShortcut shortcut = shortcuts.get(name);
+			checkShortcutIsValid(shortcut);
+		}
+		for (String name : shortcuts.keySet()) {
+			IShortcut shortcutToAdd = shortcuts.get(name);
+			String rawShortcut = getShortcutFactoryHelper().convertShortcutToString(shortcutToAdd);
+			getShortcutHelper().replaceNonNativeShortcut(shortcutToAdd.getName(), rawShortcut);
+		}
+		notifyObserver();
+	}
+
+	public void addShortcuts(Map<String, IShortcut> shortcuts) {
+		for (String name : shortcuts.keySet()) {
+			IShortcut shortcut = shortcuts.get(name);
+			checkShortcutIsValid(shortcut);
+		}
+		for (String name : shortcuts.keySet()) {
+			IShortcut shortcutToAdd = shortcuts.get(name);
+			String rawShortcut = getShortcutFactoryHelper().convertShortcutToString(shortcutToAdd);
+			getShortcutHelper().addNonNativeShortcut(shortcutToAdd.getName(), rawShortcut);
+		}
+		notifyObserver();
+	}
+
+	public void removeShortcuts(List<String> shortcuts) {
+		for (String name : shortcuts) {
+			getShortcutHelper().removeShortcut(name);
+		}
 		notifyObserver();
 	}
 

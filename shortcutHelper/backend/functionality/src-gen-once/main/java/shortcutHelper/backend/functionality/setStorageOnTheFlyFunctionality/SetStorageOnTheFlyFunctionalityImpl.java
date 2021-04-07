@@ -14,7 +14,7 @@ import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 public class SetStorageOnTheFlyFunctionalityImpl extends AbstractSetStorageOnTheFlyFunctionality
 		implements ClipboardGetBehavior, ClipboardSetBehavior {
 
-	private static final String OWNER = "SetStorageOnTheFly";
+	public static final String OWNER = "SetStorageOnTheFly";
 
 	public FunctionalityResult runImpl(FunctionalityDataContainer c) {
 		SetStorageOnTheFlyFunctionalityDataContainer container = (SetStorageOnTheFlyFunctionalityDataContainer) c;

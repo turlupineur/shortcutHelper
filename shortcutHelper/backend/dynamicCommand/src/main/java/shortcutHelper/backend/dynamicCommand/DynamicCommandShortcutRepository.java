@@ -1,17 +1,20 @@
 package shortcutHelper.backend.dynamicCommand;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 
 public class DynamicCommandShortcutRepository {
 	private Map<String, IShortcut> shortcutsToAdd;
-	private Map<String, IShortcut> shortcutsToRemove;
+	private List<String> shortcutsToRemove;
 
 	public DynamicCommandShortcutRepository() {
 		shortcutsToAdd = new HashMap<>();
-		shortcutsToRemove = new HashMap<>();
+		shortcutsToRemove = new ArrayList<>();
 	}
 
 	public void addShorcut(IShortcut shortcut) {
@@ -26,7 +29,7 @@ public class DynamicCommandShortcutRepository {
 
 	public void removeShortcut(IShortcut shortcut) {
 		checkName(shortcut);
-		shortcutsToRemove.put(shortcut.getName(), shortcut);
+		shortcutsToRemove.add(shortcut.getName());
 	}
 
 	private void checkName(IShortcut shortcut) {
@@ -42,4 +45,23 @@ public class DynamicCommandShortcutRepository {
 	public int getNbShortcutsRemoved() {
 		return shortcutsToRemove.size();
 	}
+
+	/**
+	 * Return a read only map of all the added shortcuts.
+	 * 
+	 * @return
+	 */
+	public Map<String, IShortcut> getShortcutsToAdd() {
+		return Collections.unmodifiableMap(shortcutsToAdd);
+	}
+
+	/**
+	 * Returns a read only map of all the removed shortcuts.
+	 * 
+	 * @return
+	 */
+	public List<String> getShortcutsToRemove() {
+		return Collections.unmodifiableList(shortcutsToRemove);
+	}
+
 }

@@ -4,9 +4,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   
+   <bean name="DynamicCommand" abstract="true">
+   		<property name="shortcutFactoryHelper" ref="ShortcutFactoryHelper"></property>
+   </bean>
+   
+   <bean id="SetStorageOnTheFlyDynamicCommand" class="shortcutHelper.backend.dynamicCommand.setStorageOnTheFlyDynamicCommand.SetStorageOnTheFlyDynamicCommand" parent="DynamicCommand">
+   		<property name="stringStorageService" ref="StringStorageService"></property>
+	</bean>
+   
    <bean id="dynamicCommands" class="java.util.ArrayList">
 		<constructor-arg>
 			<list>
+				<ref bean="SetStorageOnTheFlyDynamicCommand"/>
 			</list>
 		</constructor-arg>
 	</bean>

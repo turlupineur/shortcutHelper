@@ -14,16 +14,46 @@
 	</parent>
 	<dependencies>
 		<dependency>
-				<groupId>shortcutHelper</groupId>
-				<artifactId>logging</artifactId>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>logging</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>shortcutHelper.backend</groupId>
-				<artifactId>backendCommon</artifactId>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>backendCommon</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>shortcutHelper</groupId>
-				<artifactId>helper</artifactId>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>application_config</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>functionality</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>helper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>functionality</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
