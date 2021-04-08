@@ -13,10 +13,6 @@
 		<module>/shortcutHelper/frontend</module>
 		<module>/shortcutHelper/middleend</module>
 		<module>/shortcutHelper/backend</module>
-		<module>/shortcutHelper/backend/logic</module>
-		<module>/shortcutHelper/backend/functionality</module>
-		<module>/shortcutHelper/backend/commonBackend</module>
-		<module>/shortcutHelper/backend/dynamicCommand</module>
 		<module>/shortcutHelper/main</module>
 		<module>/shortcutHelper/helper</module>
 		<module>/shortcutHelper/util</module>

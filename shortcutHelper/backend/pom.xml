@@ -10,6 +10,7 @@
 		<module>backendCommon</module>
 		<module>logic</module>
 		<module>functionality</module>
+		<module>dynamicCommand</module>
 	</modules>
 	<parent>
 		<groupId>shortcutHelper</groupId>

@@ -2,13 +2,14 @@ package shortcutHelper.backend.functionality.executerFunctionality;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import shortcutHelper.backend.functionality.FunctionalityIntegrationTesting;
 import shortcutHelper.backend.functionality.copyToClipboardFunctionality.IDefaultCopyToClipboardFunctionality;
+import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.IDefaultSetStorageOnTheFlyFunctionality;
+import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.data.SetStorageOnTheFlyOperation;
 import shortcutHelper.backendCommon.ShortcutHelperContext;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 
@@ -53,7 +54,26 @@ public class ExecuterFunctionalityIntegrationTest extends FunctionalityIntegrati
 
 	@Test
 	public void specialCaseSetStorageOnTheFly() {
-		fail();
+
+		setClibpoard("coucou");
+
+		ExecuterFunctionalityDataContainer container = new ExecuterFunctionalityDataContainer();
+		ShortcutHelperContext context = new ShortcutHelperContext();
+		container.setShortcutHelperContext(context);
+		container.setORawShortcutToExecute("set.hehe");
+
+		executerFunctionality.run(container);
+
+		setClibpoard("non");
+
+		IShortcut shortcut = createShortcut(IDefaultSetStorageOnTheFlyFunctionality.class, "hehe",
+				SetStorageOnTheFlyOperation.GET.toString());
+		container.setORawShortcutToExecute(null);
+		container.setShortcutToExecute(shortcut);
+
+		executerFunctionality.run(container);
+
+		assertThat(getClipboard(), is("coucou"));
 	}
 
 	@Test

@@ -37,6 +37,7 @@ import shortcutHelper.util.beanUtil.IBeanUtil;
 		"/config/beans/backend/logic/logic-man.xml", "/config/beans/backend/functionality/functionality_command.xml",
 		"/config/beans/backend/logic/logic-data-container-creator-man.xml",
 		"/config/beans/backend/functionality/functionality-man.xml",
+		"/config/beans/backend/dynamicCommand/fakeDynamicCommandController.xml",
 		"/shortcutHelper/helper/fakeShortcutObservers.xml" })
 public class FunctionalityIntegrationTesting {
 	@Autowired
