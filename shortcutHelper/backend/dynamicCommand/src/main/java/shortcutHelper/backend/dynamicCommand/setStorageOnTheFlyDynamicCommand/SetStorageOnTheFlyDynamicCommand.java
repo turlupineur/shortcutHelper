@@ -6,6 +6,7 @@ import shortcutHelper.backend.dynamicCommand.DynamicCommandShortcutRepository;
 import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.IDefaultSetStorageOnTheFlyFunctionality;
 import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.SetStorageOnTheFlyFunctionalityImpl;
 import shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.data.SetStorageOnTheFlyOperation;
+import shortcutHelper.common.properties.StaticApplicationProperptyHolder;
 import shortcutHelper.helper.shortcutFactoryHelper.IShortcut;
 
 public class SetStorageOnTheFlyDynamicCommand extends AbstractSetStorageOnTheFlyDynamicCommand {
@@ -13,8 +14,9 @@ public class SetStorageOnTheFlyDynamicCommand extends AbstractSetStorageOnTheFly
 	@Override
 	public void run(DynamicCommandShortcutRepository dynamicCommandShortcutRepository) {
 
-		List<String> variableNames = getStringStorageService()
-				.listAllStorageForOwner(SetStorageOnTheFlyFunctionalityImpl.OWNER);
+		List<String> variableNames = getStringStorageService().listAllStorageForOwner(
+				SetStorageOnTheFlyFunctionalityImpl.OWNER, StaticApplicationProperptyHolder.getProperties()
+						.getShortcutHelper().getFunctionality().getSetStorageOnTheFly().getStorageFolder());
 		for (String variableName : variableNames) {
 			IShortcut set = getShortcutFactoryHelper().createShortcut("set." + variableName,
 					IDefaultSetStorageOnTheFlyFunctionality.class,
