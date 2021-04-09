@@ -58,6 +58,10 @@ public abstract class AbstractShortcutHelper implements IShortcutHelper, IShortc
 	}
 
 	protected void addShortcut(String name, String shortcut) {
+		this.listShortcuts.putIfAbsent(name, shortcut);
+	}
+
+	protected void replaceShortcut(String name, String shortcut) {
 		this.listShortcuts.put(name, shortcut);
 	}
 

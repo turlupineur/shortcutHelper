@@ -62,7 +62,8 @@ public class TextComponentSuggestionClient implements SuggestionClient<JTextComp
 
 	@Override
 	public void listUpdated(Map<String, String> newShortcutLists) {
-		this.listWords = new ArrayList<>(newShortcutLists.keySet());
+		this.listWords.clear();
+		this.listWords.addAll(newShortcutLists.keySet());
 	}
 
 	public void setNbMaxResultsToDisplay(int nbMaxResultsToDisplay) {

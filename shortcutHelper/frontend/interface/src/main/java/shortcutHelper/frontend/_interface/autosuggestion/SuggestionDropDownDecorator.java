@@ -17,24 +17,25 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 
-public class SuggestionDropDownDecorator<C extends JComponent> extends Observable{
-	  private final C invoker;
-	  private final SuggestionClient<C> suggestionClient;
-	  private JPopupMenu popupMenu;
-	  private JList<String> listComp;
-	  DefaultListModel<String> listModel;
-	  private boolean disableTextEvent;
+public class SuggestionDropDownDecorator<C extends JComponent> extends Observable {
+	private final C invoker;
+	private final SuggestionClient<C> suggestionClient;
+	private JPopupMenu popupMenu;
+	private JList<String> listComp;
+	DefaultListModel<String> listModel;
+	private boolean disableTextEvent;
 
-	  public SuggestionDropDownDecorator(C invoker, SuggestionClient<C> suggestionClient) {
-	      this.invoker = invoker;
-	      this.suggestionClient = suggestionClient;
-	  }
+	public SuggestionDropDownDecorator(C invoker, SuggestionClient<C> suggestionClient) {
+		this.invoker = invoker;
+		this.suggestionClient = suggestionClient;
+	}
 
-	  public static <C extends JComponent> void decorate(C component, SuggestionClient<C> suggestionClient, Observer observerSuggestion) {
-	      SuggestionDropDownDecorator<C> d = new SuggestionDropDownDecorator<>(component, suggestionClient);
-	      d.init();
-	      d.addObserver(observerSuggestion);
-	  }
+	public static <C extends JComponent> void decorate(C component, SuggestionClient<C> suggestionClient,
+			Observer observerSuggestion) {
+		SuggestionDropDownDecorator<C> d = new SuggestionDropDownDecorator<>(component, suggestionClient);
+		d.init();
+		d.addObserver(observerSuggestion);
+	}
 
 	public void init() {
 		initPopup();
@@ -76,6 +77,7 @@ public class SuggestionDropDownDecorator<C extends JComponent> extends Observabl
 						return;
 					}
 					if (tc.getText() == null || tc.getText().length() == 0) {
+						popupMenu.setVisible(false);
 						return;
 					}
 
@@ -89,7 +91,7 @@ public class SuggestionDropDownDecorator<C extends JComponent> extends Observabl
 					});
 				}
 			});
-	      }//todo init invoker components other than text components
+		} // todo init invoker components other than text components
 	}
 
 	private void showPopup(List<String> suggestions) {
@@ -98,72 +100,72 @@ public class SuggestionDropDownDecorator<C extends JComponent> extends Observabl
 		Point p = suggestionClient.getPopupLocation(invoker);
 		if (p == null) {
 			return;
-	      }
-	      popupMenu.pack();
-	      
-	      listComp.setSelectedIndex(0);
-	      popupMenu.show(invoker, (int) p.getX(), (int) p.getY());
-	  }
+		}
+		popupMenu.pack();
 
-	  private void initInvokerKeyListeners() {
-	      //not using key inputMap cause that would override the original handling
-	      invoker.addKeyListener(new KeyAdapter() {
-	          @Override
-	          public void keyPressed(KeyEvent e) {
-	              if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-	                  selectFromList(e);
-	              } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-	                  moveUp(e);
-	              } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-	                  moveDown(e);
-	              } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-	                  popupMenu.setVisible(false);
-	              }
-	          }
-	      });
-	  }
-
-	  private void selectFromList(KeyEvent e) {
-	      if (popupMenu.isVisible()) {
-	          int selectedIndex = listComp.getSelectedIndex();
-	          if (selectedIndex != -1) {
-	              popupMenu.setVisible(false);
-	              String selectedValue = listComp.getSelectedValue();
-	              disableTextEvent = true;
-	              suggestionClient.setSelectedText(invoker, selectedValue);
-	              setChanged();
-	              notifyObservers(selectedValue);
-	              disableTextEvent = false;
-	              e.consume();
-	          }
-	      }
-	  }
-
-	  private void moveDown(KeyEvent keyEvent) {
-	      if (popupMenu.isVisible() && listModel.getSize() > 0) {
-	          int selectedIndex = listComp.getSelectedIndex();
-	          if (selectedIndex < listModel.getSize()) {
-	        	  listComp.setSelectedIndex(selectedIndex + 1);
-	        	  keyEvent.consume();
-	          }
-	          if (selectedIndex == listModel.getSize()-1) {
-	              listComp.setSelectedIndex(0);
-	              keyEvent.consume();
-	          }
-	      }
-	  }
-
-	  private void moveUp(KeyEvent keyEvent) {
-	      if (popupMenu.isVisible() && listModel.getSize() > 0) {
-	          int selectedIndex = listComp.getSelectedIndex();
-	          if (selectedIndex > 0) {
-	              listComp.setSelectedIndex(selectedIndex - 1);
-	              keyEvent.consume();
-	          }
-	          if(selectedIndex == 0) {
-	        	  listComp.setSelectedIndex(listModel.getSize() - 1);
-	              keyEvent.consume();
-	          }
-	      }
-	  }
+		listComp.setSelectedIndex(0);
+		popupMenu.show(invoker, (int) p.getX(), (int) p.getY());
 	}
+
+	private void initInvokerKeyListeners() {
+		// not using key inputMap cause that would override the original handling
+		invoker.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					selectFromList(e);
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					moveUp(e);
+				} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					moveDown(e);
+				} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					popupMenu.setVisible(false);
+				}
+			}
+		});
+	}
+
+	private void selectFromList(KeyEvent e) {
+		if (popupMenu.isVisible()) {
+			int selectedIndex = listComp.getSelectedIndex();
+			if (selectedIndex != -1) {
+				popupMenu.setVisible(false);
+				String selectedValue = listComp.getSelectedValue();
+				disableTextEvent = true;
+				suggestionClient.setSelectedText(invoker, selectedValue);
+				setChanged();
+				notifyObservers(selectedValue);
+				disableTextEvent = false;
+				e.consume();
+			}
+		}
+	}
+
+	private void moveDown(KeyEvent keyEvent) {
+		if (popupMenu.isVisible() && listModel.getSize() > 0) {
+			int selectedIndex = listComp.getSelectedIndex();
+			if (selectedIndex < listModel.getSize()) {
+				listComp.setSelectedIndex(selectedIndex + 1);
+				keyEvent.consume();
+			}
+			if (selectedIndex == listModel.getSize() - 1) {
+				listComp.setSelectedIndex(0);
+				keyEvent.consume();
+			}
+		}
+	}
+
+	private void moveUp(KeyEvent keyEvent) {
+		if (popupMenu.isVisible() && listModel.getSize() > 0) {
+			int selectedIndex = listComp.getSelectedIndex();
+			if (selectedIndex > 0) {
+				listComp.setSelectedIndex(selectedIndex - 1);
+				keyEvent.consume();
+			}
+			if (selectedIndex == 0) {
+				listComp.setSelectedIndex(listModel.getSize() - 1);
+				keyEvent.consume();
+			}
+		}
+	}
+}
