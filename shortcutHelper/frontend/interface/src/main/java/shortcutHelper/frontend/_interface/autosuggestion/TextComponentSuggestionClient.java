@@ -56,6 +56,9 @@ public class TextComponentSuggestionClient implements SuggestionClient<JTextComp
 	}
 
 	private List<String> getWordsMatching(String str) {
+		if (str == null || str.length() == 0) {
+			return new ArrayList<String>();
+		}
 		return listWords.stream().filter(s -> s.startsWith(str)).limit(nbMaxResultsToDisplay)
 				.collect(Collectors.toList());
 	}

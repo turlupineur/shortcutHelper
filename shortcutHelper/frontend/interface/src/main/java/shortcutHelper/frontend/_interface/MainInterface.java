@@ -10,6 +10,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import shortcutHelper.frontend._interface.autosuggestion.SuggestionDropDownDecorator;
 import shortcutHelper.frontend._interface.autosuggestion.TextComponentSuggestionClient;
@@ -40,6 +41,8 @@ public class MainInterface extends JFrame implements Observer {
 	private JTextField textFieldCommand;
 
 	private TextComponentSuggestionClient componentSuggestionClient;
+
+	private SuggestionDropDownDecorator<JTextComponent> suggestionDropDownDecorator;
 
 	private boolean viewInitialized;
 
@@ -74,7 +77,8 @@ public class MainInterface extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (textFieldCommand.getText() != null && textFieldCommand.getText().length() != 0) {
+				if (textFieldCommand.getText() != null && textFieldCommand.getText().length() != 0
+						&& !suggestionDropDownDecorator.popupMenuVisible()) {
 					update(null, textFieldCommand.getText());
 				}
 			}
@@ -113,7 +117,8 @@ public class MainInterface extends JFrame implements Observer {
 	}
 
 	private void configureSuggestionDropdown() {
-		SuggestionDropDownDecorator.decorate(textFieldCommand, componentSuggestionClient, this);
+		suggestionDropDownDecorator = SuggestionDropDownDecorator.decorate(textFieldCommand, componentSuggestionClient,
+				this);
 	}
 
 	public void setComponentSuggestionClient(TextComponentSuggestionClient componentSuggestionClient) {

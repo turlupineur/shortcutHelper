@@ -30,11 +30,12 @@ public class SuggestionDropDownDecorator<C extends JComponent> extends Observabl
 		this.suggestionClient = suggestionClient;
 	}
 
-	public static <C extends JComponent> void decorate(C component, SuggestionClient<C> suggestionClient,
-			Observer observerSuggestion) {
+	public static <C extends JComponent> SuggestionDropDownDecorator<C> decorate(C component,
+			SuggestionClient<C> suggestionClient, Observer observerSuggestion) {
 		SuggestionDropDownDecorator<C> d = new SuggestionDropDownDecorator<>(component, suggestionClient);
 		d.init();
 		d.addObserver(observerSuggestion);
+		return d;
 	}
 
 	public void init() {
@@ -80,7 +81,6 @@ public class SuggestionDropDownDecorator<C extends JComponent> extends Observabl
 						popupMenu.setVisible(false);
 						return;
 					}
-
 					SwingUtilities.invokeLater(() -> {
 						List<String> suggestions = suggestionClient.getSuggestions(invoker);
 						if (suggestions != null && !suggestions.isEmpty()) {
@@ -105,6 +105,14 @@ public class SuggestionDropDownDecorator<C extends JComponent> extends Observabl
 
 		listComp.setSelectedIndex(0);
 		popupMenu.show(invoker, (int) p.getX(), (int) p.getY());
+	}
+
+	public void hidePopup() {
+		this.popupMenu.setVisible(false);
+	}
+
+	public boolean popupMenuVisible() {
+		return this.popupMenu.isVisible();
 	}
 
 	private void initInvokerKeyListeners() {
