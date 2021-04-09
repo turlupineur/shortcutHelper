@@ -74,7 +74,9 @@ public class MainInterface extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				update(null, textFieldCommand.getText());
+				if (textFieldCommand.getText() != null && textFieldCommand.getText().length() != 0) {
+					update(null, textFieldCommand.getText());
+				}
 			}
 		});
 	}
@@ -129,8 +131,8 @@ public class MainInterface extends JFrame implements Observer {
 
 	// event submit shortcut.
 	@Override
-	public void update(Observable arg0, Object calledShortcut) {
+	public void update(Observable o, Object calledShortcut) {
 		this.mainInterfaceViewBean.getDataBean().setCalledShortcut(calledShortcut.toString());
-		this.getController().update(arg0, this.mainInterfaceViewBean);
+		this.getController().update(o, this.mainInterfaceViewBean);
 	}
 }
