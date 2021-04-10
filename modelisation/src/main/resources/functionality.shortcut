@@ -60,7 +60,7 @@ functionality refreshFunctionality {
 			exception = true
 		};
 		
-		@ start dynamic commands in the background@
+		@start dynamic commands in the background@
 		
 		if exception = true
 		{
@@ -71,7 +71,7 @@ functionality refreshFunctionality {
 
 functionality executerFunctionality{
 	name : {
-		
+		_NONE_
 	}
 	configuration : NONE
 	using : getClipboardLogic 
