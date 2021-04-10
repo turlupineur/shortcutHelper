@@ -8,4 +8,5 @@
 	<alias name="OpenUrlFunctionality" alias="OPEN_URL"/>
 	<alias name="FormatStringFunctionality" alias="FORMAT"/>
 	<alias name="SelectQueryDatabaseFunctionality" alias="SELECT_QUERY"/>
+	<alias name="RefreshFunctionality" alias="REFRESH"/>
 </beans>
