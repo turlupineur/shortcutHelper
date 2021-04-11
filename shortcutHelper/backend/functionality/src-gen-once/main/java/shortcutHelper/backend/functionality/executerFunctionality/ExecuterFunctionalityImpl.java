@@ -43,6 +43,8 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 
 		ShortcutHelperLogging.logInfo("Running class: " + functionalityToExecute.getClass().getName());
 
+		ShortcutHelperLogging.logInfo("Clipboard value before running the command : '" + getClipboard() + "'");
+
 		FunctionalityDataContainer containerForFunctionality = (FunctionalityDataContainer) getFunctionalityContainerHelper()
 				.createAndFillContainer(functionalityToExecute.getClass(), shortcutToExecute.getParams());
 
@@ -57,6 +59,8 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 		} finally {
 			ShortcutHelperLogging.logSeparationInfo();
 		}
+
+		ShortcutHelperLogging.logInfo("Clipboard value after running the command : '" + getClipboard() + "'");
 
 		return ConcreteFunctionalityResult.RESULT_NULL;
 	}
