@@ -14,9 +14,12 @@ public class SetStorageOnTheFlyDynamicCommand extends AbstractSetStorageOnTheFly
 	@Override
 	public void run(DynamicCommandShortcutRepository dynamicCommandShortcutRepository) {
 
-		List<String> variableNames = getStringStorageService().listAllStorageForOwner(
-				SetStorageOnTheFlyFunctionalityImpl.OWNER, StaticApplicationProperptyHolder.getProperties()
-						.getShortcutHelper().getFunctionality().getSetStorageOnTheFly().getStorageFolder());
+		String pathToExplore = StaticApplicationProperptyHolder.getProperties().getShortcutHelper().getFunctionality()
+				.getSetStorageOnTheFly().getStorageFolder();
+		getLogger().info("Fetching data from: '" + pathToExplore + "'");
+
+		List<String> variableNames = getStringStorageService().listAllStorageForOwner(pathToExplore,
+				SetStorageOnTheFlyFunctionalityImpl.OWNER);
 		for (String variableName : variableNames) {
 			IShortcut set = getShortcutFactoryHelper().createShortcut("set." + variableName,
 					IDefaultSetStorageOnTheFlyFunctionality.class,

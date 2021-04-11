@@ -30,8 +30,6 @@ public class SetStorageOnTheFlyDynamicCommandIntegrationTest extends DynamicComm
 
 		setStorageOnTheFlyDynamicCommand.run(repository);
 
-		System.out.println("salut");
-
 		assertThat(repository.getNbShortcutsAdded(), is(3));
 		assertThat(repository.getNbShortcutsRemoved(), is(0));
 
