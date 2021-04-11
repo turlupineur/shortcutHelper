@@ -31,7 +31,6 @@ public class RealClipboard implements ClipboardObject {
 		} catch (HeadlessException e) {
 			ShortcutHelperLogging.logError(e);
 		} catch (UnsupportedFlavorException e) {
-			ShortcutHelperLogging.logError(e);
 		} catch (IOException e) {
 			ShortcutHelperLogging.logError(e);
 		}
