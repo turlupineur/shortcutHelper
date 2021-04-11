@@ -15,7 +15,7 @@ public class ShortcutHelperLogging {
 	}
 
 	public static void logDebug(Throwable t) {
-		logger.debug(t);
+		logger.debug(t.getMessage(), t);
 	}
 
 	public static void logInfo(Object o) {
@@ -27,7 +27,7 @@ public class ShortcutHelperLogging {
 	}
 
 	public static void logInfo(Throwable t) {
-		logger.info(t);
+		logger.info(t.getMessage(), t);
 	}
 
 	public static void logWarning(Object o) {
@@ -39,7 +39,7 @@ public class ShortcutHelperLogging {
 	}
 
 	public static void logWarning(Throwable t) {
-		logger.warn(t);
+		logger.warn(t.getMessage(), t);
 	}
 
 	public static void logError(Object o) {
@@ -51,7 +51,7 @@ public class ShortcutHelperLogging {
 	}
 
 	public static void logError(Throwable t) {
-		logger.error(t);
+		logger.error(t.getMessage(), t);
 	}
 
 	public static void logSeparationInfo() {
