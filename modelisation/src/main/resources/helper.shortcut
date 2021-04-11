@@ -1,0 +1,223 @@
+helper propertyHelper{
+	@ This helper loads all properties used in the system. @
+	refresh returns void{
+		NoArgument
+	}
+	
+	getProperty returns STRING{
+		@ Returns the value of the property. @
+		param prop PROPERTY
+	}
+}
+
+helper shortcutHelper {
+	@ This helper loads all shortcuts. The loaded shorcuts are not
+	inspected.
+	Initially, this helper is empty. The first call to retrieve a shortcut
+	will trigger the load of all data.
+	 @
+	getShortcut returns STRING {
+		param shortcutId STRING
+	}
+	
+	refresh returns void{
+		NoArgument
+	}
+	
+	getListShortcuts returns MAP_STRING_STRING{
+		NoArgument
+	}
+}
+
+helper beanHelper {
+	@ This helper allows access to beans. @
+	
+	getBean returns OBJECT{
+		param beanName STRING
+	}
+	
+	getBean returns T{
+		param beanName STRING
+		param clazz T_AS_CLASS
+	}
+}
+
+helper shortcutFactoryHelper {
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param functionalityClass CLASS
+		param params ARRAY_STRING
+	
+	}
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param shortcutName STRING
+		param functionalityClass CLASS
+		param params ARRAY_STRING
+	
+	}
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param beanFunctionality STRING
+		param params ARRAY_STRING
+	}
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param shortcutName STRING
+		param beanFunctionality STRING
+		param params ARRAY_STRING
+	}
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param functionalityClass CLASS
+		param beanFunctionality STRING
+		param params ARRAY_STRING
+	}
+	
+	createShortcut returns SHORTCUT{
+		@ Creates a SHORTCUT object from the given class and arguments. @
+		param shortcutName STRING
+		param functionalityClass CLASS
+		param beanFunctionality STRING
+		param params ARRAY_STRING
+	}
+	
+	parseShortcut returns SHORTCUT{
+		@ Parses the given line to extract shortcut. Throws an exception if line is invalid. @
+		param lineToParse STRING
+	}
+	
+	convertShortcutToString returns STRING {
+		param shortcutToConvert SHORTCUT
+	}
+}
+
+
+helper functionalityContainerHelper{
+	createDefaultContainerForFunctionality returns OBJECT{
+		@ Creates a new container containing only default values.@
+		param clazz CLASS
+	}
+	createDefaultContainerForFunctionality returns OBJECT{
+		@ Creates a new container containing only default values.@
+		param _functionality OBJECT
+	}
+	getContainerExtractorFunctionality returns OBJECT{
+		@ Returns the extractor associated to this functionality.@
+		param _functionality OBJECT
+	}
+	getContainerExtractorFunctionality returns OBJECT{
+		@ Returns the extractor associated to this functionality.@
+		param clazz CLASS
+	}
+	fillContainerWithParams returns void {
+		@ Fills the container by calling the associate extractor.@
+		param clazzFunctionality CLASS
+		param container OBJECT
+		param params ARRAY_STRING
+	}	
+	createAndFillContainer returns OBJECT{
+		@ Creates and Fills the container by setting default values and calling the associate extractor.@
+		param clazz CLASS
+		param params ARRAY_STRING
+	}
+	createAndFillContainer returns OBJECT{
+		@ Creates and Fills the container by setting default values and calling the associate extractor.@
+		param _functionality OBJECT
+		param params ARRAY_STRING
+	}
+}
+
+helper variableHelper{
+	refresh returns void {
+		@ Loads all variables from config/variables/variables.properties @
+	}
+	
+	variableExists returns BOOLEAN {
+		@ Checks if a property exists. @
+		param nameOfVariable STRING
+	}
+	
+	getVariableValue returns STRING {
+		@ Gets the value of the variable.@
+		param nameOfVariable STRING
+	}
+	
+	clearAllVariables returns void{
+		
+	}
+	
+	setVariable returns void {
+		@ Adds or sets a specific variable to the helper. This variable will be lost if refresh method is called.@
+		param nameOfVariable STRING
+		param value STRING
+	}
+	
+}
+
+helper databaseInformationHelper{
+	@Holds an internal memory of all database credential information. 
+	All information are defined in file user_config/config/helper/databaseInformationHelper/credential.yml@
+	
+	
+	refresh returns void {
+		@ Loads all database information from config file.@
+	}
+	
+	getDatabaseInformation returns DATABASE_INFORMATION_DTO {
+		@ Fetches the appropriate Database Information associated to the given name.
+		@
+		param databaseName STRING
+	}
+	
+	hasDatabaseInformation returns BOOLEAN {
+		param databaseName STRING
+	}
+	
+}
+
+helper shortcutRegistrationHelper {
+	@Abstraction to the registration of Shortcuts. Addition or suppresion of Shortcuts 
+	will affect the list of shortcuts provided to the user on GUI. This helper always has
+	the most recent shortcut list (although the entire list could not be available yet on GUI)
+	Shortcuts added by BackgroundCommands will never overwrite the ones added in functionality@
+	
+	addShortcut returns void{
+		@ Adds the following shortcut to the official shortcut list. The added shortcut must have a name.
+		If another shortcut with the same name already exist, does nothing@
+		param shortcutToAdd SHORTCUT
+	}
+	
+	replaceShortcut returns void{
+		@ Adds the following shortcut to the official shortcut list. The added shortcut must have a name.
+		If another shortcut with the same name already exist, it is replaced with the new one.@
+		param shortcutToAdd SHORTCUT
+	}
+	
+	removeShortcut returns BOOLEAN{
+		@ Remove the shortcut if it exists. The given shortcut must have a name.@
+		param shortcutToRemove SHORTCUT
+	}
+	
+	hasShortcut returns BOOLEAN{
+		@ Checks if the shortcut exists. The given shortcut must have a name.@
+		param shortcutToCheck SHORTCUT
+	}
+	
+	getAllShortcuts returns MAP_STRING_STRING{
+		@ Returns an umodifiable map of all raw shortcuts @
+	}
+}
+
+helper applicationPropertyHelper{
+	@In charge of managing all application properties. These properties are located in 
+	config/properties.@
+	
+	refresh returns void{
+		@Reloads all the properties.@
+	}
+	
+	getProperties returns SHORTCUT_HELPER_PROPERTIES{
+		@Returns a read only object of all properties.@
+	}
+}

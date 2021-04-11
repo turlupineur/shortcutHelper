@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+		
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<bean id = "RefreshFunctionality" class = "shortcutHelper.backend.functionality.refreshFunctionality.RefreshFunctionalityImpl" parent="RefreshFunctionalityDef">
+</bean>
+<bean id = "RefreshFunctionalityDef" abstract="true">
+<property name="PropertyHelper" ref="PropertyHelper" />
+<property name="ShortcutHelper" ref="ShortcutHelper" />
+<property name="VariableHelper" ref="VariableHelper" />
+<property name="DatabaseInformationHelper" ref="DatabaseInformationHelper" />
+<property name="ApplicationPropertyHelper" ref="ApplicationPropertyHelper" />
+</bean>
+<bean id = "ExecuterFunctionality" class = "shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityImpl" parent="ExecuterFunctionalityDef">
+</bean>
+<bean id = "ExecuterFunctionalityDef" abstract="true">
+<property name="GetClipboardLogic" ref="GetClipboardLogic" />
+<property name="BeanHelper" ref="BeanHelper" />
+<property name="FunctionalityContainerHelper" ref="FunctionalityContainerHelper" />
+<property name="ShortcutFactoryHelper" ref="ShortcutFactoryHelper" />
+<property name="VariableHelper" ref="VariableHelper" />
+</bean>
+<bean id = "CopyToClipboardFunctionality" class = "shortcutHelper.backend.functionality.copyToClipboardFunctionality.CopyToClipboardFunctionalityImpl" parent="CopyToClipboardFunctionalityDef">
+</bean>
+<bean id = "CopyToClipboardFunctionalityDef" abstract="true">
+<property name="SetClipboardLogic" ref="SetClipboardLogic" />
+<property name="BeanUtil" ref="BeanUtil" />
+<property name="BeanHelper" ref="BeanHelper" />
+</bean>
+<bean id = "OpenUrlFunctionality" class = "shortcutHelper.backend.functionality.openUrlFunctionality.OpenUrlFunctionalityImpl" parent="OpenUrlFunctionalityDef">
+</bean>
+<bean id = "OpenUrlFunctionalityDef" abstract="true">
+</bean>
+<bean id = "FormatStringFunctionality" class = "shortcutHelper.backend.functionality.formatStringFunctionality.FormatStringFunctionalityImpl" parent="FormatStringFunctionalityDef">
+</bean>
+<bean id = "FormatStringFunctionalityDef" abstract="true">
+<property name="GetClipboardLogic" ref="GetClipboardLogic" />
+<property name="SetClipboardLogic" ref="SetClipboardLogic" />
+</bean>
+<bean id = "SelectQueryDatabaseFunctionality" class = "shortcutHelper.backend.functionality.selectQueryDatabaseFunctionality.SelectQueryDatabaseFunctionalityImpl" parent="SelectQueryDatabaseFunctionalityDef">
+</bean>
+<bean id = "SelectQueryDatabaseFunctionalityDef" abstract="true">
+<property name="SetClipboardLogic" ref="SetClipboardLogic" />
+<property name="DatabaseInformationHelper" ref="DatabaseInformationHelper" />
+</bean>
+<bean id = "SetStorageOnTheFlyFunctionality" class = "shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.SetStorageOnTheFlyFunctionalityImpl" parent="SetStorageOnTheFlyFunctionalityDef">
+</bean>
+<bean id = "SetStorageOnTheFlyFunctionalityDef" abstract="true">
+<property name="StringStorageService" ref="StringStorageService" />
+<property name="ApplicationPropertyHelper" ref="ApplicationPropertyHelper" />
+<property name="ShortcutHelper" ref="ShortcutHelper" />
+<property name="ShortcutFactoryHelper" ref="ShortcutFactoryHelper" />
+<property name="ShortcutRegistrationHelper" ref="ShortcutRegistrationHelper" />
+<property name="GetClipboardLogic" ref="GetClipboardLogic" />
+<property name="SetClipboardLogic" ref="SetClipboardLogic" />
+</bean>
+   
+</beans>

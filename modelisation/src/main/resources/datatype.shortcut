@@ -1,0 +1,36 @@
+datatype STRING
+datatype BOOLEAN
+
+
+datatype EXCEPTION
+
+
+// Complex types
+datatype MAP_STRING_STRING "java.util.Map<String,String>"
+datatype LIST_STRING "java.util.List<String>"
+
+datatype SHORTCUT "shortcutHelper.helper.shortcutFactoryHelper.IShortcut"
+
+datatype PROPERTY "shortcutHelper.helper.propertyHelper.Property"
+
+datatype T "<T> T"
+datatype T_AS_CLASS "T"
+datatype CONTAINER_FUNCTIONALITY "shortcutHelper.backend.functionality.DataContainer"
+datatype FUNCTIONALITY "shortcutHelper.backend.functionality.Functionality"
+datatype CONTEXT "shortcutHelper.backend.functionality.ConcreteFunctionalityResult"
+
+
+// basic type
+datatype CLASS "Class"
+datatype ARRAY_STRING "String []"
+datatype OBJECT "Object"
+datatype INT "int" 
+
+
+
+// helpers
+datatype DATABASE_INFORMATION_DTO "shortcutHelper.helper.databaseInformationHelper.dto.DatabaseInformationConnection"
+datatype SHORTCUT_HELPER_PROPERTIES "shortcutHelper.common.properties.data.ApplicationProperties"
+
+
+datatype SET_STORAGE_ON_THE_FLY_OPERATION "shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.data.SetStorageOnTheFlyOperation"

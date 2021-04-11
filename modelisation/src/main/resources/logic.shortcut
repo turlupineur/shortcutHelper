@@ -1,0 +1,40 @@
+logic getClipboardLogic {
+	@ Returns clipboard value. This Logic should be used over the direct service as some
+	logic (such as trim) are automatically performed.@
+	using : clipboardService;
+	input parameter : 
+		parameter dTrimm BOOLEAN default // default yes
+	returns : STRING
+	
+	implementation
+	{
+		variable STRING clipboard = null
+		
+		clipboard = callComponentMethod clipboardService.clipboardService.getClipboard (
+			
+		)
+		
+		if dTrimm = true
+		{
+			clipboard = @TRIMM(clipboard)@
+		};
+		
+		
+		@ returns clipboard @
+	}
+}
+
+logic setClipboardLogic{
+	@ Sets clipboard value. This Logic should be used over the direct service as some
+	logic are automatically performed upon setting clipboard.@
+	using : clipboardService;
+	input parameter :
+		parameter clipboardValue STRING required
+	returns : void
+	implementation
+	{
+		callComponentMethod clipboardService.clipboardService.setClipboard (
+			set value = clipboardValue	
+		)
+	}
+}

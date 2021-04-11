@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+		
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id = "RefreshFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.refreshFunctionality.RefreshFunctionalityDataContainerCreator">
+	</bean>
+	<bean id = "ExecuterFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityDataContainerCreator">
+	</bean>
+	<bean id = "CopyToClipboardFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.copyToClipboardFunctionality.CopyToClipboardFunctionalityDataContainerCreator">
+	</bean>
+	<bean id = "OpenUrlFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.openUrlFunctionality.OpenUrlFunctionalityDataContainerCreator">
+	</bean>
+	<bean id = "FormatStringFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.formatStringFunctionality.FormatStringFunctionalityDataContainerCreator">
+	</bean>
+	<bean id = "SelectQueryDatabaseFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.selectQueryDatabaseFunctionality.SelectQueryDatabaseFunctionalityDataContainerCreator">
+	</bean>
+	<bean id = "SetStorageOnTheFlyFunctionalityDataContainerCreator" class = "shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.SetStorageOnTheFlyFunctionalityDataContainerCreator">
+	</bean>
+   
+</beans>

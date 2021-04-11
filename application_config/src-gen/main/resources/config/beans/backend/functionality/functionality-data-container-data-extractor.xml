@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+		
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id = "RefreshFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.refreshFunctionality.RefreshFunctionalityDataContainerDataExtractor">
+	</bean>
+	<bean id = "ExecuterFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.executerFunctionality.ExecuterFunctionalityDataContainerDataExtractor">
+	</bean>
+	<bean id = "CopyToClipboardFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.copyToClipboardFunctionality.CopyToClipboardFunctionalityDataContainerDataExtractor">
+	</bean>
+	<bean id = "OpenUrlFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.openUrlFunctionality.OpenUrlFunctionalityDataContainerDataExtractor">
+	</bean>
+	<bean id = "FormatStringFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.formatStringFunctionality.FormatStringFunctionalityDataContainerDataExtractor">
+	</bean>
+	<bean id = "SelectQueryDatabaseFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.selectQueryDatabaseFunctionality.SelectQueryDatabaseFunctionalityDataContainerDataExtractor">
+	</bean>
+	<bean id = "SetStorageOnTheFlyFunctionalityDataContainerDataExtractor" class = "shortcutHelper.backend.functionality.setStorageOnTheFlyFunctionality.SetStorageOnTheFlyFunctionalityDataContainerDataExtractor">
+	</bean>
+   
+</beans>

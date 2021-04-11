@@ -1,0 +1,48 @@
+util stringUtil{
+	@ Contains useful String methods @
+	
+	getPositionLastUpperCase returns INT
+	{
+		param str STRING
+	}
+	
+	toFirstUpper returns STRING{
+		@ First letter of string is turned into a upper case.@
+		param str STRING
+	}
+	
+	toFirstLower returns STRING{
+		@ First letter of string is turned into a lower case.@
+		param str STRING
+	}
+}
+
+util beanUtil {
+	@ Contains useful function to retrieve beanName and class for any beans. @
+	
+	getBeanNameFromClass returns STRING {
+		param clazz CLASS
+	}
+	
+	getInterfaceFromBeanName returns CLASS{
+		@ Returns the interface associated to the beanName. @
+		param beanName STRING
+	}
+	
+	getInterfaceFromClass returns CLASS{
+		@ Returns the interface associated to the class. @
+		param clazz CLASS
+	}
+	
+	getContainerCreatorNameFromClass returns STRING{
+		@ Returns the container creator associated to the class. 
+		This method should be only called for functionality or Logic. @
+		param clazz CLASS
+	}
+	
+	getContainerExtractorNameFromClass returns STRING{
+		@ Returns the container extractor associated to the class. 
+		This method should be only called for functionality. @
+		param clazzz CLASS
+	}
+}

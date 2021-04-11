@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>shortcutHelper</groupId>
+	<artifactId>main</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<parent>
+		<groupId>shortcutHelper</groupId>
+		<artifactId>shortcutHelper</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>shortcutHelper.frontend</groupId>
+			<artifactId>interface</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.middleend</groupId>
+			<artifactId>controller</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>functionality</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper.backend</groupId>
+			<artifactId>dynamicCommand</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>helper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>application_config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>shortcutHelper</groupId>
+			<artifactId>user_config</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<bean id = "PropertyHelper" class = "shortcutHelper.helper.propertyHelper.PropertyHelperImpl" parent="PropertyHelperDef">
+</bean>
+<bean id = "PropertyHelperDef" abstract="true">
+</bean>
+<bean id = "ShortcutHelper" class = "shortcutHelper.helper.shortcutHelper.ShortcutHelperImpl" parent="ShortcutHelperDef">
+</bean>
+<bean id = "ShortcutHelperDef" abstract="true">
+</bean>
+<bean id = "BeanHelper" class = "shortcutHelper.helper.beanHelper.BeanHelperImpl" parent="BeanHelperDef">
+</bean>
+<bean id = "BeanHelperDef" abstract="true">
+</bean>
+<bean id = "ShortcutFactoryHelper" class = "shortcutHelper.helper.shortcutFactoryHelper.ShortcutFactoryHelperImpl" parent="ShortcutFactoryHelperDef">
+</bean>
+<bean id = "ShortcutFactoryHelperDef" abstract="true">
+</bean>
+<bean id = "FunctionalityContainerHelper" class = "shortcutHelper.helper.functionalityContainerHelper.FunctionalityContainerHelperImpl" parent="FunctionalityContainerHelperDef">
+</bean>
+<bean id = "FunctionalityContainerHelperDef" abstract="true">
+</bean>
+<bean id = "VariableHelper" class = "shortcutHelper.helper.variableHelper.VariableHelperImpl" parent="VariableHelperDef">
+</bean>
+<bean id = "VariableHelperDef" abstract="true">
+</bean>
+<bean id = "DatabaseInformationHelper" class = "shortcutHelper.helper.databaseInformationHelper.DatabaseInformationHelperImpl" parent="DatabaseInformationHelperDef">
+</bean>
+<bean id = "DatabaseInformationHelperDef" abstract="true">
+</bean>
+<bean id = "ShortcutRegistrationHelper" class = "shortcutHelper.helper.shortcutRegistrationHelper.ShortcutRegistrationHelperImpl" parent="ShortcutRegistrationHelperDef">
+</bean>
+<bean id = "ShortcutRegistrationHelperDef" abstract="true">
+</bean>
+<bean id = "ApplicationPropertyHelper" class = "shortcutHelper.helper.applicationPropertyHelper.ApplicationPropertyHelperImpl" parent="ApplicationPropertyHelperDef">
+</bean>
+<bean id = "ApplicationPropertyHelperDef" abstract="true">
+</bean>
+   
+</beans>

@@ -1,0 +1,417 @@
+functionality refreshFunctionality {
+	name : {
+		REFRESH
+	}
+	configuration : NONE
+	using : propertyHelper
+			shortcutHelper
+			variableHelper
+			databaseInformationHelper
+			applicationPropertyHelper;
+	input parameter :
+	returns : void 
+	implementation {
+		
+		variable EXCEPTION exceptionOccuredRefreshProperties = null
+		variable EXCEPTION exceptionOccuredRefreshShortcuts = null
+		variable EXCEPTION exceptionOccuredRefreshVariables = null
+		variable EXCEPTION exceptionOccuredRefreshDatabaseInformation = null
+		variable EXCEPTION exceptionOccuredRefreshApplicationProperties = null
+		variable BOOLEAN exception;
+		
+		
+		exceptionOccuredRefreshProperties = callComponentMethod shortcutHelper.shortcutHelper.refresh()
+		
+		if exceptionOccuredRefreshProperties = @ any exception @
+		{
+			showerror "Error while refreshing properties: " @ + exceptionOccuredRefreshProperties @
+			exception = true
+		};
+		
+		exceptionOccuredRefreshVariables = callComponentMethod variableHelper.variableHelper.refresh()
+		
+		if exceptionOccuredRefreshVariables = @ any exception @
+		{
+			showerror "Error while refreshing variables: " @ + exceptionOccuredRefreshVariables @
+			exception = true
+		};
+		
+		exceptionOccuredRefreshShortcuts = callComponentMethod propertyHelper.propertyHelper.refresh()
+		
+		if exceptionOccuredRefreshShortcuts = @ any exception @
+		{
+			showerror "Error while refreshing shortcuts: " @ + exceptionOccuredRefreshShortcuts @
+			exception = true
+		};
+		
+		exceptionOccuredRefreshDatabaseInformation = callComponentMethod databaseInformationHelper.databaseInformationHelper.refresh()
+		
+		if exceptionOccuredRefreshDatabaseInformation = @ any exception @
+		{
+			showerror "Error while refreshing database information: " @ + exceptionOccuredRefreshDatabaseInformation@
+			exception = true
+		};
+		
+		exceptionOccuredRefreshApplicationProperties = callComponentMethod applicationPropertyHelper.applicationPropertyHelper.refresh()
+		
+		if exceptionOccuredRefreshApplicationProperties = @ any exception @
+		{
+			showerror "Error while refreshing application properties : " @ + exceptionOccuredRefreshApplicationProperties@
+			exception = true
+		};
+		
+		@start dynamic commands in the background@
+		
+		if exception = true
+		{
+			showinfo "Application refreshed"
+		};
+	}
+}
+
+functionality executerFunctionality{
+	name : {
+		_NONE_
+	}
+	configuration : NONE
+	using : getClipboardLogic 
+			beanHelper
+			functionalityContainerHelper
+			shortcutFactoryHelper
+			variableHelper;
+	input parameter:
+		parameter shortcutToExecute SHORTCUT required
+		parameter oRawShortcutToExecute STRING optional // only looked at if other required param is null.
+	returns : void
+	implementation{
+		@ If shortcutToExecute is null, the functionality will try to parse oRawShortcutToExecute. If it fails,
+		it will than try to apply the special case for the command SetStorageOnTheFly: 
+			- The shortcut starts with with "set." and is followed by a noun (example: "set.bonjour").
+		If the raw shortcut matches the case, the Command SetStorageOnTheFly will be executed following the below steps. 
+		Otherwise nothing is done and an error message is shown to the user.
+		
+		If for any reason the shortcut to execute could not be determined or was never given, the message "No shortcut could be executed."
+		
+		Executes the appropriate command based on the given shortcut.
+		  Steps:
+		  	
+		  	- Retrive the shortcut to execute.
+		  	- Replace all ${CLIPBOARD_CONTENT} with the value of the current clipboard in the params.
+		  	- Retrieve the bean for the command.
+		  	- Creates the appropriate container for the command.
+		@
+	}
+}
+
+functionality copyToClipboardFunctionality {
+	@ Copies a value defined in the shortcut in the clipboard.@
+	
+	name : {
+		CLIPBOARD
+	}
+	configuration : NONE
+	
+	using : setClipboardLogic
+			beanUtil
+			beanHelper;
+	input parameter : 
+		parameter clipboard STRING required
+	returns : void
+	
+	implementation
+	{
+		callLogic setClipboardLogic (
+			set clipboardValue = clipboard
+		)
+		showinfo "Value copied to clipboard !"
+	}
+}
+
+functionality openUrlFunctionality{
+	@ Open the url using default internet browser.@
+	
+	name : {
+		OPEN_URL
+	}
+	configuration : NONE
+	
+	using: ;
+	
+	input parameter :
+		parameter url STRING required
+	returns : void
+	
+	implementation
+	{
+		@ opens url in browser @
+	}
+}
+
+functionality formatStringFunctionality{
+	@ Format the string in the clipboard from a format to another. If the String is already in the target format, 
+	the command will reverse the format back to the origal or do nothing depending on the 
+	config provided. The result is copied back to the clipboard.@
+	
+	name : {
+		FORMAT
+	}
+	configuration : NONE
+	
+	using : getClipboardLogic
+			setClipboardLogic;
+	
+	input parameter:
+		parameter originalFormat STRING required // Contains a regular expression.
+		parameter transformationToTargetFormat STRING required // Contains a regular expression for specifying how to convert from original format to target format.
+		parameter oTargetFormat STRING optional // Contains a regular expression.
+		parameter oTransformationToOriginalFormat STRING optional // Contains a regular expression for specifying how to convert from target format back to original format.
+		parameter dReverseFormat BOOLEAN default // (default true) If true and the string in clipboard already has the target format, 
+		// then the string is reverted back to its origin format. If false then  nothing is performed if the clipboard 
+		// already has the target format
+	returns : void
+	
+	implementation {
+		
+		
+		variable STRING clipboard;
+		
+		clipboard = callLogic getClipboardLogic()
+		if oTargetFormat = @not null@ {
+			if clipboard = oTargetFormat // clipboard has target format
+			{
+			if dReverseFormat = true{
+				clipboard = oTransformationToOriginalFormat // reformat back to originalFormat
+				callLogic setClipboardLogic (set clipboardValue = clipboard)
+				showinfo "Value reversed back to original format."
+			}else{
+				showinfo "Value already formatted. Nothing was done."
+			};
+		
+			};
+		}else{
+			if clipboard = originalFormat // clipboard has origin format
+			{
+				clipboard = transformationToTargetFormat // format to target format.
+				showinfo "Value formatted."
+				callLogic setClipboardLogic (set clipboardValue = clipboard)
+			}else{
+				showerror  "Clipboard format unknown."
+			};
+		};
+		
+		
+	}
+	
+}
+
+functionality selectQueryDatabaseFunctionality {
+	@ Executes a sql query and gives the result back in the clipboard. The query can only return one 
+	result (one row and one field). Other results will be ignored.@
+	
+	name : {
+		SELECT_QUERY
+	}
+	
+	configuration : NONE
+	
+	using : setClipboardLogic
+			databaseInformationHelper;
+	input parameter : 
+		parameter databaseConnectionName STRING required
+		parameter query STRING required
+	
+	returns : void
+	
+	implementation {
+		variable BOOLEAN databaseConnectionFound;
+		databaseConnectionFound = callComponentMethod databaseInformationHelper.databaseInformationHelper.hasDatabaseInformation(set databaseName = databaseConnectionName)
+		
+		if databaseConnectionFound = true{
+			variable OBJECT result;
+			result = @execution of sql query@
+			if result = @contains error@ {
+				showerror "Error while executing query. See log."
+			}else{
+				if result = @ contains data @ {	
+					callLogic setClipboardLogic (set clipboardValue = result) 
+					showinfo "Result copied to clipboard"
+				}else{
+					showinfo "No data returned."
+				};
+			};
+			
+		}else{
+			showerror "Connection ${query} could not be found."
+		};
+	}
+}
+
+functionality SetStorageOnTheFlyFunctionality{
+	@ Stores or removes a value on the hard drive. The value is taken from the clipboard.
+	This functionality is the only one that can be called without an actual defined shortcut.
+	It also should not be used manually as a defined shortcut (appart from the operation DELETE_ALL_FROM_OWNER).
+	Calling "set.[name]" from GUI will call this functionality to store the clipboard value (if any) into the hard drive.
+	The functionality will then add three shorcuts (set.[name],get.[name] and delete.[name]) which will allow the to access
+	delete or modify the stored value.
+	
+	All stored data will persist after the application is close and restarted. A dynamic command will be charged with recreating 
+	the neede shortcuts when the application restarts.@
+	
+	name : {
+		SET_STORAGE_ON_THE_FLY
+	}
+	configuration : @ Defined in shortcuthelper.functionalty.setStorageOnTheFly:
+						- storageFolder: specify the output folder for data storage. If none is specified, the value 
+										"/storage/setStorageOnTheFly/" will be taken. Warning: Modifiying the value of this configuration will cause
+										to loose all previously saved data.@
+										
+	using : StringStorageService
+			applicationPropertyHelper
+			shortcutHelper
+			shortcutFactoryHelper
+			shortcutRegistrationHelper
+			getClipboardLogic
+			setClipboardLogic;
+	input parameter : 
+		parameter vName STRING required // define name of the value to store
+		parameter operation SET_STORAGE_ON_THE_FLY_OPERATION required// define which operation it will be. Enum: SET,GET,DELETE,DELETE_ALL_FROM_OWNER
+		
+	returns : void
+	
+	implementation{
+		variable STRING owner = null
+		owner = "SetStorageOnTheFly"
+		
+		
+		if operation = @SET@
+		{
+			variable STRING clipboard = null
+			clipboard = callLogic getClipboardLogic()
+			if clipboard = null{
+				showinfo "Clipboard empty or invalid."
+			}else{
+				variable SHORTCUT setShortcutForVariable;
+				setShortcutForVariable = callComponentMethod shortcutHelper.shortcutHelper.getShortcut(
+					set shortcutId = @ "set." + vName@
+				)
+				if setShortcutForVariable = @ not null @
+				{
+					// replacing old value
+					callComponentMethod StringStorageService.storeString(
+							set owner = owner
+							set vName = vName
+							set str = clipboard)
+					showinfo "Value for '${name}' replaced."
+				}else{
+					@ HANDLING NEW VALUE TO STORE @
+					variable SHORTCUT getShortcutForVariable;
+					variable SHORTCUT deleteShortcutForVariable;
+					
+					getShortcutForVariable = callComponentMethod shortcutHelper.shortcutHelper.getShortcut(
+						set shortcutId = @ "get." + vName@
+					)
+					deleteShortcutForVariable = callComponentMethod shortcutHelper.shortcutHelper.getShortcut(
+						set shortcutId = @ "delete." + vName@
+					)
+					
+					
+					if getShortcutForVariable = @ not null @ or deleteShortcutForVariable = @ not null @{
+						// If the other get,delete shortcuts are defined, this is an unstable state. Nothing is performed.
+						showerror "Shortcuts get or delete for '${name}' defined but no set shortcut."
+					}else{
+						callComponentMethod StringStorageService.storeString(
+							set owner = owner
+							set vName = vName
+							set str = clipboard)
+						// registering string for newly added 
+						callComponentMethod shortcutRegistrationHelper.shortcutRegistrationHelper.addShortcut(
+							set shortcutToAdd = @ shortcut with name "set." + vName with operation SET refering to this functionality@
+							
+						)
+						
+						callComponentMethod shortcutRegistrationHelper.shortcutRegistrationHelper.addShortcut(
+							set shortcutToAdd = @ shortcut with name "get." + vName with operation GET refering to this functionality@
+							
+						)
+						
+						callComponentMethod shortcutRegistrationHelper.shortcutRegistrationHelper.addShortcut(
+							set shortcutToAdd = @ shortcut with name "delete." + vName with operation DELETE refering to this functionality@
+							
+						)
+						showinfo "Value of '${name}' added on the fly."
+					};
+				};
+			
+			};
+			
+		};
+		
+		
+		if operation = @GET@ {
+			variable BOOLEAN valueAlreadyStored;
+			valueAlreadyStored = callComponentMethod StringStorageService.stringIsStored(
+				set owner = owner
+				set vName = vName
+			)
+			
+			if valueAlreadyStored = true {
+				variable STRING value;
+				value = callComponentMethod StringStorageService.readString(
+					set owner = owner
+					set vName = vName
+				)
+				callLogic setClipboardLogic(
+					set clipboardValue = value
+				)
+				showinfo "Value copied to clipboard."
+			}else{
+				showinfo "No value is stored for this variable."
+			};
+		};
+		
+		
+		
+		if operation = @DELETE@ {
+			variable BOOLEAN valueAlreadyStored;
+			valueAlreadyStored = callComponentMethod StringStorageService.stringIsStored(
+				set owner = owner
+				set vName = vName
+			)
+			
+			if valueAlreadyStored = true {
+				variable STRING value;
+				value = callComponentMethod StringStorageService.deleteString(
+					set owner = owner
+					set vName = vName
+				)
+				
+				// Removing all associated shortcuts.
+				callComponentMethod shortcutRegistrationHelper.shortcutRegistrationHelper.removeShortcut(
+					set shortcutToRemove = @ shortcut with name "set." + vName with operation SET refering to this functionality@
+				)
+				
+				callComponentMethod shortcutRegistrationHelper.shortcutRegistrationHelper.removeShortcut(
+					set shortcutToRemove = @ shortcut with name "get." + vName with operation GET refering to this functionality@
+				)
+				
+				callComponentMethod shortcutRegistrationHelper.shortcutRegistrationHelper.removeShortcut(
+					set shortcutToRemove = @ shortcut with name "delete." + vName with operation DELETE refering to this functionality@	
+				)
+				
+				showinfo "Value deleted from store."
+			}else{
+				showinfo "No value is stored for this variable."
+			};
+		};
+		
+		
+		if operation = @DELETE_ALL_FROM_OWNER@ {
+			variable BOOLEAN valueAlreadyStored;
+			valueAlreadyStored = callComponentMethod StringStorageService.deleteAllStringForOwner(
+				set owner = owner
+			)
+			
+			showinfo "All variables from this functionality have been erased."
+		};
+	}
+}
