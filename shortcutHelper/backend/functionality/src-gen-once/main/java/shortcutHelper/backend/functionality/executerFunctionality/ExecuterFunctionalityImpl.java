@@ -57,10 +57,9 @@ public class ExecuterFunctionalityImpl extends AbstractExecuterFunctionality imp
 			ShortcutHelperLogging.logError(t);
 			container.getShortcutHelperContext().setError("Unexpected error while executing command. Please see log.");
 		} finally {
+			ShortcutHelperLogging.logInfo("Clipboard value after running the command : '" + getClipboard() + "'");
 			ShortcutHelperLogging.logSeparationInfo();
 		}
-
-		ShortcutHelperLogging.logInfo("Clipboard value after running the command : '" + getClipboard() + "'");
 
 		return ConcreteFunctionalityResult.RESULT_NULL;
 	}
