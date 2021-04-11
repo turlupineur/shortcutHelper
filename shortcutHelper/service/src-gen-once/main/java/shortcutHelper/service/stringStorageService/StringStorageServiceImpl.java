@@ -121,7 +121,6 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 		List<String> allStorages = new ArrayList<>();
 
 		File rootFolder = new File(folder);
-		boolean success = true;
 		String[] files = rootFolder.list(new FilenameFilter() {
 
 			@Override
@@ -130,10 +129,12 @@ public class StringStorageServiceImpl extends AbstractStringStorageService {
 			}
 		});
 
-		for (String file : files) {
-			String variableName = extractVariableNameFromFileName(file);
-			if (variableName != null) {
-				allStorages.add(variableName);
+		if (files != null) {
+			for (String file : files) {
+				String variableName = extractVariableNameFromFileName(file);
+				if (variableName != null) {
+					allStorages.add(variableName);
+				}
 			}
 		}
 
